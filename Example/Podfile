@@ -1,0 +1,14 @@
+platform :ios, '9.0'
+
+source 'https://github.com/CocoaPods/Specs.git'
+
+target 'JSSkeletonExample' do
+
+  pod 'JSSkeleton', :path => '..'
+  pod 'QMUIKit'
+  pod 'LookinServer', :configurations => ['Debug']
+  pod 'MLeaksFinder', :configurations => ['Debug']
+  
+end
+
+
