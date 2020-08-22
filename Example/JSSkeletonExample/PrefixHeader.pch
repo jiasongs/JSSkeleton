@@ -1,0 +1,15 @@
+//
+//  PrefixHeader.pch
+//  JSSkeletonExample
+//
+//  Created by jiasong on 2020/8/22.
+//  Copyright © 2020 jiasong. All rights reserved.
+//
+
+#ifndef PrefixHeader_pch
+#define PrefixHeader_pch
+
+#import <QMUIKit.h>
+#import <Masonry.h>
+
+#endif /* PrefixHeader_pch */

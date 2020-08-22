@@ -6,6 +6,7 @@ target 'JSSkeletonExample' do
 
   pod 'JSSkeleton', :path => '..'
   pod 'QMUIKit'
+  pod 'Masonry'
   pod 'LookinServer', :configurations => ['Debug']
   pod 'MLeaksFinder', :configurations => ['Debug']
   
