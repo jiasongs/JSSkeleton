@@ -13,7 +13,7 @@
 
 - (void)awakeFromNib {
     [super awakeFromNib];
-    [self.contentView js_registerSkeleton];
+//    [self.contentView js_registerSkeleton];
 }
 
 @end

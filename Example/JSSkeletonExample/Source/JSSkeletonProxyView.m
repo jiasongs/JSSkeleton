@@ -10,6 +10,7 @@
 #import "JSSkeletonLayoutView.h"
 #import "JSSkeletonBreathingAnimation.h"
 #import "UIView+JSSkeletonProperty.h"
+#import "JSSkeletonProxyCoordinator.h"
 
 @interface JSSkeletonProxyView ()
 
@@ -29,6 +30,8 @@
 
 - (void)didInitialize {
     self.backgroundColor = UIColor.whiteColor;
+    self.coordinator = [[JSSkeletonProxyCoordinator alloc] init];
+    self.coordinator.bindView = self;
 }
 
 #pragma mark - 布局
@@ -50,7 +53,7 @@
         [view isKindOfClass:[NSClassFromString(@"UITableViewLabel") class]]) {
         needRemove = true;
     }
-    if ((!self.isHidden || !self.js_skeletonInvalid) && !needRemove) {
+    if ((!view.isHidden || !view.js_skeletonInvalid) && !needRemove) {
         return true;
     }
     return false;

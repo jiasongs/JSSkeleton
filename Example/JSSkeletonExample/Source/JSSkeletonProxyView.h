@@ -8,12 +8,14 @@
 
 #import <UIKit/UIKit.h>
 @class JSSkeletonLayoutView;
+@class JSSkeletonProxyCoordinator;
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface JSSkeletonProxyView : UIView
 
 @property (nonatomic, weak, readonly) __kindof UIView *targetView;
+@property (nonatomic, strong) JSSkeletonProxyCoordinator *coordinator;
 
 - (instancetype)initWithTargetView:(__kindof UIView *)targetView NS_REQUIRES_SUPER;
 - (void)didInitialize NS_REQUIRES_SUPER;

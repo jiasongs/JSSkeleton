@@ -14,6 +14,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier targetCellClass:(Class)cellClass;
 
+- (void)start;
+- (void)end;
+
 @end
 
 NS_ASSUME_NONNULL_END
