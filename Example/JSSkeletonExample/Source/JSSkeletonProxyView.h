@@ -16,7 +16,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface JSSkeletonProxyView : UIView
 
 @property (nonatomic, weak, readonly) __kindof UIView *registerView;
-@property (nonatomic, weak, readonly, nullable) __kindof UIView *targetView; /// 需要要模仿的视图
+@property (nonatomic, weak, readonly, nullable) __kindof UIView *targetView; /// 需要模仿的视图
 @property (nonatomic, strong, readwrite) __kindof JSSkeletonProxyProducer *producer;
 @property (nonatomic, strong, readwrite) __kindof JSSkeletonProxyCoordinator *coordinator;
 

@@ -19,9 +19,11 @@
 
 @implementation UITableView (JSSkeleton)
 
-- (__kindof UIView *)js_registerSkeletonForCellClass:(Class)cellClass {
+- (__kindof UIView *)js_registerSkeletonForCellClass:(Class)cellClass heightForRows:(CGFloat)height {
     JSSkeletonProxyTableView *proxyView = [self __js_produceSkeletonProxyTableView];
-    [proxyView registerCellClass:cellClass];
+    proxyView.heightForRows = @[@(height)];
+    /// 最后注册
+    [proxyView registerCellClass:@[cellClass]];
     return proxyView;
 }
 

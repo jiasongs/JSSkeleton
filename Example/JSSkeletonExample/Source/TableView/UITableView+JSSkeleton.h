@@ -12,7 +12,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface UITableView (JSSkeleton)
 
-- (__kindof UIView *)js_registerSkeletonForCellClass:(Class)cellClass;
+- (__kindof UIView *)js_registerSkeletonForCellClass:(Class)cellClass heightForRows:(CGFloat)height;
 
 @end
 

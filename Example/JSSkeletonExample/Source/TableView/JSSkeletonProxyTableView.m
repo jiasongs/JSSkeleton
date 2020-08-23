@@ -16,7 +16,6 @@
 @interface JSSkeletonProxyTableView ()<UITableViewDataSource, UITableViewDelegate>
 
 @property (nonatomic, strong, readwrite) UITableView *tableView;
-@property (nonatomic, assign) Class cellCalss;
 @property (nonatomic, strong) NSMapTable *cacheCellMapTable;
 
 @end
@@ -25,6 +24,7 @@
 
 - (void)didInitialize {
     [super didInitialize];
+    self.numberOfSection = 1;
     [self addSubview:self.tableView];
     if ([self.registerView isKindOfClass:UITableView.class]) {
         UITableView *tableView = self.registerView;
@@ -46,37 +46,47 @@
 
 #pragma mark - 注册
 
-- (void)registerCellClass:(nullable Class)cellClass {
-    _cellCalss = cellClass;
-    NSUInteger numberCount = [self.tableView numberOfRowsInSection:0];
-    for (int i = 0; i < numberCount; i++) {
-        NSString *key = [NSString stringWithFormat:@"%@-%@", @(0), @(i)];
-        JSSkeletonProxyTableViewCell *cell = [[JSSkeletonProxyTableViewCell alloc] initWithTargetCellClass:_cellCalss];
-        [self.cacheCellMapTable setObject:cell forKey:key];;
-        for (JSSkeletonLayoutView *layoutView in cell.producer.layoutViews) {
-            [self.producer.layoutViews addPointer:(__bridge void *)(layoutView)];
+- (void)registerCellClass:(NSArray<Class> *)cellClasss {
+    NSAssert(cellClasss.count == self.numberOfSection, @"");
+    NSAssert(self.heightForRows.count != 0, @"");
+    NSMutableArray *numberOfRows = [NSMutableArray arrayWithArray:self.numberOfRows ? : @[]];
+    for (int section = 0; section < self.numberOfSection; section++) {
+        if (self.numberOfRows.count == 0) {
+            [numberOfRows addObject:@(10)];
+        }
+        Class cellClass = [cellClasss objectAtIndex:section];
+        NSInteger numberOfRow = [[numberOfRows objectAtIndex:section] integerValue];
+        for (int row = 0; row < numberOfRow; row++) {
+            NSString *key = [NSString stringWithFormat:@"%@-%@", @(section), @(row)];
+            JSSkeletonProxyTableViewCell *cell = [[JSSkeletonProxyTableViewCell alloc] initWithTargetCellClass:cellClass];
+            [self.cacheCellMapTable setObject:cell forKey:key];;
+            for (JSSkeletonLayoutView *layoutView in cell.producer.layoutViews) {
+                [self.producer.layoutViews addPointer:(__bridge void *)(layoutView)];
+            }
         }
     }
+    self.numberOfRows = numberOfRows.copy;
+    [self.tableView reloadData];
 }
 
 #pragma mark - UITableView
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 1;
+    return self.numberOfSection;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 10;
+    return [[self.numberOfRows objectAtIndex:section] integerValue];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return 108;
+    return [[self.heightForRows objectAtIndex:indexPath.section] floatValue];
 }
 
 - (JSSkeletonProxyTableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     NSString *key = [NSString stringWithFormat:@"%@-%@", @(indexPath.section), @(indexPath.row)];
     JSSkeletonProxyTableViewCell *cell = [self.cacheCellMapTable objectForKey:key];
-    return cell;
+    return cell ? : JSSkeletonProxyTableViewCell.new;
 }
 
 #pragma mark - getter

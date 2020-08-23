@@ -13,8 +13,11 @@ NS_ASSUME_NONNULL_BEGIN
 @interface JSSkeletonProxyTableView : JSSkeletonProxyView
 
 @property (nonatomic, strong, readonly) UITableView *tableView;
+@property (nonatomic, assign) CGFloat numberOfSection;
+@property (nonatomic, copy) NSArray<NSNumber *> *heightForRows;
+@property (nonatomic, copy) NSArray<NSNumber *> *numberOfRows;
 
-- (void)registerCellClass:(nullable Class)cellClass;
+- (void)registerCellClass:(NSArray<Class> *)cellClasss;
 
 @end
 
