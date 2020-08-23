@@ -7,18 +7,18 @@
 //
 
 #import <Foundation/Foundation.h>
-@class JSSkeletonLayoutView;
+@class JSSkeletonProxyView;
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface JSSkeletonProxyCoordinator : NSObject
 
-@property (nonatomic, weak) __kindof UIView *bindView;
+@property (nonatomic, weak, readonly) __kindof JSSkeletonProxyView *proxyView;
 
-- (BOOL)filterByRulesView:(__kindof UIView *)view;
-- (void)enumerateLayoutViewUsingBlock:(void(NS_NOESCAPE ^)(JSSkeletonLayoutView *layoutView))block;
-- (void)start;
-- (void)end;
+- (instancetype)initWithProxyView:(__kindof JSSkeletonProxyView *)proxyView;
+
+- (BOOL)start;
+- (BOOL)end;
 
 @end
 

@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		6701A6AF7E823E837E79F3D8 /* libPods-JSSkeletonExample.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2EFC85451EC9481C4D6B23F7 /* libPods-JSSkeletonExample.a */; };
+		7A1AC65724F20A6D00CF57D2 /* JSSkeletonProxyProducer.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A1AC65624F20A6D00CF57D2 /* JSSkeletonProxyProducer.m */; };
 		7AB24B8D24F0BC8F0067C1C4 /* UIView+JSSkeleton.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AB24B8C24F0BC8F0067C1C4 /* UIView+JSSkeleton.m */; };
 		7AB24B9024F0BD560067C1C4 /* JSSkeletonProxyView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AB24B8F24F0BD560067C1C4 /* JSSkeletonProxyView.m */; };
 		7AB24B9A24F0BEFF0067C1C4 /* JSNormalViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AB24B9824F0BEFF0067C1C4 /* JSNormalViewController.m */; };
@@ -37,6 +38,8 @@
 /* Begin PBXFileReference section */
 		29E384E54D5200BF49183EFA /* Pods-JSSkeletonExample.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JSSkeletonExample.release.xcconfig"; path = "Target Support Files/Pods-JSSkeletonExample/Pods-JSSkeletonExample.release.xcconfig"; sourceTree = "<group>"; };
 		2EFC85451EC9481C4D6B23F7 /* libPods-JSSkeletonExample.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-JSSkeletonExample.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		7A1AC65524F20A6D00CF57D2 /* JSSkeletonProxyProducer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JSSkeletonProxyProducer.h; sourceTree = "<group>"; };
+		7A1AC65624F20A6D00CF57D2 /* JSSkeletonProxyProducer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JSSkeletonProxyProducer.m; sourceTree = "<group>"; };
 		7AB24B8B24F0BC8F0067C1C4 /* UIView+JSSkeleton.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIView+JSSkeleton.h"; sourceTree = "<group>"; };
 		7AB24B8C24F0BC8F0067C1C4 /* UIView+JSSkeleton.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIView+JSSkeleton.m"; sourceTree = "<group>"; };
 		7AB24B8E24F0BD560067C1C4 /* JSSkeletonProxyView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JSSkeletonProxyView.h; sourceTree = "<group>"; };
@@ -106,30 +109,40 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		7A1AC65824F213F000CF57D2 /* TableView */ = {
+			isa = PBXGroup;
+			children = (
+				7AB24BCB24F119570067C1C4 /* JSSkeletonProxyTableView.h */,
+				7AB24BCC24F119570067C1C4 /* JSSkeletonProxyTableView.m */,
+				7AB24BCE24F124D50067C1C4 /* JSSkeletonProxyTableViewCell.h */,
+				7AB24BCF24F124D50067C1C4 /* JSSkeletonProxyTableViewCell.m */,
+				7AB24BC824F1184C0067C1C4 /* UITableView+JSSkeleton.h */,
+				7AB24BC924F1184C0067C1C4 /* UITableView+JSSkeleton.m */,
+			);
+			path = TableView;
+			sourceTree = "<group>";
+		};
 		7AB24B8924F0BC510067C1C4 /* Source */ = {
 			isa = PBXGroup;
 			children = (
+				7A1AC65824F213F000CF57D2 /* TableView */,
 				7AB24BB024F0F7710067C1C4 /* JSSkeletonAnimationProtocol.h */,
 				7AB24BAD24F0F7570067C1C4 /* JSSkeletonBreathingAnimation.h */,
 				7AB24BAE24F0F7570067C1C4 /* JSSkeletonBreathingAnimation.m */,
 				7AB24BB224F10C8F0067C1C4 /* JSSkeletonConfig.h */,
 				7AB24BB324F10C8F0067C1C4 /* JSSkeletonConfig.m */,
-				7AB24BA724F0D12C0067C1C4 /* JSSkeletonLayoutView.h */,
-				7AB24BA824F0D12C0067C1C4 /* JSSkeletonLayoutView.m */,
-				7AB24BCB24F119570067C1C4 /* JSSkeletonProxyTableView.h */,
-				7AB24BCC24F119570067C1C4 /* JSSkeletonProxyTableView.m */,
 				7AB24B8E24F0BD560067C1C4 /* JSSkeletonProxyView.h */,
 				7AB24B8F24F0BD560067C1C4 /* JSSkeletonProxyView.m */,
-				7AB24BCE24F124D50067C1C4 /* JSSkeletonProxyTableViewCell.h */,
-				7AB24BCF24F124D50067C1C4 /* JSSkeletonProxyTableViewCell.m */,
-				7AB24BC824F1184C0067C1C4 /* UITableView+JSSkeleton.h */,
-				7AB24BC924F1184C0067C1C4 /* UITableView+JSSkeleton.m */,
+				7AB24BA724F0D12C0067C1C4 /* JSSkeletonLayoutView.h */,
+				7AB24BA824F0D12C0067C1C4 /* JSSkeletonLayoutView.m */,
+				7AB24BD224F173190067C1C4 /* JSSkeletonProxyCoordinator.h */,
+				7AB24BD324F173190067C1C4 /* JSSkeletonProxyCoordinator.m */,
+				7A1AC65524F20A6D00CF57D2 /* JSSkeletonProxyProducer.h */,
+				7A1AC65624F20A6D00CF57D2 /* JSSkeletonProxyProducer.m */,
 				7AB24B8B24F0BC8F0067C1C4 /* UIView+JSSkeleton.h */,
 				7AB24B8C24F0BC8F0067C1C4 /* UIView+JSSkeleton.m */,
 				7AB24BA424F0D0BC0067C1C4 /* UIView+JSSkeletonProperty.h */,
 				7AB24BA524F0D0BC0067C1C4 /* UIView+JSSkeletonProperty.m */,
-				7AB24BD224F173190067C1C4 /* JSSkeletonProxyCoordinator.h */,
-				7AB24BD324F173190067C1C4 /* JSSkeletonProxyCoordinator.m */,
 			);
 			path = Source;
 			sourceTree = "<group>";
@@ -383,6 +396,7 @@
 				7AB24BC624F115860067C1C4 /* JSTableViewCell.m in Sources */,
 				7ADB2E3424EF97AF00398BF5 /* ViewController.m in Sources */,
 				7AB24BAF24F0F7570067C1C4 /* JSSkeletonBreathingAnimation.m in Sources */,
+				7A1AC65724F20A6D00CF57D2 /* JSSkeletonProxyProducer.m in Sources */,
 				7AB24B9024F0BD560067C1C4 /* JSSkeletonProxyView.m in Sources */,
 				7AB24BD024F124D50067C1C4 /* JSSkeletonProxyTableViewCell.m in Sources */,
 				7ADB2E2E24EF97AF00398BF5 /* AppDelegate.m in Sources */,

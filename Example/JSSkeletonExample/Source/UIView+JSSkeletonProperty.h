@@ -14,6 +14,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface UIView (JSSkeletonProperty)
 
+@property (nonatomic, assign) BOOL js_skeletonDisplay;
 @property (nonatomic, assign) BOOL js_skeletonInvalid;
 @property (nonatomic, assign) CGFloat js_skeletonMarginTop;
 @property (nonatomic, assign) CGFloat js_skeletonMarginLeft;
@@ -23,8 +24,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, copy, nullable) UIColor *js_skeletonTintColor;
 @property (nonatomic, strong, nullable) id<JSSkeletonAnimationProtocol> js_skeletonAnimation;
 @property (nonatomic, weak, nullable) JSSkeletonLayoutView *js_skeletonLayoutView;
-@property (nonatomic, assign) BOOL js_skeletonDisplay;
-    
+
 @end
 
 NS_ASSUME_NONNULL_END

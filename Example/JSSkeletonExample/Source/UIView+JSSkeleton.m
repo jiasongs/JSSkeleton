@@ -9,6 +9,7 @@
 #import "UIView+JSSkeleton.h"
 #import "JSSkeletonProxyView.h"
 #import "UIView+JSSkeletonProperty.h"
+#import "JSSkeletonProxyCoordinator.h"
 
 @interface UIView (__JSSkeleton)
 
@@ -35,28 +36,21 @@
 }
 
 - (void)js_startSkeleton {
-    if (!self.js_skeletonDisplay) {
-        for (JSSkeletonProxyView *proxyView in self.js_skeletonProxyViews) {
-            [proxyView start];
-        }
-        self.js_skeletonDisplay = true;
+    for (__kindof JSSkeletonProxyView *proxyView in self.js_skeletonProxyViews) {
+        [proxyView.coordinator start];
     }
 }
 
 - (void)js_endSkeleton {
-    if (self.js_skeletonDisplay) {
-        for (JSSkeletonProxyView *proxyView in self.js_skeletonProxyViews) {
-            [proxyView end];
-        }
-        self.js_skeletonDisplay = false;
+    for (__kindof JSSkeletonProxyView *proxyView in self.js_skeletonProxyViews) {
+        [proxyView.coordinator end];
     }
 }
 
 #pragma mark - 生产
 
 - (__kindof JSSkeletonProxyView *)__js_produceSkeletonProxyViewWithTargetView:(UIView *)targetView {
-    JSSkeletonProxyView *proxyView = [[JSSkeletonProxyView alloc] initWithTargetView:targetView];
-    proxyView.hidden = true;
+    JSSkeletonProxyView *proxyView = [[JSSkeletonProxyView alloc] initWithRegisterView:self targetView:targetView];
     [self addSubview:proxyView];
     /// 添加到数组里
     [self.js_skeletonProxyViews addObject:proxyView];

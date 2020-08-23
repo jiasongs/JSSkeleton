@@ -7,59 +7,56 @@
 //
 
 #import "JSSkeletonProxyCoordinator.h"
+#import "UIView+JSSkeletonProperty.h"
+#import "JSSkeletonLayoutView.h"
+#import "JSSkeletonProxyView.h"
+#import "JSSkeletonProxyProducer.h"
+
+@interface JSSkeletonProxyCoordinator ()
+
+@end
 
 @implementation JSSkeletonProxyCoordinator
 
-#pragma mark - public
+- (instancetype)initWithProxyView:(__kindof JSSkeletonProxyView *)proxyView {
+    if (self = [super init]) {
+        _proxyView = proxyView;
+    }
+    return self;
+}
 
-//- (BOOL)filterByRulesView:(__kindof UIView *)view {
-//    BOOL needRemove = false;
-//    if ([view isKindOfClass:[NSClassFromString(@"_UITableViewCellSeparatorView") class]] ||
-//        [view isKindOfClass:[NSClassFromString(@"_UITableViewHeaderFooterContentView") class]] ||
-//        [view isKindOfClass:[NSClassFromString(@"_UITableViewHeaderFooterViewBackground") class]] ||
-//        [view isKindOfClass:[NSClassFromString(@"UITableViewLabel") class]]) {
-//        needRemove = true;
-//    }
-//    if ((!view.isHidden || !view.js_skeletonInvalid) && !needRemove) {
-//        return true;
-//    }
-//    return false;
-//}
-//
-//- (void)enumerateLayoutViewUsingBlock:(void(NS_NOESCAPE ^)(JSSkeletonLayoutView *layoutView))block {
-//    [self.bindView.subviews enumerateObjectsUsingBlock:^(JSSkeletonLayoutView *subview, NSUInteger idx, BOOL *stop) {
-//        if ([subview isKindOfClass:JSSkeletonLayoutView.class]) {
-//            block(subview);
-//        }
-//    }];
-//}
-//
-//- (void)start {
-//    if (!self.js_skeletonDisplay) {
-//        [self enumerateLayoutViewUsingBlock:^(JSSkeletonLayoutView *layoutView) {
-//            [layoutView startAnimation];
-//        }];
-//        [self.superview bringSubviewToFront:self];
-//        self.hidden = false;
-//        self.js_skeletonDisplay = true;
-//    }
-//}
-//
-//- (void)end {
-//    if (self.js_skeletonDisplay) {
-//        [self enumerateLayoutViewUsingBlock:^(JSSkeletonLayoutView *layoutView) {
-//            [layoutView endAnimation];
-//        }];
-//        [UIView animateWithDuration:0.25f delay:0 options:(7<<16) animations:^{
-//            self.alpha = 0.0;
-//        } completion:^(BOOL finished) {
-//            if (finished) {
-//                self.hidden = true;
-//                self.alpha = 1.0;
-//            }
-//        }];
-//        self.js_skeletonDisplay = false;
-//    }
-//}
+- (BOOL)start {
+    __kindof UIView *registerView = self.proxyView.registerView;
+    if (!registerView.js_skeletonDisplay) {
+        registerView.js_skeletonDisplay = true;
+        for (JSSkeletonLayoutView *layoutView in self.proxyView.producer.layoutViews) {
+            [layoutView startAnimation];
+        }
+        [self.proxyView.superview bringSubviewToFront:self.proxyView];
+        self.proxyView.hidden = false;
+        return true;
+    }
+    return false;
+}
+
+- (BOOL)end {
+    __kindof UIView *registerView = self.proxyView.registerView;
+    if (registerView.js_skeletonDisplay) {
+        registerView.js_skeletonDisplay = false;
+        for (JSSkeletonLayoutView *layoutView in self.proxyView.producer.layoutViews) {
+            [layoutView endAnimation];
+        }
+        [UIView animateWithDuration:0.25f delay:0 options:(7<<16) animations:^{
+            self.proxyView.alpha = 0.0;
+        } completion:^(BOOL finished) {
+            if (finished) {
+                self.proxyView.hidden = true;
+                self.proxyView.alpha = 1.0;
+            }
+        }];
+        return true;
+    }
+    return false;
+}
 
 @end

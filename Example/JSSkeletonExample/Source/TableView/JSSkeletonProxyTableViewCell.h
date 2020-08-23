@@ -7,15 +7,15 @@
 //
 
 #import <UIKit/UIKit.h>
+@class JSSkeletonProxyProducer;
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface JSSkeletonProxyTableViewCell : UITableViewCell
 
-- (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier targetCellClass:(Class)cellClass;
+@property (nonatomic, strong, readwrite) JSSkeletonProxyProducer *producer;
 
-- (void)start;
-- (void)end;
+- (instancetype)initWithTargetCellClass:(Class)cellClass;
 
 @end
 

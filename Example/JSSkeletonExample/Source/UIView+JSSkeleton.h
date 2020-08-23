@@ -13,7 +13,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface UIView (JSSkeleton)
 
-@property (nonatomic, strong, readonly) NSMutableArray<__kindof JSSkeletonProxyView *> *js_skeletonProxyViews;
+@property (nonatomic, copy, readonly) NSArray<__kindof JSSkeletonProxyView *> *js_skeletonProxyViews;
 
 - (__kindof UIView *)js_registerSkeleton;
 - (__kindof UIView *)js_registerSkeletonForViewClass:(Class)viewClass;

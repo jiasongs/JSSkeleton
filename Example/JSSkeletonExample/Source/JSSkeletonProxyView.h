@@ -8,22 +8,21 @@
 
 #import <UIKit/UIKit.h>
 @class JSSkeletonLayoutView;
+@class JSSkeletonProxyProducer;
 @class JSSkeletonProxyCoordinator;
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface JSSkeletonProxyView : UIView
 
-@property (nonatomic, weak, readonly) __kindof UIView *targetView;
-@property (nonatomic, strong) JSSkeletonProxyCoordinator *coordinator;
+@property (nonatomic, weak, readonly) __kindof UIView *registerView;
+@property (nonatomic, weak, readonly, nullable) __kindof UIView *targetView; /// 需要要模仿的视图
+@property (nonatomic, strong, readwrite) __kindof JSSkeletonProxyProducer *producer;
+@property (nonatomic, strong, readwrite) __kindof JSSkeletonProxyCoordinator *coordinator;
 
-- (instancetype)initWithTargetView:(__kindof UIView *)targetView NS_REQUIRES_SUPER;
+- (instancetype)initWithRegisterView:(__kindof UIView *)registerView
+                          targetView:(nullable __kindof UIView *)targetView NS_REQUIRES_SUPER;
 - (void)didInitialize NS_REQUIRES_SUPER;
-
-- (BOOL)filterByRulesView:(__kindof UIView *)view;
-- (void)enumerateLayoutViewUsingBlock:(void(NS_NOESCAPE ^)(JSSkeletonLayoutView *layoutView))block;
-- (void)start;
-- (void)end;
 
 @end
 

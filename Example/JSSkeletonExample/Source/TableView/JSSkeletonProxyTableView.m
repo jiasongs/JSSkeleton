@@ -11,10 +11,10 @@
 #import "JSSkeletonProxyView.h"
 #import "UIView+JSSkeletonProperty.h"
 #import "UIView+JSSkeleton.h"
+#import "JSSkeletonProxyProducer.h"
 
 @interface JSSkeletonProxyTableView ()<UITableViewDataSource, UITableViewDelegate>
 
-@property (nonatomic, weak, readwrite) __kindof UIView *targetView;
 @property (nonatomic, strong, readwrite) UITableView *tableView;
 @property (nonatomic, assign) Class cellCalss;
 @property (nonatomic, strong) NSMapTable *cacheCellMapTable;
@@ -22,59 +22,41 @@
 @end
 
 @implementation JSSkeletonProxyTableView
-@synthesize targetView = _targetView;
 
 - (void)didInitialize {
     [super didInitialize];
     [self addSubview:self.tableView];
+    if ([self.registerView isKindOfClass:UITableView.class]) {
+        UITableView *tableView = self.registerView;
+        self.tableView.contentInset = tableView.contentInset;
+        UIEdgeInsets contentInset = UIEdgeInsetsZero;
+        if (@available(iOS 11, *)) {
+            contentInset = self.tableView.adjustedContentInset;
+        } else {
+            contentInset = self.tableView.contentInset;
+        }
+        [self.tableView setContentOffset:CGPointMake(-contentInset.left, -contentInset.top)];
+    }
 }
 
 - (void)layoutSubviews {
     [super layoutSubviews];
-    if (_tableView) {
-        _tableView.frame = self.bounds;
-    }
+    self.tableView.frame = self.bounds;
 }
+
+#pragma mark - 注册
 
 - (void)registerCellClass:(nullable Class)cellClass {
     _cellCalss = cellClass;
     NSUInteger numberCount = [self.tableView numberOfRowsInSection:0];
     for (int i = 0; i < numberCount; i++) {
         NSString *key = [NSString stringWithFormat:@"%@-%@", @(0), @(i)];
-        JSSkeletonProxyTableViewCell *cell = [self.cacheCellMapTable objectForKey:key];
-        if (!cell) {
-            cell = [[JSSkeletonProxyTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:NSStringFromClass(JSSkeletonProxyTableViewCell.class) targetCellClass:_cellCalss];
-            [self.cacheCellMapTable setObject:cell forKey:key];
+        JSSkeletonProxyTableViewCell *cell = [[JSSkeletonProxyTableViewCell alloc] initWithTargetCellClass:_cellCalss];
+        [self.cacheCellMapTable setObject:cell forKey:key];;
+        for (JSSkeletonLayoutView *layoutView in cell.producer.layoutViews) {
+            [self.producer.layoutViews addPointer:(__bridge void *)(layoutView)];
         }
     }
-}
-
-- (void)start {
-    [self.tableView reloadData];
-    [self scrollToTop];
-    for (NSString *key in self.cacheCellMapTable) {
-        JSSkeletonProxyTableViewCell *cell = [self.cacheCellMapTable objectForKey:key];
-        [cell start];
-    }
-    [super start];
-}
-
-- (void)end {
-    for (NSString *key in self.cacheCellMapTable) {
-        JSSkeletonProxyTableViewCell *cell = [self.cacheCellMapTable objectForKey:key];
-        [cell end];
-    }
-    [super end];
-}
-
-- (void)scrollToTop {
-    UIEdgeInsets contentInset = UIEdgeInsetsZero;
-    if (@available(iOS 11, *)) {
-        contentInset = self.tableView.adjustedContentInset;
-    } else {
-        contentInset = self.tableView.contentInset;
-    }
-    [self.tableView setContentOffset:CGPointMake(-contentInset.left, -contentInset.top)];
 }
 
 #pragma mark - UITableView
@@ -94,18 +76,7 @@
 - (JSSkeletonProxyTableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     NSString *key = [NSString stringWithFormat:@"%@-%@", @(indexPath.section), @(indexPath.row)];
     JSSkeletonProxyTableViewCell *cell = [self.cacheCellMapTable objectForKey:key];
-    if (!cell) {
-        cell = [[JSSkeletonProxyTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:NSStringFromClass(JSSkeletonProxyTableViewCell.class) targetCellClass:_cellCalss];
-        [self.cacheCellMapTable setObject:cell forKey:key];
-    }
     return cell;
-}
-
-#pragma mark - setter
-
-- (void)setTargetView:(__kindof UITableView *)targetView {
-    _targetView = targetView;
-    self.tableView.contentInset = targetView.contentInset;
 }
 
 #pragma mark - getter
