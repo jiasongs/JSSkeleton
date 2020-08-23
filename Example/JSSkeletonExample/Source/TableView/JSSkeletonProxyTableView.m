@@ -16,6 +16,7 @@
 @interface JSSkeletonProxyTableView ()<UITableViewDataSource, UITableViewDelegate>
 
 @property (nonatomic, strong, readwrite) UITableView *tableView;
+@property (nonatomic, assign) CGFloat numberOfSection;
 @property (nonatomic, strong) NSMapTable *cacheCellMapTable;
 
 @end
@@ -24,7 +25,6 @@
 
 - (void)didInitialize {
     [super didInitialize];
-    self.numberOfSection = 1;
     [self addSubview:self.tableView];
     if ([self.registerView isKindOfClass:UITableView.class]) {
         UITableView *tableView = self.registerView;
@@ -47,8 +47,8 @@
 #pragma mark - 注册
 
 - (void)registerCellClass:(NSArray<Class> *)cellClasss {
-    NSAssert(cellClasss.count == self.numberOfSection, @"");
     NSAssert(self.heightForRows.count != 0, @"");
+    self.numberOfSection = cellClasss.count;
     NSMutableArray *numberOfRows = [NSMutableArray arrayWithArray:self.numberOfRows ? : @[]];
     for (int section = 0; section < self.numberOfSection; section++) {
         if (self.numberOfRows.count == 0) {

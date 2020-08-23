@@ -19,6 +19,8 @@
 
 @implementation UITableView (JSSkeleton)
 
+#pragma mark - UITableViewCell
+
 - (__kindof UIView *)js_registerSkeletonForCellClass:(Class)cellClass heightForRows:(CGFloat)height {
     JSSkeletonProxyTableView *proxyView = [self __js_produceSkeletonProxyTableView];
     proxyView.heightForRows = @[@(height)];
@@ -26,6 +28,39 @@
     [proxyView registerCellClass:@[cellClass]];
     return proxyView;
 }
+
+- (__kindof UIView *)js_registerSkeletonForCellClass:(Class)cellClass
+                                         numberOfRow:(NSUInteger)numberOfRow
+                                       heightForRows:(CGFloat)height {
+    JSSkeletonProxyTableView *proxyView = [self __js_produceSkeletonProxyTableView];
+    proxyView.heightForRows = @[@(height)];
+    proxyView.numberOfRows = @[@(numberOfRow)];
+    /// 最后注册
+    [proxyView registerCellClass:@[cellClass]];
+    return proxyView;
+}
+
+#pragma mark - UITableViewSection
+
+- (__kindof UIView *)js_registerSkeletonForSectionHeaderClass:(Class)cellClass heightForHeader:(CGFloat)height {
+    return UIView.new;
+}
+
+- (__kindof UIView *)js_registerSkeletonForSectionFooterClass:(Class)cellClass heightForFooter:(CGFloat)height {
+    return UIView.new;
+}
+
+#pragma mark - UITableViewHeader-Footer
+
+- (__kindof UIView *)js_registerSkeletonForTableViewHeaderClass:(Class)cellClass heightForHeader:(CGFloat)height {
+    return UIView.new;
+}
+
+- (__kindof UIView *)js_registerSkeletonForTableViewFooterClass:(Class)cellClass heightForFooter:(CGFloat)height {
+    return UIView.new;
+}
+
+#pragma mark - 私有
 
 - (__kindof JSSkeletonProxyView *)__js_produceSkeletonProxyTableView {
     JSSkeletonProxyTableView *proxyView = [[JSSkeletonProxyTableView alloc] initWithRegisterView:self targetView:nil];

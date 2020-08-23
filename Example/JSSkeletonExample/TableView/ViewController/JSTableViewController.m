@@ -19,7 +19,8 @@
 
 - (void)initSubviews {
     [super initSubviews];
-    UIView *skeletonView = [self.tableView js_registerSkeletonForCellClass:JSTableViewCell.class heightForRows:108];
+//    UIView *skeletonView = [self.tableView js_registerSkeletonForCellClass:JSTableViewCell.class heightForRows:108];
+    UIView *skeletonView = [self.tableView js_registerSkeletonForCellClass:JSTableViewCell.class numberOfRow:4 heightForRows:108];
     [skeletonView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.edges.equalTo(self.view);
     }];
