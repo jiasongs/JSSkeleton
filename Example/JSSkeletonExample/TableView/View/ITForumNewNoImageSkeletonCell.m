@@ -11,7 +11,7 @@
 @implementation ITForumNewNoImageSkeletonCell
 
 + (CGFloat)skeletonHeight {
-    return 85;
+    return 111;
 }
 
 @end

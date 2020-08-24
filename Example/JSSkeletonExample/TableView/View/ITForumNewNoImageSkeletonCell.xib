@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -43,6 +44,7 @@
                         <rect key="frame" x="15" y="55" width="290" height="17"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="17" id="FEL-0U-R0S"/>
+                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="17" id="wfA-kR-RJb"/>
                         </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <nil key="textColor"/>
@@ -75,7 +77,6 @@
                     <constraint firstAttribute="bottom" secondItem="8QX-ld-XGb" secondAttribute="bottom" id="XnA-cO-1LE"/>
                     <constraint firstItem="xqJ-fl-FWs" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="15" id="au1-Ru-bp8"/>
                     <constraint firstAttribute="trailing" secondItem="xqJ-fl-FWs" secondAttribute="trailing" constant="15" id="iol-2w-CVk"/>
-                    <constraint firstItem="8QX-ld-XGb" firstAttribute="top" secondItem="xqJ-fl-FWs" secondAttribute="bottom" constant="12" id="kBT-jT-9hr"/>
                     <constraint firstItem="DyZ-b0-fJ9" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="12" id="lpW-Iu-eHq"/>
                     <constraint firstItem="jcd-G3-nkd" firstAttribute="top" secondItem="uYH-eD-buM" secondAttribute="bottom" constant="5" id="uAg-IU-2dv"/>
                     <constraint firstItem="DyZ-b0-fJ9" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="15" id="w3W-XW-hAH"/>
@@ -83,7 +84,7 @@
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="aW0-zy-SZf"/>
-            <point key="canvasLocation" x="52.173913043478265" y="66.629464285714278"/>
+            <point key="canvasLocation" x="-1826" y="209"/>
         </tableViewCell>
     </objects>
 </document>
