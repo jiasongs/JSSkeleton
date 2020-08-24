@@ -22,6 +22,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, assign) CGFloat js_skeletonHeight;
 @property (nonatomic, assign) CGFloat js_skeletonHeightCoefficient;
 @property (nonatomic, assign) CGFloat js_skeletonLineSpacing;
+@property (nonatomic, assign) CGFloat js_skeletonCornerRadius;
 @property (nonatomic, copy, nullable) UIColor *js_skeletonTintColor;
 @property (nonatomic, strong, nullable) id<JSSkeletonAnimationProtocol> js_skeletonAnimation;
 @property (nonatomic, weak, nullable) JSSkeletonLayoutView *js_skeletonLayoutView;

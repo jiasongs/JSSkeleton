@@ -46,6 +46,10 @@
     } else {
         self.backgroundColor = JSSkeletonConfig.sharedConfig.skeletonTintColor;
     }
+    CGFloat cornerRadius = self.simulateView.js_skeletonCornerRadius ? : self.simulateView.layer.cornerRadius;
+    if (cornerRadius > 0) {
+        self.layer.cornerRadius = cornerRadius;
+    }
     if (self.numberOfLinesForSimulateView > 1) {
         self.backgroundColor = nil;
         for (int i = 0; i < self.numberOfLinesForSimulateView; i++) {
