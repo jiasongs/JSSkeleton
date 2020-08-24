@@ -56,6 +56,9 @@
     if (!self.simulateView.js_skeletonAnimation) {
         self.simulateView.js_skeletonAnimation = JSSkeletonConfig.sharedConfig.skeletonAnimation;
     }
+    /// 先更新一次布局
+    [self updateLayout];
+    /// 监听布局
     self.simulateView.js_skeletonLayoutView = self;
     self.simulateView.js_frameDidChangeBlock = ^(__kindof UIView *view, CGRect precedingFrame) {
         [view.js_skeletonLayoutView updateLayout];
