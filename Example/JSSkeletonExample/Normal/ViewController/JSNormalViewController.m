@@ -10,6 +10,7 @@
 #import "JSNormalDetailView.h"
 #import "UIView+JSSkeleton.h"
 #import "UIView+JSSkeletonProperty.h"
+#import "ITNewsDetailSkeletonView.h"
 
 @interface JSNormalViewController ()
 
@@ -41,18 +42,18 @@
     }];
     [self.detailView js_startSkeleton];
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-            [self.detailView js_endSkeleton];
+//            [self.detailView js_endSkeleton];
         });
 }
 
 - (void)example2 {
-    UIView *skeletonView = [self.view js_registerSkeletonForViewClass:JSNormalDetailView.class];
+    UIView *skeletonView = [self.view js_registerSkeletonForViewClass:ITNewsDetailSkeletonView.class];
     [skeletonView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.edges.equalTo(self.detailView);
+        make.edges.equalTo(self.view);
     }];
     [self.view js_startSkeleton];
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        [self.view js_endSkeleton];
+//        [self.view js_endSkeleton];
     });
 }
 

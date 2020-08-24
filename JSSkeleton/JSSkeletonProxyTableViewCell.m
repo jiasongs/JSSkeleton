@@ -17,6 +17,7 @@
 - (instancetype)initWithTargetCellClass:(Class)cellClass {
     if (self = [super initWithFrame:CGRectZero]) {
         self.selectionStyle = UITableViewCellSelectionStyleNone;
+        self.backgroundColor = [UIColor colorWithRed:1 green:1 blue:1 alpha:0.0];
         [self didInitializeWithCellClass:cellClass];
     }
     return self;

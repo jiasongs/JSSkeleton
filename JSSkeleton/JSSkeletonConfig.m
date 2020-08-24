@@ -34,7 +34,7 @@
 - (void)didInitialize {
     self.skeletonHeightCoefficient = 0.56;
     self.skeletonTintColor = [UIColor colorWithRed:219 / 255.0 green:219 / 255.0 blue:219 / 255.0 alpha:1];
-    self.skeletonBackgroundColor = UIColor.whiteColor;
+    self.skeletonBackgroundColor = [UIColor colorWithRed:1 green:1 blue:1 alpha:1.0];
     self.skeletonAnimation = [[JSSkeletonBreathingAnimation alloc] init];
 }
 

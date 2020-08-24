@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		6701A6AF7E823E837E79F3D8 /* libPods-JSSkeletonExample.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2EFC85451EC9481C4D6B23F7 /* libPods-JSSkeletonExample.a */; };
+		6701A6AF7E823E837E79F3D8 /* (null) in Frameworks */ = {isa = PBXBuildFile; };
 		7AB24B9A24F0BEFF0067C1C4 /* JSNormalViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AB24B9824F0BEFF0067C1C4 /* JSNormalViewController.m */; };
 		7AB24B9B24F0BEFF0067C1C4 /* JSNormalViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7AB24B9924F0BEFF0067C1C4 /* JSNormalViewController.xib */; };
 		7AB24BA024F0C5B60067C1C4 /* JSNormalDetailView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AB24B9F24F0C5B60067C1C4 /* JSNormalDetailView.m */; };
@@ -22,11 +22,27 @@
 		7ADB2E3924EF97B100398BF5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7ADB2E3824EF97B100398BF5 /* Assets.xcassets */; };
 		7ADB2E3C24EF97B100398BF5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7ADB2E3A24EF97B100398BF5 /* LaunchScreen.storyboard */; };
 		7ADB2E3F24EF97B100398BF5 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 7ADB2E3E24EF97B100398BF5 /* main.m */; };
+		7AF1E81024F3643200F70824 /* JSTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AB24BBC24F115410067C1C4 /* JSTableViewController.m */; };
+		7AF1E81124F3643200F70824 /* JSTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AB24BC424F115860067C1C4 /* JSTableViewCell.m */; };
+		7AF1E81224F3643200F70824 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7ADB2E3324EF97AF00398BF5 /* ViewController.m */; };
+		7AF1E81324F3643200F70824 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 7ADB2E2D24EF97AF00398BF5 /* AppDelegate.m */; };
+		7AF1E81424F3643200F70824 /* JSNormalDetailView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AB24B9F24F0C5B60067C1C4 /* JSNormalDetailView.m */; };
+		7AF1E81524F3643200F70824 /* JSNormalViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AB24B9824F0BEFF0067C1C4 /* JSNormalViewController.m */; };
+		7AF1E81624F3643200F70824 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 7ADB2E3E24EF97B100398BF5 /* main.m */; };
+		7AF1E81A24F3643200F70824 /* JSNormalViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7AB24B9924F0BEFF0067C1C4 /* JSNormalViewController.xib */; };
+		7AF1E81B24F3643200F70824 /* JSNormalDetailView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7AB24BA124F0C5C60067C1C4 /* JSNormalDetailView.xib */; };
+		7AF1E81C24F3643200F70824 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7ADB2E3A24EF97B100398BF5 /* LaunchScreen.storyboard */; };
+		7AF1E81D24F3643200F70824 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7ADB2E3824EF97B100398BF5 /* Assets.xcassets */; };
+		7AF1E81E24F3643200F70824 /* JSTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7AB24BC524F115860067C1C4 /* JSTableViewCell.xib */; };
+		7AF1E81F24F3643200F70824 /* JSTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7AB24BBD24F115410067C1C4 /* JSTableViewController.xib */; };
+		7AF1E82024F3643200F70824 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7ADB2E3524EF97AF00398BF5 /* Main.storyboard */; };
+		7AF1E82C24F36C0A00F70824 /* ITNewsDetailSkeletonView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7AF1E82924F36C0A00F70824 /* ITNewsDetailSkeletonView.xib */; };
+		7AF1E82D24F36C0A00F70824 /* ITNewsDetailSkeletonView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AF1E82B24F36C0A00F70824 /* ITNewsDetailSkeletonView.m */; };
+		A35AC7F1249692D0E6871C3D /* libPods-JSSkeletonExampleMacOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BBDF9AFC5B85053E4844A257 /* libPods-JSSkeletonExampleMacOS.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		29E384E54D5200BF49183EFA /* Pods-JSSkeletonExample.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JSSkeletonExample.release.xcconfig"; path = "Target Support Files/Pods-JSSkeletonExample/Pods-JSSkeletonExample.release.xcconfig"; sourceTree = "<group>"; };
-		2EFC85451EC9481C4D6B23F7 /* libPods-JSSkeletonExample.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-JSSkeletonExample.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		7AB24B9124F0BDAF0067C1C4 /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
 		7AB24B9724F0BEFF0067C1C4 /* JSNormalViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JSNormalViewController.h; sourceTree = "<group>"; };
 		7AB24B9824F0BEFF0067C1C4 /* JSNormalViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JSNormalViewController.m; sourceTree = "<group>"; };
@@ -51,7 +67,15 @@
 		7ADB2E3B24EF97B100398BF5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		7ADB2E3D24EF97B100398BF5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7ADB2E3E24EF97B100398BF5 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		7AF1E82624F3643200F70824 /* JSSkeletonExampleMacOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JSSkeletonExampleMacOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		7AF1E82724F3643200F70824 /* JSSkeletonExample copy-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "JSSkeletonExample copy-Info.plist"; path = "/Volumes/2TB/Projects/JSSkeleton/Example/JSSkeletonExample copy-Info.plist"; sourceTree = "<absolute>"; };
+		7AF1E82924F36C0A00F70824 /* ITNewsDetailSkeletonView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ITNewsDetailSkeletonView.xib; path = JSSkeletonExample/Normal/View/ITNewsDetailSkeletonView.xib; sourceTree = SOURCE_ROOT; };
+		7AF1E82A24F36C0A00F70824 /* ITNewsDetailSkeletonView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ITNewsDetailSkeletonView.h; path = JSSkeletonExample/Normal/View/ITNewsDetailSkeletonView.h; sourceTree = SOURCE_ROOT; };
+		7AF1E82B24F36C0A00F70824 /* ITNewsDetailSkeletonView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ITNewsDetailSkeletonView.m; path = JSSkeletonExample/Normal/View/ITNewsDetailSkeletonView.m; sourceTree = SOURCE_ROOT; };
+		994568E7EBB4F60E89D13B31 /* Pods-JSSkeletonExampleMacOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JSSkeletonExampleMacOS.release.xcconfig"; path = "Target Support Files/Pods-JSSkeletonExampleMacOS/Pods-JSSkeletonExampleMacOS.release.xcconfig"; sourceTree = "<group>"; };
 		B9506AE21947DFF4ECB75003 /* Pods-JSSkeletonExample.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JSSkeletonExample.debug.xcconfig"; path = "Target Support Files/Pods-JSSkeletonExample/Pods-JSSkeletonExample.debug.xcconfig"; sourceTree = "<group>"; };
+		BBDF9AFC5B85053E4844A257 /* libPods-JSSkeletonExampleMacOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-JSSkeletonExampleMacOS.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		F27C427EB7C4AEB17FAF2B44 /* Pods-JSSkeletonExampleMacOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JSSkeletonExampleMacOS.debug.xcconfig"; path = "Target Support Files/Pods-JSSkeletonExampleMacOS/Pods-JSSkeletonExampleMacOS.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -59,7 +83,15 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6701A6AF7E823E837E79F3D8 /* libPods-JSSkeletonExample.a in Frameworks */,
+				6701A6AF7E823E837E79F3D8 /* (null) in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7AF1E81724F3643200F70824 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A35AC7F1249692D0E6871C3D /* libPods-JSSkeletonExampleMacOS.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -71,6 +103,8 @@
 			children = (
 				B9506AE21947DFF4ECB75003 /* Pods-JSSkeletonExample.debug.xcconfig */,
 				29E384E54D5200BF49183EFA /* Pods-JSSkeletonExample.release.xcconfig */,
+				F27C427EB7C4AEB17FAF2B44 /* Pods-JSSkeletonExampleMacOS.debug.xcconfig */,
+				994568E7EBB4F60E89D13B31 /* Pods-JSSkeletonExampleMacOS.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -100,6 +134,9 @@
 				7AB24B9E24F0C5B60067C1C4 /* JSNormalDetailView.h */,
 				7AB24B9F24F0C5B60067C1C4 /* JSNormalDetailView.m */,
 				7AB24BA124F0C5C60067C1C4 /* JSNormalDetailView.xib */,
+				7AF1E82A24F36C0A00F70824 /* ITNewsDetailSkeletonView.h */,
+				7AF1E82B24F36C0A00F70824 /* ITNewsDetailSkeletonView.m */,
+				7AF1E82924F36C0A00F70824 /* ITNewsDetailSkeletonView.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -140,6 +177,7 @@
 				7ADB2E2A24EF97AF00398BF5 /* Products */,
 				28D6B717B9BEF9A7D3F2EBED /* Pods */,
 				CBFF8E4DB0F035A172499FEE /* Frameworks */,
+				7AF1E82724F3643200F70824 /* JSSkeletonExample copy-Info.plist */,
 			);
 			sourceTree = "<group>";
 		};
@@ -147,6 +185,7 @@
 			isa = PBXGroup;
 			children = (
 				7ADB2E2924EF97AF00398BF5 /* JSSkeletonExample.app */,
+				7AF1E82624F3643200F70824 /* JSSkeletonExampleMacOS.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -174,7 +213,7 @@
 		CBFF8E4DB0F035A172499FEE /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				2EFC85451EC9481C4D6B23F7 /* libPods-JSSkeletonExample.a */,
+				BBDF9AFC5B85053E4844A257 /* libPods-JSSkeletonExampleMacOS.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -200,6 +239,25 @@
 			name = JSSkeletonExample;
 			productName = JSSkeletonExample;
 			productReference = 7ADB2E2924EF97AF00398BF5 /* JSSkeletonExample.app */;
+			productType = "com.apple.product-type.application";
+		};
+		7AF1E80D24F3643200F70824 /* JSSkeletonExampleMacOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 7AF1E82324F3643200F70824 /* Build configuration list for PBXNativeTarget "JSSkeletonExampleMacOS" */;
+			buildPhases = (
+				7AF1E80E24F3643200F70824 /* [CP] Check Pods Manifest.lock */,
+				7AF1E80F24F3643200F70824 /* Sources */,
+				7AF1E81724F3643200F70824 /* Frameworks */,
+				7AF1E81924F3643200F70824 /* Resources */,
+				7AF1E82224F3643200F70824 /* [CP] Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = JSSkeletonExampleMacOS;
+			productName = JSSkeletonExample;
+			productReference = 7AF1E82624F3643200F70824 /* JSSkeletonExampleMacOS.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -230,6 +288,7 @@
 			projectRoot = "";
 			targets = (
 				7ADB2E2824EF97AF00398BF5 /* JSSkeletonExample */,
+				7AF1E80D24F3643200F70824 /* JSSkeletonExampleMacOS */,
 			);
 		};
 /* End PBXProject section */
@@ -241,11 +300,26 @@
 			files = (
 				7AB24B9B24F0BEFF0067C1C4 /* JSNormalViewController.xib in Resources */,
 				7AB24BA224F0C5C60067C1C4 /* JSNormalDetailView.xib in Resources */,
+				7AF1E82C24F36C0A00F70824 /* ITNewsDetailSkeletonView.xib in Resources */,
 				7ADB2E3C24EF97B100398BF5 /* LaunchScreen.storyboard in Resources */,
 				7ADB2E3924EF97B100398BF5 /* Assets.xcassets in Resources */,
 				7AB24BC724F115860067C1C4 /* JSTableViewCell.xib in Resources */,
 				7AB24BBF24F115410067C1C4 /* JSTableViewController.xib in Resources */,
 				7ADB2E3724EF97AF00398BF5 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7AF1E81924F3643200F70824 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7AF1E81A24F3643200F70824 /* JSNormalViewController.xib in Resources */,
+				7AF1E81B24F3643200F70824 /* JSNormalDetailView.xib in Resources */,
+				7AF1E81C24F3643200F70824 /* LaunchScreen.storyboard in Resources */,
+				7AF1E81D24F3643200F70824 /* Assets.xcassets in Resources */,
+				7AF1E81E24F3643200F70824 /* JSTableViewCell.xib in Resources */,
+				7AF1E81F24F3643200F70824 /* JSTableViewController.xib in Resources */,
+				7AF1E82024F3643200F70824 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -291,6 +365,45 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
+		7AF1E80E24F3643200F70824 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-JSSkeletonExampleMacOS-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		7AF1E82224F3643200F70824 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-JSSkeletonExampleMacOS/Pods-JSSkeletonExampleMacOS-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-JSSkeletonExampleMacOS/Pods-JSSkeletonExampleMacOS-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-JSSkeletonExampleMacOS/Pods-JSSkeletonExampleMacOS-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		C6A0C4BA84F5C7163DC6EE34 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -317,11 +430,26 @@
 			files = (
 				7AB24BBE24F115410067C1C4 /* JSTableViewController.m in Sources */,
 				7AB24BC624F115860067C1C4 /* JSTableViewCell.m in Sources */,
+				7AF1E82D24F36C0A00F70824 /* ITNewsDetailSkeletonView.m in Sources */,
 				7ADB2E3424EF97AF00398BF5 /* ViewController.m in Sources */,
 				7ADB2E2E24EF97AF00398BF5 /* AppDelegate.m in Sources */,
 				7AB24BA024F0C5B60067C1C4 /* JSNormalDetailView.m in Sources */,
 				7AB24B9A24F0BEFF0067C1C4 /* JSNormalViewController.m in Sources */,
 				7ADB2E3F24EF97B100398BF5 /* main.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7AF1E80F24F3643200F70824 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7AF1E81024F3643200F70824 /* JSTableViewController.m in Sources */,
+				7AF1E81124F3643200F70824 /* JSTableViewCell.m in Sources */,
+				7AF1E81224F3643200F70824 /* ViewController.m in Sources */,
+				7AF1E81324F3643200F70824 /* AppDelegate.m in Sources */,
+				7AF1E81424F3643200F70824 /* JSNormalDetailView.m in Sources */,
+				7AF1E81524F3643200F70824 /* JSNormalViewController.m in Sources */,
+				7AF1E81624F3643200F70824 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -474,7 +602,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.jiasong.JSSkeletonExample;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SUPPORTS_MACCATALYST = YES;
+				SUPPORTS_MACCATALYST = NO;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -496,8 +624,52 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.jiasong.JSSkeletonExample;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SUPPORTS_MACCATALYST = YES;
+				SUPPORTS_MACCATALYST = NO;
 				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		7AF1E82424F3643200F70824 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = F27C427EB7C4AEB17FAF2B44 /* Pods-JSSkeletonExampleMacOS.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = JSSkeletonExample/JSSkeletonExample.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = KJ6AEY5JEH;
+				GCC_PREFIX_HEADER = JSSkeletonExample/PrefixHeader.pch;
+				INFOPLIST_FILE = "JSSkeletonExample copy-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.jiasong.JSSkeletonExample;
+				PRODUCT_NAME = JSSkeletonExampleMacOS;
+				SUPPORTS_MACCATALYST = YES;
+				TARGETED_DEVICE_FAMILY = 2;
+			};
+			name = Debug;
+		};
+		7AF1E82524F3643200F70824 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 994568E7EBB4F60E89D13B31 /* Pods-JSSkeletonExampleMacOS.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = JSSkeletonExample/JSSkeletonExample.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = KJ6AEY5JEH;
+				GCC_PREFIX_HEADER = JSSkeletonExample/PrefixHeader.pch;
+				INFOPLIST_FILE = "JSSkeletonExample copy-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.jiasong.JSSkeletonExample;
+				PRODUCT_NAME = JSSkeletonExampleMacOS;
+				SUPPORTS_MACCATALYST = YES;
+				TARGETED_DEVICE_FAMILY = 2;
 			};
 			name = Release;
 		};
@@ -518,6 +690,15 @@
 			buildConfigurations = (
 				7ADB2E4324EF97B100398BF5 /* Debug */,
 				7ADB2E4424EF97B100398BF5 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		7AF1E82324F3643200F70824 /* Build configuration list for PBXNativeTarget "JSSkeletonExampleMacOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				7AF1E82424F3643200F70824 /* Debug */,
+				7AF1E82524F3643200F70824 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
