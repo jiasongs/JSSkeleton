@@ -14,6 +14,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface JSSkeletonConfig : NSObject
 
 @property (nonatomic, assign) CGFloat skeletonHeightCoefficient;
+@property (nonatomic, assign) CGFloat skeletonLineSpacing;
 @property (nonatomic, copy, nullable) UIColor *skeletonTintColor;
 @property (nonatomic, copy, nullable) UIColor *skeletonBackgroundColor;
 @property (nonatomic, strong, nullable) id<JSSkeletonAnimationProtocol> skeletonAnimation;

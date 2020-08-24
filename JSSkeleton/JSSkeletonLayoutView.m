@@ -11,6 +11,7 @@
 #import "UIView+JSSkeletonExtension.h"
 #import "JSSkeletonConfig.h"
 #import "JSSkeletonAnimationProtocol.h"
+#import "JSSkeletonDefines.h"
 
 @interface JSSkeletonLayoutView ()
 
@@ -65,19 +66,16 @@
 
 - (void)updateLayout {
     CGFloat heightCoefficient = self.js_skeletonHeightCoefficient ? : (self.simulateType == JSSkeletonLayoutSimulateLabel ? JSSkeletonConfig.sharedConfig.skeletonHeightCoefficient : 1);
-    CGFloat x = CGRectGetMinX(self.simulateView.frame) + self.simulateView.js_skeletonMarginTop;
-    CGFloat y = CGRectGetMinY(self.simulateView.frame) + self.simulateView.js_skeletonMarginLeft;
-    CGFloat width = self.simulateView.js_skeletonWidth ? : CGRectGetWidth(self.simulateView.frame);
-    CGFloat height = self.simulateView.js_skeletonHeight ? : CGRectGetHeight(self.simulateView.frame) * heightCoefficient;
+    CGFloat x = self.simulateView.js_left + self.simulateView.js_skeletonMarginTop;
+    CGFloat y = self.simulateView.js_top + self.simulateView.js_skeletonMarginLeft;
+    CGFloat width = self.simulateView.js_skeletonWidth ? : self.simulateView.js_width;
+    CGFloat height = self.simulateView.js_skeletonHeight ? : self.simulateView.js_height * heightCoefficient;
     if (self.numberOfLinesForSimulateView > 1) {
+        CGFloat lineSpacing = self.simulateView.js_skeletonLineSpacing ? : JSSkeletonConfig.sharedConfig.skeletonLineSpacing;
+        CGFloat averageWidth = JSFlat(width / self.numberOfLinesForSimulateView);
         [self.subviews enumerateObjectsUsingBlock:^(JSSkeletonLayoutView *view, NSUInteger idx, BOOL *stop) {
             if ([view isKindOfClass:JSSkeletonLayoutView.class]) {
-                CGFloat subY = idx * height;
-                if (idx > 0) {
-                    subY = subY + idx * height;
-                }
-                CGFloat zoom = [[NSString stringWithFormat:@"0.%@", @(self.numberOfLinesForSimulateView)] floatValue];
-                view.frame = CGRectMake(0, subY, width * (1 - idx * zoom), height);
+                view.frame = CGRectMake(0, idx * (height + lineSpacing), width - idx * averageWidth, height);
             }
         }];
         height = height * self.numberOfLinesForSimulateView * (self.numberOfLinesForSimulateView - 1) - height;
