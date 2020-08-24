@@ -24,57 +24,47 @@
 
 #pragma mark - UITableViewCell
 
-- (__kindof UIView *)js_registerSkeletonForCellClass:(Class)cellClass heightForRows:(CGFloat)height {
-    return [self js_registerSkeletonForCellClass:cellClass numberOfRow:0 heightForRows:height];
+- (__kindof JSSkeletonProxyTableView *)js_registerSkeletonForCellClass:(Class)cellClass heightForRow:(CGFloat)height {
+    return [self js_registerSkeletonForCellClass:cellClass numberOfRow:0 heightForRow:height];
 }
 
-- (__kindof UIView *)js_registerSkeletonForCellClass:(Class)cellClass
-                                         numberOfRow:(NSUInteger)numberOfRow
-                                       heightForRows:(CGFloat)height {
-    JSSkeletonProxyTableView *proxyView = [self __js_produceSkeletonProxyTableView];
-    proxyView.heightForRows = @[@(height)];
-    proxyView.numberOfRows = numberOfRow ? @[] : @[@(numberOfRow)];
+- (__kindof JSSkeletonProxyTableView *)js_registerSkeletonForCellClass:(Class)cellClass
+                                                           numberOfRow:(NSUInteger)numberOfRow
+                                                          heightForRow:(CGFloat)height {
+    JSSkeletonProxyTableView *tableProxyView = [self __js_currentSkeletonProxyTableView];
+    tableProxyView.heightForRows = @[@(height)];
+    tableProxyView.numberOfRows = numberOfRow ?  @[@(numberOfRow)] : @[];
     /// 最后注册
-    [proxyView registerCellClass:@[cellClass]];
-    return proxyView;
-}
-
-#pragma mark - UITableViewSection
-
-- (__kindof UIView *)js_registerSkeletonForSectionHeaderClass:(Class)cellClass heightForView:(CGFloat)height {
-    return UIView.new;
-}
-
-- (__kindof UIView *)js_registerSkeletonForSectionFooterClass:(Class)cellClass heightForView:(CGFloat)height {
-    return UIView.new;
+    [tableProxyView registerCellClass:@[cellClass]];
+    return tableProxyView;
 }
 
 #pragma mark - UITableViewHeader-Footer
 
-- (__kindof UIView *)js_registerSkeletonForTableViewHeaderClass:(Class)viewClass heightForView:(CGFloat)height {
-    JSSkeletonProxyTableView *tableProxyView;
-    for (JSSkeletonProxyTableView *proxyView in self.js_skeletonProxyViews) {
-        if (proxyView.registerView == self) {
-            tableProxyView = proxyView;
-            break;
-        }
-    }
+- (__kindof JSSkeletonProxyTableView *)js_registerSkeletonForTableViewHeaderClass:(Class)viewClass heightForView:(CGFloat)height {
+    JSSkeletonProxyTableView *tableProxyView = [self __js_currentSkeletonProxyTableView];
     UIView *tableHeaderView = tableProxyView.tableView.tableHeaderView;
     tableHeaderView.js_height = height;
-    return [tableHeaderView js_registerSkeletonForViewClass:viewClass];
+    [tableHeaderView js_registerSkeletonForViewClass:viewClass];
+    tableHeaderView.js_frameDidChangeBlock = ^(__kindof UIView *view, CGRect precedingFrame) {
+        for (JSSkeletonProxyView *proxyView in view.js_skeletonProxyViews) {
+            proxyView.frame = view.bounds;
+        }
+    };
+    return tableProxyView;
 }
 
-- (__kindof UIView *)js_registerSkeletonForTableViewFooterClass:(Class)viewClass heightForView:(CGFloat)height {
-    JSSkeletonProxyTableView *tableProxyView;
-    for (JSSkeletonProxyTableView *proxyView in self.js_skeletonProxyViews) {
-        if (proxyView.registerView == self) {
-            tableProxyView = proxyView;
-            break;
-        }
-    }
+- (__kindof JSSkeletonProxyTableView *)js_registerSkeletonForTableViewFooterClass:(Class)viewClass heightForView:(CGFloat)height {
+    JSSkeletonProxyTableView *tableProxyView = [self __js_currentSkeletonProxyTableView];
     UIView *tableFooterView = tableProxyView.tableView.tableFooterView;
     tableFooterView.js_height = height;
-    return [tableFooterView js_registerSkeletonForViewClass:viewClass];
+    [tableFooterView js_registerSkeletonForViewClass:viewClass];
+    tableFooterView.js_frameDidChangeBlock = ^(__kindof UIView *view, CGRect precedingFrame) {
+        for (JSSkeletonProxyView *proxyView in view.js_skeletonProxyViews) {
+            proxyView.frame = view.bounds;
+        }
+    };
+    return tableProxyView;
 }
 
 - (void)js_startSkeleton {
@@ -100,6 +90,20 @@
     [self.superview addSubview:proxyView];
     [self.js_skeletonProxyViews addObject:proxyView];
     return proxyView;
+}
+
+- (__kindof JSSkeletonProxyView *)__js_currentSkeletonProxyTableView {
+    JSSkeletonProxyTableView *tableProxyView;
+    for (JSSkeletonProxyTableView *proxyView in self.js_skeletonProxyViews) {
+        if (proxyView.registerView == self) {
+            tableProxyView = proxyView;
+            break;
+        }
+    }
+    if (!tableProxyView) {
+        tableProxyView = [self __js_produceSkeletonProxyTableView];
+    }
+    return tableProxyView;
 }
 
 - (NSMutableArray<__kindof JSSkeletonProxyView *> *)js_skeletonProxyViews {

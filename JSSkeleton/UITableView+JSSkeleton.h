@@ -7,22 +7,21 @@
 //
 
 #import <UIKit/UIKit.h>
+@class JSSkeletonProxyView;
+@class JSSkeletonProxyTableView;
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface UITableView (JSSkeleton)
 
-- (__kindof UIView *)js_registerSkeletonForCellClass:(Class)cellClass heightForRows:(CGFloat)height;
+- (__kindof JSSkeletonProxyTableView *)js_registerSkeletonForCellClass:(Class)cellClass heightForRow:(CGFloat)height;
 
-- (__kindof UIView *)js_registerSkeletonForCellClass:(Class)cellClass
+- (__kindof JSSkeletonProxyTableView *)js_registerSkeletonForCellClass:(Class)cellClass
                                          numberOfRow:(NSUInteger)numberOfRow
-                                       heightForRows:(CGFloat)height;
+                                       heightForRow:(CGFloat)height;
 
-- (__kindof UIView *)js_registerSkeletonForSectionHeaderClass:(Class)viewClass heightForView:(CGFloat)height;
-- (__kindof UIView *)js_registerSkeletonForSectionFooterClass:(Class)viewClass heightForView:(CGFloat)height;
-
-- (__kindof UIView *)js_registerSkeletonForTableViewHeaderClass:(Class)viewClass heightForView:(CGFloat)height;
-- (__kindof UIView *)js_registerSkeletonForTableViewFooterClass:(Class)viewClass heightForView:(CGFloat)height;
+- (__kindof JSSkeletonProxyTableView *)js_registerSkeletonForTableViewHeaderClass:(Class)viewClass heightForView:(CGFloat)height;
+- (__kindof JSSkeletonProxyTableView *)js_registerSkeletonForTableViewFooterClass:(Class)viewClass heightForView:(CGFloat)height;
 
 @end
 

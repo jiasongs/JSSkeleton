@@ -70,15 +70,19 @@
     CGFloat y = self.simulateView.js_top + self.simulateView.js_skeletonMarginLeft;
     CGFloat width = self.simulateView.js_skeletonWidth ? : self.simulateView.js_width;
     CGFloat height = self.simulateView.js_skeletonHeight ? : self.simulateView.js_height * heightCoefficient;
+    if (height == 0 && self.simulateType == JSSkeletonLayoutSimulateLabel) {
+        __kindof UILabel *label = self.simulateView;
+        height = height ? : label.font.lineHeight * heightCoefficient;
+    }
     if (self.numberOfLinesForSimulateView > 1) {
         CGFloat lineSpacing = self.simulateView.js_skeletonLineSpacing ? : JSSkeletonConfig.sharedConfig.skeletonLineSpacing;
         CGFloat averageWidth = JSFlat(width / self.numberOfLinesForSimulateView);
-        [self.subviews enumerateObjectsUsingBlock:^(JSSkeletonLayoutView *view, NSUInteger idx, BOOL *stop) {
+        [self.subviews enumerateObjectsUsingBlock:^(__kindof UIView *view, NSUInteger idx, BOOL *stop) {
             if ([view isKindOfClass:JSSkeletonLayoutView.class]) {
                 view.frame = CGRectMake(0, idx * (height + lineSpacing), width - idx * averageWidth, height);
             }
         }];
-        height = height * self.numberOfLinesForSimulateView * (self.numberOfLinesForSimulateView - 1) - height;
+        height = self.subviews.lastObject.js_bottom;
     }
     self.frame = CGRectMake(x, y, width, height);
 }

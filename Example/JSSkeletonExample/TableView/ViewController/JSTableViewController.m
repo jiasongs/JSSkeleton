@@ -11,6 +11,7 @@
 #import "UITableView+JSSkeleton.h"
 #import "UIView+JSSkeleton.h"
 #import "JSNormalDetailView.h"
+#import "ITForumNewNoImageSkeletonCell.h"
 
 @interface JSTableViewController ()
 
@@ -21,17 +22,14 @@
 - (void)initSubviews {
     [super initSubviews];
 //    UIView *skeletonView = [self.tableView js_registerSkeletonForCellClass:JSTableViewCell.class heightForRows:108];
-    UIView *skeletonView = [self.tableView js_registerSkeletonForCellClass:JSTableViewCell.class numberOfRow:4 heightForRows:108];
-    [skeletonView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.edges.equalTo(skeletonView.superview);
-    }];
-    UIView *skeletonHeaderView = [self.tableView js_registerSkeletonForTableViewHeaderClass:JSNormalDetailView.class heightForView:360];
-    [skeletonHeaderView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.edges.equalTo(skeletonHeaderView.superview);
-    }];
-    UIView *skeletonFooterView = [self.tableView js_registerSkeletonForTableViewFooterClass:JSNormalDetailView.class heightForView:360];
-    [skeletonFooterView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.edges.equalTo(skeletonFooterView.superview);
+//    UIView *skeletonView = [self.tableView js_registerSkeletonForCellClass:JSTableViewCell.class numberOfRow:4 heightForRow:108];
+//    [skeletonView mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.edges.equalTo(skeletonView.superview);
+//    }];
+//    [self.tableView js_registerSkeletonForTableViewHeaderClass:JSNormalDetailView.class heightForView:360];
+//    [self.tableView js_registerSkeletonForTableViewFooterClass:JSNormalDetailView.class heightForView:360];
+    [[self.tableView js_registerSkeletonForCellClass:ITForumNewNoImageSkeletonCell.class heightForRow:[ITForumNewNoImageSkeletonCell skeletonHeight]] mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.edges.equalTo(self.tableView);
     }];
     [self.tableView js_startSkeleton];
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{

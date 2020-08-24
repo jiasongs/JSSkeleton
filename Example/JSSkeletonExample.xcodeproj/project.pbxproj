@@ -38,6 +38,12 @@
 		7AF1E82024F3643200F70824 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7ADB2E3524EF97AF00398BF5 /* Main.storyboard */; };
 		7AF1E82C24F36C0A00F70824 /* ITNewsDetailSkeletonView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7AF1E82924F36C0A00F70824 /* ITNewsDetailSkeletonView.xib */; };
 		7AF1E82D24F36C0A00F70824 /* ITNewsDetailSkeletonView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AF1E82B24F36C0A00F70824 /* ITNewsDetailSkeletonView.m */; };
+		7AF1E83224F3AA6500F70824 /* ITForumNewNoImageSkeletonCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7AF1E82F24F3AA6500F70824 /* ITForumNewNoImageSkeletonCell.xib */; };
+		7AF1E83324F3AA6500F70824 /* ITForumNewNoImageSkeletonCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AF1E83124F3AA6500F70824 /* ITForumNewNoImageSkeletonCell.m */; };
+		7AF1E83424F3AA6C00F70824 /* ITForumNewNoImageSkeletonCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AF1E83124F3AA6500F70824 /* ITForumNewNoImageSkeletonCell.m */; };
+		7AF1E83524F3AA6F00F70824 /* ITForumNewNoImageSkeletonCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7AF1E82F24F3AA6500F70824 /* ITForumNewNoImageSkeletonCell.xib */; };
+		7AF1E83824F3AA8E00F70824 /* RMUISkeletonTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AF1E83724F3AA8E00F70824 /* RMUISkeletonTableViewCell.m */; };
+		7AF1E83924F3AA8E00F70824 /* RMUISkeletonTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AF1E83724F3AA8E00F70824 /* RMUISkeletonTableViewCell.m */; };
 		A35AC7F1249692D0E6871C3D /* libPods-JSSkeletonExampleMacOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BBDF9AFC5B85053E4844A257 /* libPods-JSSkeletonExampleMacOS.a */; };
 /* End PBXBuildFile section */
 
@@ -72,6 +78,11 @@
 		7AF1E82924F36C0A00F70824 /* ITNewsDetailSkeletonView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ITNewsDetailSkeletonView.xib; path = JSSkeletonExample/Normal/View/ITNewsDetailSkeletonView.xib; sourceTree = SOURCE_ROOT; };
 		7AF1E82A24F36C0A00F70824 /* ITNewsDetailSkeletonView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ITNewsDetailSkeletonView.h; path = JSSkeletonExample/Normal/View/ITNewsDetailSkeletonView.h; sourceTree = SOURCE_ROOT; };
 		7AF1E82B24F36C0A00F70824 /* ITNewsDetailSkeletonView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ITNewsDetailSkeletonView.m; path = JSSkeletonExample/Normal/View/ITNewsDetailSkeletonView.m; sourceTree = SOURCE_ROOT; };
+		7AF1E82F24F3AA6500F70824 /* ITForumNewNoImageSkeletonCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ITForumNewNoImageSkeletonCell.xib; sourceTree = "<group>"; };
+		7AF1E83024F3AA6500F70824 /* ITForumNewNoImageSkeletonCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ITForumNewNoImageSkeletonCell.h; sourceTree = "<group>"; };
+		7AF1E83124F3AA6500F70824 /* ITForumNewNoImageSkeletonCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ITForumNewNoImageSkeletonCell.m; sourceTree = "<group>"; };
+		7AF1E83624F3AA8E00F70824 /* RMUISkeletonTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RMUISkeletonTableViewCell.h; sourceTree = "<group>"; };
+		7AF1E83724F3AA8E00F70824 /* RMUISkeletonTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RMUISkeletonTableViewCell.m; sourceTree = "<group>"; };
 		994568E7EBB4F60E89D13B31 /* Pods-JSSkeletonExampleMacOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JSSkeletonExampleMacOS.release.xcconfig"; path = "Target Support Files/Pods-JSSkeletonExampleMacOS/Pods-JSSkeletonExampleMacOS.release.xcconfig"; sourceTree = "<group>"; };
 		B9506AE21947DFF4ECB75003 /* Pods-JSSkeletonExample.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JSSkeletonExample.debug.xcconfig"; path = "Target Support Files/Pods-JSSkeletonExample/Pods-JSSkeletonExample.debug.xcconfig"; sourceTree = "<group>"; };
 		BBDF9AFC5B85053E4844A257 /* libPods-JSSkeletonExampleMacOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-JSSkeletonExampleMacOS.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -153,6 +164,11 @@
 		7AB24BB624F114F50067C1C4 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				7AF1E83624F3AA8E00F70824 /* RMUISkeletonTableViewCell.h */,
+				7AF1E83724F3AA8E00F70824 /* RMUISkeletonTableViewCell.m */,
+				7AF1E83024F3AA6500F70824 /* ITForumNewNoImageSkeletonCell.h */,
+				7AF1E83124F3AA6500F70824 /* ITForumNewNoImageSkeletonCell.m */,
+				7AF1E82F24F3AA6500F70824 /* ITForumNewNoImageSkeletonCell.xib */,
 				7AB24BC324F115860067C1C4 /* JSTableViewCell.h */,
 				7AB24BC424F115860067C1C4 /* JSTableViewCell.m */,
 				7AB24BC524F115860067C1C4 /* JSTableViewCell.xib */,
@@ -303,6 +319,7 @@
 				7AF1E82C24F36C0A00F70824 /* ITNewsDetailSkeletonView.xib in Resources */,
 				7ADB2E3C24EF97B100398BF5 /* LaunchScreen.storyboard in Resources */,
 				7ADB2E3924EF97B100398BF5 /* Assets.xcassets in Resources */,
+				7AF1E83224F3AA6500F70824 /* ITForumNewNoImageSkeletonCell.xib in Resources */,
 				7AB24BC724F115860067C1C4 /* JSTableViewCell.xib in Resources */,
 				7AB24BBF24F115410067C1C4 /* JSTableViewController.xib in Resources */,
 				7ADB2E3724EF97AF00398BF5 /* Main.storyboard in Resources */,
@@ -318,6 +335,7 @@
 				7AF1E81C24F3643200F70824 /* LaunchScreen.storyboard in Resources */,
 				7AF1E81D24F3643200F70824 /* Assets.xcassets in Resources */,
 				7AF1E81E24F3643200F70824 /* JSTableViewCell.xib in Resources */,
+				7AF1E83524F3AA6F00F70824 /* ITForumNewNoImageSkeletonCell.xib in Resources */,
 				7AF1E81F24F3643200F70824 /* JSTableViewController.xib in Resources */,
 				7AF1E82024F3643200F70824 /* Main.storyboard in Resources */,
 			);
@@ -428,6 +446,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7AF1E83324F3AA6500F70824 /* ITForumNewNoImageSkeletonCell.m in Sources */,
 				7AB24BBE24F115410067C1C4 /* JSTableViewController.m in Sources */,
 				7AB24BC624F115860067C1C4 /* JSTableViewCell.m in Sources */,
 				7AF1E82D24F36C0A00F70824 /* ITNewsDetailSkeletonView.m in Sources */,
@@ -436,6 +455,7 @@
 				7AB24BA024F0C5B60067C1C4 /* JSNormalDetailView.m in Sources */,
 				7AB24B9A24F0BEFF0067C1C4 /* JSNormalViewController.m in Sources */,
 				7ADB2E3F24EF97B100398BF5 /* main.m in Sources */,
+				7AF1E83824F3AA8E00F70824 /* RMUISkeletonTableViewCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -443,6 +463,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7AF1E83924F3AA8E00F70824 /* RMUISkeletonTableViewCell.m in Sources */,
 				7AF1E81024F3643200F70824 /* JSTableViewController.m in Sources */,
 				7AF1E81124F3643200F70824 /* JSTableViewCell.m in Sources */,
 				7AF1E81224F3643200F70824 /* ViewController.m in Sources */,
@@ -450,6 +471,7 @@
 				7AF1E81424F3643200F70824 /* JSNormalDetailView.m in Sources */,
 				7AF1E81524F3643200F70824 /* JSNormalViewController.m in Sources */,
 				7AF1E81624F3643200F70824 /* main.m in Sources */,
+				7AF1E83424F3AA6C00F70824 /* ITForumNewNoImageSkeletonCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

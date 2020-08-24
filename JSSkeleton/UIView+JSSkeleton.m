@@ -20,11 +20,11 @@
 
 @implementation UIView (JSSkeleton)
 
-- (__kindof UIView *)js_registerSkeleton {
+- (__kindof JSSkeletonProxyView *)js_registerSkeleton {
     return [self __js_produceSkeletonProxyViewWithTargetView:self];
 }
 
-- (__kindof UIView *)js_registerSkeletonForViewClass:(Class)viewClass {
+- (__kindof JSSkeletonProxyView *)js_registerSkeletonForViewClass:(Class)viewClass {
     NSString *nibPath = [[NSBundle mainBundle] pathForResource:NSStringFromClass(viewClass) ofType:@"nib"];
     UIView *skeletonView = nibPath ? [NSBundle.mainBundle loadNibNamed:NSStringFromClass(viewClass) owner:nil options:nil].firstObject : nil;
     if (!skeletonView) {

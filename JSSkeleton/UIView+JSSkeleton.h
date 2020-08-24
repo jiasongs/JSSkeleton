@@ -15,8 +15,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, copy, readonly) NSArray<__kindof JSSkeletonProxyView *> *js_skeletonProxyViews;
 
-- (__kindof UIView *)js_registerSkeleton;
-- (__kindof UIView *)js_registerSkeletonForViewClass:(Class)viewClass;
+- (__kindof JSSkeletonProxyView *)js_registerSkeleton;
+- (__kindof JSSkeletonProxyView *)js_registerSkeletonForViewClass:(Class)viewClass;
 
 - (void)js_startSkeleton;
 - (void)js_endSkeleton;

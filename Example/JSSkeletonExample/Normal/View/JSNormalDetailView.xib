@@ -28,7 +28,7 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Labelasdsadasdsadsad" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="32U-Fi-1JU">
-                    <rect key="frame" x="276" y="261" width="180" height="20.5"/>
+                    <rect key="frame" x="276.5" y="261" width="179.5" height="20.5"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
@@ -36,16 +36,12 @@
             </subviews>
             <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
             <constraints>
-                <constraint firstAttribute="trailing" secondItem="32U-Fi-1JU" secondAttribute="trailing" constant="276" id="05I-ys-M2K"/>
                 <constraint firstItem="32U-Fi-1JU" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="1eb-jD-xGJ"/>
                 <constraint firstItem="LPu-rx-f0n" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="63" id="1rO-tJ-zFY"/>
-                <constraint firstItem="egq-mO-res" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="345" id="68q-3v-h4i"/>
                 <constraint firstItem="32U-Fi-1JU" firstAttribute="top" secondItem="egq-mO-res" secondAttribute="bottom" constant="14" id="6lQ-mL-vrB"/>
                 <constraint firstItem="LPu-rx-f0n" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="Z5R-tB-5S9"/>
                 <constraint firstItem="egq-mO-res" firstAttribute="top" secondItem="LPu-rx-f0n" secondAttribute="bottom" constant="35" id="fcb-KN-fNh"/>
-                <constraint firstItem="32U-Fi-1JU" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="276" id="jVT-6z-TJF"/>
                 <constraint firstItem="egq-mO-res" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="nli-Tl-owc"/>
-                <constraint firstAttribute="trailing" secondItem="egq-mO-res" secondAttribute="trailing" constant="345" id="uux-cC-Mv2"/>
             </constraints>
             <nil key="simulatedTopBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
