@@ -9,7 +9,7 @@
 #import "JSSkeletonProxyProducer.h"
 #import "UIView+JSSkeletonProperty.h"
 #import "JSSkeletonLayoutView.h"
-#import "JSSkeletonBreathingAnimation.h"
+#import "UIView+JSSkeletonExtension.h"
 
 @interface JSSkeletonProxyProducer ()
 
@@ -26,14 +26,7 @@
             [array addObject:subview];
         } else {
             if ([self filterByRulesView:subview]) {
-                if (!subview.js_skeletonAnimation) {
-                    subview.js_skeletonAnimation = JSSkeletonBreathingAnimation.new;
-                }
                 JSSkeletonLayoutView *layoutView = [[JSSkeletonLayoutView alloc] initWithSimulateView:subview];
-                subview.js_skeletonLayoutView = layoutView;
-                subview.qmui_frameDidChangeBlock = ^(__kindof UIView *view, CGRect precedingFrame) {
-                    [view.js_skeletonLayoutView updateLayout];
-                };
                 [array addObject:layoutView];
             }
         }

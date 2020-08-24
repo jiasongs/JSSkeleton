@@ -8,6 +8,8 @@
 
 #import "JSSkeletonLayoutView.h"
 #import "UIView+JSSkeletonProperty.h"
+#import "UIView+JSSkeletonExtension.h"
+#import "JSSkeletonConfig.h"
 #import "JSSkeletonAnimationProtocol.h"
 
 @interface JSSkeletonLayoutView ()
@@ -38,11 +40,10 @@
 }
 
 - (void)didInitialize {
-    self.qmui_shouldShowDebugColor = false;
     if (self.simulateView.js_skeletonTintColor) {
         self.backgroundColor = self.simulateView.js_skeletonTintColor;
     } else {
-        self.backgroundColor = UIColorMakeWithHex(@"#dbdbdb");
+        self.backgroundColor = JSSkeletonConfig.sharedConfig.skeletonTintColor;
     }
     if (self.numberOfLinesForSimulateView > 1) {
         self.backgroundColor = nil;
@@ -50,12 +51,20 @@
             [self addSubview:[[JSSkeletonLayoutView alloc] initWithSimulateView:self.simulateView forceSingleLine:true]];
         }
     }
+    /// 添加动画
+    if (!self.simulateView.js_skeletonAnimation) {
+        self.simulateView.js_skeletonAnimation = JSSkeletonConfig.sharedConfig.skeletonAnimation;
+    }
+    self.simulateView.js_skeletonLayoutView = self;
+    self.simulateView.js_frameDidChangeBlock = ^(__kindof UIView *view, CGRect precedingFrame) {
+        [view.js_skeletonLayoutView updateLayout];
+    };
 }
 
 #pragma mark - 布局
 
 - (void)updateLayout {
-    CGFloat heightCoefficient = self.js_skeletonHeightCoefficient ? : (self.simulateType == JSSkeletonLayoutSimulateLabel ? 0.75 : 1);
+    CGFloat heightCoefficient = self.js_skeletonHeightCoefficient ? : (self.simulateType == JSSkeletonLayoutSimulateLabel ? JSSkeletonConfig.sharedConfig.skeletonHeightCoefficient : 1);
     CGFloat x = CGRectGetMinX(self.simulateView.frame) + self.simulateView.js_skeletonMarginTop;
     CGFloat y = CGRectGetMinY(self.simulateView.frame) + self.simulateView.js_skeletonMarginLeft;
     CGFloat width = self.simulateView.js_skeletonWidth ? : CGRectGetWidth(self.simulateView.frame);
@@ -75,6 +84,8 @@
     }
     self.frame = CGRectMake(x, y, width, height);
 }
+
+#pragma mark - 开启动画
 
 - (void)startAnimation {
     [self.simulateView.js_skeletonAnimation addAnimationWithLayoutView:self];

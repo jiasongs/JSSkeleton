@@ -10,6 +10,7 @@
 #import "JSSkeletonProxyView.h"
 #import "UIView+JSSkeletonProperty.h"
 #import "JSSkeletonProxyCoordinator.h"
+#import <objc/runtime.h>
 
 @interface UIView (__JSSkeleton)
 

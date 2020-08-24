@@ -18,11 +18,11 @@ NS_ASSUME_NONNULL_BEGIN
                                          numberOfRow:(NSUInteger)numberOfRow
                                        heightForRows:(CGFloat)height;
 
-- (__kindof UIView *)js_registerSkeletonForSectionHeaderClass:(Class)cellClass heightForHeader:(CGFloat)height;
-- (__kindof UIView *)js_registerSkeletonForSectionFooterClass:(Class)cellClass heightForFooter:(CGFloat)height;
+- (__kindof UIView *)js_registerSkeletonForSectionHeaderClass:(Class)viewClass heightForView:(CGFloat)height;
+- (__kindof UIView *)js_registerSkeletonForSectionFooterClass:(Class)viewClass heightForView:(CGFloat)height;
 
-- (__kindof UIView *)js_registerSkeletonForTableViewHeaderClass:(Class)cellClass heightForHeader:(CGFloat)height;
-- (__kindof UIView *)js_registerSkeletonForTableViewFooterClass:(Class)cellClass heightForFooter:(CGFloat)height;
+- (__kindof UIView *)js_registerSkeletonForTableViewHeaderClass:(Class)viewClass heightForView:(CGFloat)height;
+- (__kindof UIView *)js_registerSkeletonForTableViewFooterClass:(Class)viewClass heightForView:(CGFloat)height;
 
 @end
 

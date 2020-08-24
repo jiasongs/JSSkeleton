@@ -1,8 +1,8 @@
 //
-//  JSSkeletonConfig.h
+//  NSNumber+JSSkeleton.h
 //  JSSkeletonExample
 //
-//  Created by jiasong on 2020/8/22.
+//  Created by jiasong on 2020/8/24.
 //  Copyright © 2020 jiasong. All rights reserved.
 //
 
@@ -10,9 +10,9 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface JSSkeletonConfig : NSObject
+@interface NSNumber (JSSkeleton)
 
-+ (instancetype)sharedConfig;
+- (CGFloat)js_CGFloatValue;
 
 @end
 

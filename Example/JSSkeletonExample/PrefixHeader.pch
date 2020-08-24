@@ -11,5 +11,6 @@
 
 #import <QMUIKit.h>
 #import <Masonry.h>
+#import <JSSkeleton.h>
 
 #endif /* PrefixHeader_pch */

@@ -10,6 +10,7 @@
 #import "JSTableViewCell.h"
 #import "UITableView+JSSkeleton.h"
 #import "UIView+JSSkeleton.h"
+#import "JSNormalDetailView.h"
 
 @interface JSTableViewController ()
 
@@ -22,11 +23,19 @@
 //    UIView *skeletonView = [self.tableView js_registerSkeletonForCellClass:JSTableViewCell.class heightForRows:108];
     UIView *skeletonView = [self.tableView js_registerSkeletonForCellClass:JSTableViewCell.class numberOfRow:4 heightForRows:108];
     [skeletonView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.edges.equalTo(self.view);
+        make.edges.equalTo(skeletonView.superview);
+    }];
+    UIView *skeletonHeaderView = [self.tableView js_registerSkeletonForTableViewHeaderClass:JSNormalDetailView.class heightForView:360];
+    [skeletonHeaderView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.edges.equalTo(skeletonHeaderView.superview);
+    }];
+    UIView *skeletonFooterView = [self.tableView js_registerSkeletonForTableViewFooterClass:JSNormalDetailView.class heightForView:360];
+    [skeletonFooterView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.edges.equalTo(skeletonFooterView.superview);
     }];
     [self.tableView js_startSkeleton];
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        //        [self.tableView js_endSkeleton];
+//                [self.tableView js_endSkeleton];
     });
 }
 
@@ -36,7 +45,6 @@
         self.tableView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
     }
     self.tableView.contentInset = UIEdgeInsetsMake(NavigationContentTop, 0, SafeAreaInsetsConstantForDeviceWithNotch.bottom, 0);
-//    [self.tableView registerNib:[UINib nibWithNibName:NSStringFromClass(UITableViewCell.class) bundle:NSBundle.mainBundle] forCellReuseIdentifier:NSStringFromClass(UITableViewCell.class)];
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {

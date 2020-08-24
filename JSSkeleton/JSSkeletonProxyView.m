@@ -8,10 +8,9 @@
 
 #import "JSSkeletonProxyView.h"
 #import "JSSkeletonLayoutView.h"
-#import "JSSkeletonBreathingAnimation.h"
-#import "UIView+JSSkeletonProperty.h"
 #import "JSSkeletonProxyCoordinator.h"
 #import "JSSkeletonProxyProducer.h"
+#import "JSSkeletonConfig.h"
 
 @interface JSSkeletonProxyView ()
 
@@ -30,7 +29,7 @@
 }
 
 - (void)didInitialize {
-    self.backgroundColor = UIColor.whiteColor;
+    self.backgroundColor = JSSkeletonConfig.sharedConfig.skeletonBackgroundColor;
     self.hidden = true;
     self.coordinator = [[JSSkeletonProxyCoordinator alloc] initWithProxyView:self];
     self.producer = [[JSSkeletonProxyProducer alloc] init];
