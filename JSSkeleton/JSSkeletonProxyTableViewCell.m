@@ -32,7 +32,6 @@
     self.producer = [[JSSkeletonProxyProducer alloc] init];
     NSArray *layoutViews = [self.producer produceLayoutViewWithViews:targetCell.contentView.subviews];
     for (JSSkeletonLayoutView *layoutView in layoutViews) {
-        [self.producer.layoutViews addPointer:(__bridge void *)(layoutView)];
         [self.contentView addSubview:layoutView];
     }
 }

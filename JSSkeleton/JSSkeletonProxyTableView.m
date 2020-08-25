@@ -98,7 +98,9 @@
 - (void)tableView:(UITableView *)tableView willDisplayCell:(JSSkeletonProxyTableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
     if (self.registerView.js_skeletonDisplay) {
         for (JSSkeletonLayoutView *layoutView in self.producer.layoutViews) {
-            [layoutView startAnimation];
+            if ([layoutView isKindOfClass:JSSkeletonLayoutView.class]) {
+                [layoutView startAnimation];
+            }
         }
     }
 }

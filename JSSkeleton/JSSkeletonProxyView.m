@@ -36,7 +36,6 @@
     if (self.targetView.subviews.count > 0) {
         NSArray *layoutViews = [self.producer produceLayoutViewWithViews:self.targetView.subviews];
         for (JSSkeletonLayoutView *layoutView in layoutViews) {
-            [self.producer.layoutViews addPointer:(__bridge void *)(layoutView)];
             [self addSubview:layoutView];
         }
     }

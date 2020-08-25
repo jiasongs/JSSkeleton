@@ -24,10 +24,12 @@
     for (__kindof UIView *subview in views) {
         if ([subview isKindOfClass:JSSkeletonLayoutView.class]) {
             [array addObject:subview];
+            [self.layoutViews addPointer:(__bridge void *)(subview)];
         } else {
             if ([self filterByRulesView:subview]) {
                 JSSkeletonLayoutView *layoutView = [[JSSkeletonLayoutView alloc] initWithSimulateView:subview];
                 [array addObject:layoutView];
+                [self.layoutViews addPointer:(__bridge void *)(layoutView)];
             }
         }
     }

@@ -30,7 +30,9 @@
     if (!registerView.js_skeletonDisplay) {
         registerView.js_skeletonDisplay = true;
         for (JSSkeletonLayoutView *layoutView in self.proxyView.producer.layoutViews) {
-            [layoutView startAnimation];
+            if ([layoutView isKindOfClass:JSSkeletonLayoutView.class]) {
+                [layoutView startAnimation];
+            }
         }
         [self.proxyView.superview bringSubviewToFront:self.proxyView];
         self.proxyView.hidden = false;
@@ -44,7 +46,9 @@
     if (registerView.js_skeletonDisplay) {
         registerView.js_skeletonDisplay = false;
         for (JSSkeletonLayoutView *layoutView in self.proxyView.producer.layoutViews) {
-            [layoutView endAnimation];
+            if ([layoutView isKindOfClass:JSSkeletonLayoutView.class]) {
+                [layoutView endAnimation];
+            }
         }
         [UIView animateWithDuration:0.25f delay:0 options:(7<<16) animations:^{
             self.proxyView.alpha = 0.0;
