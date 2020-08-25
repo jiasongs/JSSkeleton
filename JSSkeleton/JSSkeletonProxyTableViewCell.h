@@ -15,7 +15,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, strong, readwrite) JSSkeletonProxyProducer *producer;
 
-- (instancetype)initWithTargetCellClass:(Class)cellClass;
+- (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier targetCell:(__kindof UITableViewCell *)targetCell;
 
 @end
 

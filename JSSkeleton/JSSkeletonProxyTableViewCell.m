@@ -14,25 +14,23 @@
 
 @implementation JSSkeletonProxyTableViewCell
 
-- (instancetype)initWithTargetCellClass:(Class)cellClass {
-    if (self = [super initWithFrame:CGRectZero]) {
+- (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier targetCell:(__kindof UITableViewCell *)targetCell {
+    if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
         self.selectionStyle = UITableViewCellSelectionStyleNone;
         self.backgroundColor = [UIColor colorWithRed:1 green:1 blue:1 alpha:0.0];
-        [self didInitializeWithCellClass:cellClass];
+        [self didInitializeWithTargetCell:targetCell];
     }
     return self;
 }
 
-- (void)didInitializeWithCellClass:(Class)cellClass {
-    NSString *nibPath = [[NSBundle mainBundle] pathForResource:NSStringFromClass(cellClass) ofType:@"nib"];
-    __kindof UITableViewCell *cell = nibPath ? [NSBundle.mainBundle loadNibNamed:NSStringFromClass(cellClass) owner:nil options:nil].firstObject : nil;
-    if (!cell) {
-        cell = [[cellClass alloc] initWithFrame:CGRectZero];
+- (void)didInitializeWithTargetCell:(UITableViewCell *)targetCell {
+    /// 只添加一次, 保证只存在于一个cell中, 减少内存
+    if (!targetCell.superview) {
+        targetCell.hidden = true;
+        [self addSubview:targetCell];
     }
-    cell.hidden = true;
-    [self addSubview:cell];
     self.producer = [[JSSkeletonProxyProducer alloc] init];
-    NSArray *layoutViews = [self.producer produceLayoutViewWithViews:cell.contentView.subviews];
+    NSArray *layoutViews = [self.producer produceLayoutViewWithViews:targetCell.contentView.subviews];
     for (JSSkeletonLayoutView *layoutView in layoutViews) {
         [self.producer.layoutViews addPointer:(__bridge void *)(layoutView)];
         [self.contentView addSubview:layoutView];

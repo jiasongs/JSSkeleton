@@ -9,9 +9,15 @@
 #import "UIView+JSSkeletonExtension.h"
 #import "JSSkeletonDefines.h"
 
+@interface UIView (__JSSkeletonExtension)
+
+@property (nonatomic, strong) NSMutableDictionary *js_frameDidChangeBlocks;
+
+@end
+
 @implementation UIView (JSSkeletonExtension)
 
-JSSynthesizeIdCopyProperty(js_frameDidChangeBlock, setJs_frameDidChangeBlock)
+JSSynthesizeIdStrongProperty(js_frameDidChangeBlocks, setJs_frameDidChangeBlocks)
 
 + (void)load {
     static dispatch_once_t onceToken;
@@ -27,8 +33,10 @@ JSSynthesizeIdCopyProperty(js_frameDidChangeBlock, setJs_frameDidChangeBlock)
                 originSelectorIMP = (void (*)(id, SEL, CGRect))originalIMPProvider();
                 originSelectorIMP(selfObject, originCMD, frame);
                 
-                if (selfObject.js_frameDidChangeBlock && valueChange) {
-                    selfObject.js_frameDidChangeBlock(selfObject, precedingFrame);
+                if (selfObject.js_frameDidChangeBlocks.count && valueChange) {
+                    [selfObject.js_frameDidChangeBlocks enumerateKeysAndObjectsUsingBlock:^(NSString *key, JSFrameDidChangeBlock block, BOOL *stop) {
+                        block(selfObject, precedingFrame);
+                    }];
                 }
             };
         });
@@ -45,8 +53,10 @@ JSSynthesizeIdCopyProperty(js_frameDidChangeBlock, setJs_frameDidChangeBlock)
                 originSelectorIMP = (void (*)(id, SEL, CGRect))originalIMPProvider();
                 originSelectorIMP(selfObject, originCMD, bounds);
                 
-                if (selfObject.js_frameDidChangeBlock && valueChange) {
-                    selfObject.js_frameDidChangeBlock(selfObject, precedingFrame);
+                if (selfObject.js_frameDidChangeBlocks.count && valueChange) {
+                    [selfObject.js_frameDidChangeBlocks enumerateKeysAndObjectsUsingBlock:^(NSString *key, JSFrameDidChangeBlock block, BOOL *stop) {
+                        block(selfObject, precedingFrame);
+                    }];
                 }
             };
         });
@@ -63,8 +73,10 @@ JSSynthesizeIdCopyProperty(js_frameDidChangeBlock, setJs_frameDidChangeBlock)
                 originSelectorIMP = (void (*)(id, SEL, CGPoint))originalIMPProvider();
                 originSelectorIMP(selfObject, originCMD, center);
                 
-                if (selfObject.js_frameDidChangeBlock && valueChange) {
-                    selfObject.js_frameDidChangeBlock(selfObject, precedingFrame);
+                if (selfObject.js_frameDidChangeBlocks.count && valueChange) {
+                    [selfObject.js_frameDidChangeBlocks enumerateKeysAndObjectsUsingBlock:^(NSString *key, JSFrameDidChangeBlock block, BOOL *stop) {
+                        block(selfObject, precedingFrame);
+                    }];
                 }
             };
         });
@@ -81,8 +93,10 @@ JSSynthesizeIdCopyProperty(js_frameDidChangeBlock, setJs_frameDidChangeBlock)
                 originSelectorIMP = (void (*)(id, SEL, CGAffineTransform))originalIMPProvider();
                 originSelectorIMP(selfObject, originCMD, transform);
                 
-                if (selfObject.js_frameDidChangeBlock && valueChange) {
-                    selfObject.js_frameDidChangeBlock(selfObject, precedingFrame);
+                if (selfObject.js_frameDidChangeBlocks.count && valueChange) {
+                    [selfObject.js_frameDidChangeBlocks enumerateKeysAndObjectsUsingBlock:^(NSString *key, JSFrameDidChangeBlock block, BOOL *stop) {
+                        block(selfObject, precedingFrame);
+                    }];
                 }
             };
         });
@@ -135,6 +149,21 @@ JSSynthesizeIdCopyProperty(js_frameDidChangeBlock, setJs_frameDidChangeBlock)
 
 - (void)setJs_height:(CGFloat)height {
     self.frame = JSCGRectSetHeight(self.frame, height);
+}
+
+- (void)js_addFrameDidChangeBlock:(JSFrameDidChangeBlock)block forIdentifier:(NSString *)identifier {
+    if (!self.js_frameDidChangeBlocks) {
+        self.js_frameDidChangeBlocks = [NSMutableDictionary dictionary];
+    }
+    [self.js_frameDidChangeBlocks setObject:[block copy] forKey:identifier];
+}
+
+- (void)js_removeFrameDidChangeBlockForIdentifier:(NSString *)identifier {
+    [self.js_frameDidChangeBlocks removeObjectForKey:identifier];
+}
+
+- (void)js_removeAllFrameDidChangeBlocks {
+    [self.js_frameDidChangeBlocks removeAllObjects];
 }
 
 @end

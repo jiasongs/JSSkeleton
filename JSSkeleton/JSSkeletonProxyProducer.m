@@ -19,7 +19,7 @@
 
 @implementation JSSkeletonProxyProducer
 
-- (NSArray<JSSkeletonLayoutView *> *)produceLayoutViewWithViews:(NSArray<__kindof UIView *> *)views; {
+- (NSArray<__kindof JSSkeletonLayoutView *> *)produceLayoutViewWithViews:(NSArray<__kindof UIView *> *)views; {
     NSMutableArray *array = [NSMutableArray array];
     for (__kindof UIView *subview in views) {
         if ([subview isKindOfClass:JSSkeletonLayoutView.class]) {

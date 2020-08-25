@@ -10,9 +10,9 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface UIView (JSSkeletonExtension)
+typedef void(^JSFrameDidChangeBlock)(__kindof UIView *view, CGRect precedingFrame);
 
-@property (nonatomic, copy, nullable) void (^js_frameDidChangeBlock)(__kindof UIView *view, CGRect precedingFrame);
+@interface UIView (JSSkeletonExtension)
 
 /// 等价于 CGRectGetMinY(frame)
 @property (nonatomic, assign) CGFloat js_top;
@@ -31,6 +31,10 @@ NS_ASSUME_NONNULL_BEGIN
 
 /// 等价于 CGRectGetHeight(frame)
 @property (nonatomic, assign) CGFloat js_height;
+
+- (void)js_addFrameDidChangeBlock:(JSFrameDidChangeBlock)block forIdentifier:(NSString *)identifier;
+- (void)js_removeFrameDidChangeBlockForIdentifier:(NSString *)identifier;
+- (void)js_removeAllFrameDidChangeBlocks;
 
 @end
 

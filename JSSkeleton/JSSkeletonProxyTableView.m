@@ -12,12 +12,13 @@
 #import "UIView+JSSkeletonProperty.h"
 #import "UIView+JSSkeleton.h"
 #import "JSSkeletonProxyProducer.h"
+#import "JSSkeletonLayoutView.h"
 
 @interface JSSkeletonProxyTableView ()<UITableViewDataSource, UITableViewDelegate>
 
 @property (nonatomic, strong, readwrite) UITableView *tableView;
 @property (nonatomic, assign) CGFloat numberOfSection;
-@property (nonatomic, strong) NSMapTable *cacheCellMapTable;
+@property (nonatomic, strong) NSArray<__kindof UITableViewCell *> *targetCells;
 
 @end
 
@@ -47,25 +48,23 @@
 #pragma mark - 注册
 
 - (void)registerCellClass:(NSArray<Class> *)cellClasss {
-    NSAssert(self.heightForRows.count != 0, @"");
     self.numberOfSection = cellClasss.count;
+    NSMutableArray *targetCells = [NSMutableArray array];
     NSMutableArray *numberOfRows = [NSMutableArray arrayWithArray:self.numberOfRows ? : @[]];
     for (int section = 0; section < self.numberOfSection; section++) {
         if (self.numberOfRows.count == 0) {
             [numberOfRows addObject:@(10)];
         }
         Class cellClass = [cellClasss objectAtIndex:section];
-        NSInteger numberOfRow = [[numberOfRows objectAtIndex:section] integerValue];
-        for (int row = 0; row < numberOfRow; row++) {
-            NSString *key = [NSString stringWithFormat:@"%@-%@", @(section), @(row)];
-            JSSkeletonProxyTableViewCell *cell = [[JSSkeletonProxyTableViewCell alloc] initWithTargetCellClass:cellClass];
-            [self.cacheCellMapTable setObject:cell forKey:key];;
-            for (JSSkeletonLayoutView *layoutView in cell.producer.layoutViews) {
-                [self.producer.layoutViews addPointer:(__bridge void *)(layoutView)];
-            }
+        NSString *nibPath = [[NSBundle mainBundle] pathForResource:NSStringFromClass(cellClass) ofType:@"nib"];
+        __kindof UITableViewCell *cell = nibPath ? [NSBundle.mainBundle loadNibNamed:NSStringFromClass(cellClass) owner:nil options:nil].firstObject : nil;
+        if (!cell) {
+            cell = [[cellClass alloc] initWithFrame:CGRectZero];
         }
+        [targetCells addObject:cell];
     }
     self.numberOfRows = numberOfRows.copy;
+    self.targetCells = targetCells.copy;
     [self.tableView reloadData];
 }
 
@@ -84,9 +83,24 @@
 }
 
 - (JSSkeletonProxyTableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    NSString *key = [NSString stringWithFormat:@"%@-%@", @(indexPath.section), @(indexPath.row)];
-    JSSkeletonProxyTableViewCell *cell = [self.cacheCellMapTable objectForKey:key];
-    return cell ? : JSSkeletonProxyTableViewCell.new;
+    __kindof UITableViewCell *targetCell = [self.targetCells objectAtIndex:indexPath.section];
+    NSString *identifier = [NSString stringWithFormat:@"JSSkeletonProxyTableViewCell-%@", NSStringFromClass(targetCell.class)];
+    JSSkeletonProxyTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
+    if (!cell) {
+        cell = [[JSSkeletonProxyTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier targetCell:targetCell];
+        for (JSSkeletonLayoutView *layoutView in cell.producer.layoutViews) {
+            [self.producer.layoutViews addPointer:(__bridge void *)(layoutView)];
+        }
+    }
+    return cell;
+}
+
+- (void)tableView:(UITableView *)tableView willDisplayCell:(JSSkeletonProxyTableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (self.registerView.js_skeletonDisplay) {
+        for (JSSkeletonLayoutView *layoutView in self.producer.layoutViews) {
+            [layoutView startAnimation];
+        }
+    }
 }
 
 #pragma mark - getter
@@ -113,13 +127,6 @@
         _tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
     }
     return _tableView;
-}
-
-- (NSMapTable *)cacheCellMapTable {
-    if (!_cacheCellMapTable) {
-        _cacheCellMapTable = [NSMapTable mapTableWithKeyOptions:NSPointerFunctionsStrongMemory valueOptions:NSPointerFunctionsStrongMemory];
-    }
-    return _cacheCellMapTable;
 }
 
 @end
