@@ -17,8 +17,8 @@ NS_ASSUME_NONNULL_BEGIN
 - (__kindof JSSkeletonProxyTableView *)js_registerSkeletonForCellClass:(Class)cellClass heightForRow:(CGFloat)height;
 
 - (__kindof JSSkeletonProxyTableView *)js_registerSkeletonForCellClass:(Class)cellClass
-                                         numberOfRow:(NSUInteger)numberOfRow
-                                       heightForRow:(CGFloat)height;
+                                                           numberOfRow:(NSUInteger)numberOfRow
+                                                          heightForRow:(CGFloat)height;
 
 - (__kindof JSSkeletonProxyTableView *)js_registerSkeletonForTableViewHeaderClass:(Class)viewClass heightForView:(CGFloat)height;
 - (__kindof JSSkeletonProxyTableView *)js_registerSkeletonForTableViewFooterClass:(Class)viewClass heightForView:(CGFloat)height;
