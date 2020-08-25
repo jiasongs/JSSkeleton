@@ -23,6 +23,8 @@
 #define JSEndIgnoreClangWarning _Pragma("clang diagnostic pop")
 #define JSBeginIgnorePerformSelectorLeaksWarning JSBeginIgnoreClangWarning(-Warc-performSelector-leaks)
 #define JSEndIgnorePerformSelectorLeaksWarning JSEndIgnoreClangWarning
+#define JSBeginIgnoreDeprecatedWarning JSBeginIgnoreClangWarning(-Wdeprecated-declarations)
+#define JSEndIgnoreDeprecatedWarning JSEndIgnoreClangWarning
 
 #pragma mark - Synthesize
 

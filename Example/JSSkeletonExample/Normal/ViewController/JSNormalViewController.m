@@ -30,7 +30,7 @@
         make.left.right.bottom.equalTo(self.view);
     }];
     /// 例子1
-//    [self example1];
+    //    [self example1];
     /// 例子2
     [self example2];
 }
@@ -41,9 +41,9 @@
         make.edges.equalTo(self.detailView);
     }];
     [self.detailView js_startSkeleton];
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-//            [self.detailView js_endSkeleton];
-        });
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        //            [self.detailView js_endSkeleton];
+    });
 }
 
 - (void)example2 {
@@ -53,7 +53,7 @@
     }];
     [self.view js_startSkeleton];
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-//        [self.view js_endSkeleton];
+        //        [self.view js_endSkeleton];
     });
 }
 

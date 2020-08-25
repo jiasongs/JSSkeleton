@@ -8,7 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		070464B8DD2362910EE78E5C /* libPods-JSSkeletonExample.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6F3E2A082B2B75171F1BF7EA /* libPods-JSSkeletonExample.a */; };
-		6701A6AF7E823E837E79F3D8 /* BuildFile in Frameworks */ = {isa = PBXBuildFile; };
+		6701A6AF7E823E837E79F3D8 /* (null) in Frameworks */ = {isa = PBXBuildFile; };
+		7AA27CD924F4FF08009E367E /* ITNewsDetailSkeletonView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AF1E82B24F36C0A00F70824 /* ITNewsDetailSkeletonView.m */; };
+		7AA27CDA24F4FF0D009E367E /* ITNewsDetailSkeletonView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7AF1E82924F36C0A00F70824 /* ITNewsDetailSkeletonView.xib */; };
 		7AB24B9A24F0BEFF0067C1C4 /* JSNormalViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AB24B9824F0BEFF0067C1C4 /* JSNormalViewController.m */; };
 		7AB24B9B24F0BEFF0067C1C4 /* JSNormalViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7AB24B9924F0BEFF0067C1C4 /* JSNormalViewController.xib */; };
 		7AB24BA024F0C5B60067C1C4 /* JSNormalDetailView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AB24B9F24F0C5B60067C1C4 /* JSNormalDetailView.m */; };
@@ -96,7 +98,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6701A6AF7E823E837E79F3D8 /* BuildFile in Frameworks */,
+				6701A6AF7E823E837E79F3D8 /* (null) in Frameworks */,
 				070464B8DD2362910EE78E5C /* libPods-JSSkeletonExample.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -341,6 +343,7 @@
 				7AF1E81E24F3643200F70824 /* JSTableViewCell.xib in Resources */,
 				7AF1E83524F3AA6F00F70824 /* ITForumNewNoImageSkeletonCell.xib in Resources */,
 				7AF1E81F24F3643200F70824 /* JSTableViewController.xib in Resources */,
+				7AA27CDA24F4FF0D009E367E /* ITNewsDetailSkeletonView.xib in Resources */,
 				7AF1E82024F3643200F70824 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -469,6 +472,7 @@
 			files = (
 				7AF1E83924F3AA8E00F70824 /* RMUISkeletonTableViewCell.m in Sources */,
 				7AF1E81024F3643200F70824 /* JSTableViewController.m in Sources */,
+				7AA27CD924F4FF08009E367E /* ITNewsDetailSkeletonView.m in Sources */,
 				7AF1E81124F3643200F70824 /* JSTableViewCell.m in Sources */,
 				7AF1E81224F3643200F70824 /* ViewController.m in Sources */,
 				7AF1E81324F3643200F70824 /* AppDelegate.m in Sources */,

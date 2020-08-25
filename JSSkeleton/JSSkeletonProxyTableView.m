@@ -13,6 +13,8 @@
 #import "UIView+JSSkeleton.h"
 #import "JSSkeletonProxyProducer.h"
 #import "JSSkeletonLayoutView.h"
+#import "UIView+JSSkeletonExtension.h"
+#import "JSSkeletonDefines.h"
 
 @interface JSSkeletonProxyTableView ()<UITableViewDataSource, UITableViewDelegate>
 
@@ -53,7 +55,14 @@
     NSMutableArray *numberOfRows = [NSMutableArray arrayWithArray:self.numberOfRows ? : @[]];
     for (int section = 0; section < self.numberOfSection; section++) {
         if (self.numberOfRows.count == 0) {
-            [numberOfRows addObject:@(10)];
+#if TARGET_OS_MACCATALYST
+            JSBeginIgnoreDeprecatedWarning
+            CGFloat height = self.js_height ? : UIScreen.mainScreen.applicationFrame.size.height;
+            JSEndIgnoreDeprecatedWarning
+#else
+            CGFloat height = self.js_height ? : UIScreen.mainScreen.bounds.size.height;
+#endif
+            [numberOfRows addObject:@(lrintf(height / [[self.heightForRows objectAtIndex:section] floatValue]))];
         }
         Class cellClass = [cellClasss objectAtIndex:section];
         NSString *nibPath = [[NSBundle mainBundle] pathForResource:NSStringFromClass(cellClass) ofType:@"nib"];

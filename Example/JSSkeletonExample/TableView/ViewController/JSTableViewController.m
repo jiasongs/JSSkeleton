@@ -33,7 +33,7 @@
     }];
     [self.tableView js_startSkeleton];
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        [self.tableView js_endSkeleton];
+//        [self.tableView js_endSkeleton];
     });
 }
 
