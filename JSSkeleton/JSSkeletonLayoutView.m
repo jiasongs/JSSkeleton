@@ -78,8 +78,10 @@
     CGFloat width = self.simulateView.js_skeletonWidth ? : self.simulateView.js_width;
     CGFloat height = self.simulateView.js_skeletonHeight ? : self.simulateView.js_height * heightCoefficient;
     if (height == 0 && self.simulateType == JSSkeletonLayoutSimulateLabel) {
-        __kindof UILabel *label = self.simulateView;
-        height = height ? : label.font.lineHeight * heightCoefficient;
+        if ([self.simulateView isKindOfClass:UILabel.class]) {
+            __kindof UILabel *label = self.simulateView;
+            height = label.font.lineHeight * heightCoefficient;
+        }
     }
     if (self.numberOfLinesForSimulateView > 1) {
         CGFloat lineSpacing = self.simulateView.js_skeletonLineSpacing ? : JSSkeletonConfig.sharedConfig.skeletonLineSpacing;
