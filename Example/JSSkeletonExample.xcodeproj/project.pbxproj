@@ -7,7 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		6701A6AF7E823E837E79F3D8 /* (null) in Frameworks */ = {isa = PBXBuildFile; };
+		070464B8DD2362910EE78E5C /* libPods-JSSkeletonExample.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6F3E2A082B2B75171F1BF7EA /* libPods-JSSkeletonExample.a */; };
+		6701A6AF7E823E837E79F3D8 /* BuildFile in Frameworks */ = {isa = PBXBuildFile; };
 		7AB24B9A24F0BEFF0067C1C4 /* JSNormalViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AB24B9824F0BEFF0067C1C4 /* JSNormalViewController.m */; };
 		7AB24B9B24F0BEFF0067C1C4 /* JSNormalViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7AB24B9924F0BEFF0067C1C4 /* JSNormalViewController.xib */; };
 		7AB24BA024F0C5B60067C1C4 /* JSNormalDetailView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AB24B9F24F0C5B60067C1C4 /* JSNormalDetailView.m */; };
@@ -49,6 +50,7 @@
 
 /* Begin PBXFileReference section */
 		29E384E54D5200BF49183EFA /* Pods-JSSkeletonExample.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JSSkeletonExample.release.xcconfig"; path = "Target Support Files/Pods-JSSkeletonExample/Pods-JSSkeletonExample.release.xcconfig"; sourceTree = "<group>"; };
+		6F3E2A082B2B75171F1BF7EA /* libPods-JSSkeletonExample.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-JSSkeletonExample.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		7AB24B9124F0BDAF0067C1C4 /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
 		7AB24B9724F0BEFF0067C1C4 /* JSNormalViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JSNormalViewController.h; sourceTree = "<group>"; };
 		7AB24B9824F0BEFF0067C1C4 /* JSNormalViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JSNormalViewController.m; sourceTree = "<group>"; };
@@ -94,7 +96,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6701A6AF7E823E837E79F3D8 /* (null) in Frameworks */,
+				6701A6AF7E823E837E79F3D8 /* BuildFile in Frameworks */,
+				070464B8DD2362910EE78E5C /* libPods-JSSkeletonExample.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -230,6 +233,7 @@
 			isa = PBXGroup;
 			children = (
 				BBDF9AFC5B85053E4844A257 /* libPods-JSSkeletonExampleMacOS.a */,
+				6F3E2A082B2B75171F1BF7EA /* libPods-JSSkeletonExample.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
