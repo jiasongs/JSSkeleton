@@ -18,6 +18,7 @@
 @implementation UIView (JSSkeletonExtension)
 
 JSSynthesizeIdStrongProperty(js_frameDidChangeBlocks, setJs_frameDidChangeBlocks)
+JSSynthesizeIdCopyProperty(js_frameDidChangeBlock, setJs_frameDidChangeBlock)
 
 + (void)load {
     static dispatch_once_t onceToken;
@@ -33,10 +34,8 @@ JSSynthesizeIdStrongProperty(js_frameDidChangeBlocks, setJs_frameDidChangeBlocks
                 originSelectorIMP = (void (*)(id, SEL, CGRect))originalIMPProvider();
                 originSelectorIMP(selfObject, originCMD, frame);
                 
-                if (selfObject.js_frameDidChangeBlocks.count && valueChange) {
-                    [selfObject.js_frameDidChangeBlocks enumerateKeysAndObjectsUsingBlock:^(NSString *key, JSFrameDidChangeBlock block, BOOL *stop) {
-                        block(selfObject, precedingFrame);
-                    }];
+                if (selfObject.js_frameDidChangeBlock && valueChange) {
+                    selfObject.js_frameDidChangeBlock(selfObject, precedingFrame);
                 }
             };
         });
@@ -53,10 +52,8 @@ JSSynthesizeIdStrongProperty(js_frameDidChangeBlocks, setJs_frameDidChangeBlocks
                 originSelectorIMP = (void (*)(id, SEL, CGRect))originalIMPProvider();
                 originSelectorIMP(selfObject, originCMD, bounds);
                 
-                if (selfObject.js_frameDidChangeBlocks.count && valueChange) {
-                    [selfObject.js_frameDidChangeBlocks enumerateKeysAndObjectsUsingBlock:^(NSString *key, JSFrameDidChangeBlock block, BOOL *stop) {
-                        block(selfObject, precedingFrame);
-                    }];
+                if (selfObject.js_frameDidChangeBlock && valueChange) {
+                    selfObject.js_frameDidChangeBlock(selfObject, precedingFrame);
                 }
             };
         });
@@ -73,10 +70,8 @@ JSSynthesizeIdStrongProperty(js_frameDidChangeBlocks, setJs_frameDidChangeBlocks
                 originSelectorIMP = (void (*)(id, SEL, CGPoint))originalIMPProvider();
                 originSelectorIMP(selfObject, originCMD, center);
                 
-                if (selfObject.js_frameDidChangeBlocks.count && valueChange) {
-                    [selfObject.js_frameDidChangeBlocks enumerateKeysAndObjectsUsingBlock:^(NSString *key, JSFrameDidChangeBlock block, BOOL *stop) {
-                        block(selfObject, precedingFrame);
-                    }];
+                if (selfObject.js_frameDidChangeBlock && valueChange) {
+                    selfObject.js_frameDidChangeBlock(selfObject, precedingFrame);
                 }
             };
         });
@@ -93,10 +88,8 @@ JSSynthesizeIdStrongProperty(js_frameDidChangeBlocks, setJs_frameDidChangeBlocks
                 originSelectorIMP = (void (*)(id, SEL, CGAffineTransform))originalIMPProvider();
                 originSelectorIMP(selfObject, originCMD, transform);
                 
-                if (selfObject.js_frameDidChangeBlocks.count && valueChange) {
-                    [selfObject.js_frameDidChangeBlocks enumerateKeysAndObjectsUsingBlock:^(NSString *key, JSFrameDidChangeBlock block, BOOL *stop) {
-                        block(selfObject, precedingFrame);
-                    }];
+                if (selfObject.js_frameDidChangeBlock && valueChange) {
+                    selfObject.js_frameDidChangeBlock(selfObject, precedingFrame);
                 }
             };
         });

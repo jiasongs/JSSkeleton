@@ -32,6 +32,8 @@ typedef void(^JSFrameDidChangeBlock)(__kindof UIView *view, CGRect precedingFram
 /// 等价于 CGRectGetHeight(frame)
 @property (nonatomic, assign) CGFloat js_height;
 
+@property (nonatomic, copy) JSFrameDidChangeBlock js_frameDidChangeBlock;
+
 - (void)js_addFrameDidChangeBlock:(JSFrameDidChangeBlock)block forIdentifier:(NSString *)identifier;
 - (void)js_removeFrameDidChangeBlockForIdentifier:(NSString *)identifier;
 - (void)js_removeAllFrameDidChangeBlocks;

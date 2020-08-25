@@ -11,7 +11,6 @@
 #import "UIView+JSSkeletonExtension.h"
 #import "JSSkeletonConfig.h"
 #import "JSSkeletonAnimationProtocol.h"
-#import "JSSkeletonDefines.h"
 
 @interface JSSkeletonLayoutView ()
 
@@ -56,18 +55,18 @@
             [self addSubview:[[JSSkeletonLayoutView alloc] initWithSimulateView:self.simulateView forceSingleLine:true]];
         }
     }
-    /// 添加动画
-    if (!self.simulateView.js_skeletonAnimation) {
-        self.simulateView.js_skeletonAnimation = JSSkeletonConfig.sharedConfig.skeletonAnimation;
-    }
     /// 先更新一次布局
-    [self updateLayout];
+       [self updateLayout];
+    /// 添加动画
+//    if (!self.simulateView.js_skeletonAnimation) {
+//        self.simulateView.js_skeletonAnimation = JSSkeletonConfig.sharedConfig.skeletonAnimation;
+//    }
     /// 监听布局
-    self.simulateView.js_skeletonLayoutView = self;
-    __weak __typeof(self) weakSelf = self;
-    [self.simulateView js_addFrameDidChangeBlock:^(__kindof UIView *view, CGRect precedingFrame) {
-        [weakSelf updateLayout];
-    } forIdentifier:[NSString stringWithFormat:@"%p", self]];
+//    self.simulateView.js_skeletonLayoutView = self;
+//    __weak __typeof(self) weakSelf = self;
+//    [self.simulateView js_addFrameDidChangeBlock:^(__kindof UIView *view, CGRect precedingFrame) {
+//        [weakSelf updateLayout];
+//    } forIdentifier:[NSString stringWithFormat:@"%p", self]];
 }
 
 #pragma mark - 布局
@@ -86,7 +85,7 @@
     }
     if (self.numberOfLinesForSimulateView > 1) {
         CGFloat lineSpacing = self.simulateView.js_skeletonLineSpacing ? : JSSkeletonConfig.sharedConfig.skeletonLineSpacing;
-        CGFloat averageWidth = JSFlat(width / self.numberOfLinesForSimulateView);
+        CGFloat averageWidth = width / self.numberOfLinesForSimulateView;
         [self.subviews enumerateObjectsUsingBlock:^(__kindof UIView *view, NSUInteger idx, BOOL *stop) {
             if ([view isKindOfClass:JSSkeletonLayoutView.class]) {
                 view.frame = CGRectMake(0, idx * (height + lineSpacing), width - idx * averageWidth, height);

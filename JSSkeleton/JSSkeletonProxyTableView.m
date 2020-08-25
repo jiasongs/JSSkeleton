@@ -56,13 +56,12 @@
     for (int section = 0; section < self.numberOfSection; section++) {
         if (self.numberOfRows.count == 0) {
 #if TARGET_OS_MACCATALYST
-            JSBeginIgnoreDeprecatedWarning
             CGFloat height = self.js_height ? : UIScreen.mainScreen.applicationFrame.size.height;
-            JSEndIgnoreDeprecatedWarning
 #else
             CGFloat height = self.js_height ? : UIScreen.mainScreen.bounds.size.height;
 #endif
-            [numberOfRows addObject:@(lrintf(height / [[self.heightForRows objectAtIndex:section] floatValue]))];
+//            [numberOfRows addObject:@(lrintf(height / [[self.heightForRows objectAtIndex:section] floatValue]))];
+            [numberOfRows addObject:@(2)];
         }
         Class cellClass = [cellClasss objectAtIndex:section];
         NSString *nibPath = [[NSBundle mainBundle] pathForResource:NSStringFromClass(cellClass) ofType:@"nib"];

@@ -10,6 +10,7 @@
 #import "UIView+JSSkeletonProperty.h"
 #import "JSSkeletonLayoutView.h"
 #import "UIView+JSSkeletonExtension.h"
+#import "JSSkeletonConfig.h"
 
 @interface JSSkeletonProxyProducer ()
 
@@ -27,8 +28,19 @@
             [self.layoutViews addPointer:(__bridge void *)(subview)];
         } else {
             if ([self filterByRulesView:subview]) {
+                if (!subview.js_skeletonAnimation) {
+                    subview.js_skeletonAnimation = JSSkeletonConfig.sharedConfig.skeletonAnimation;
+                }
+                if (!subview.js_frameDidChangeBlock) {
+                    subview.js_frameDidChangeBlock = ^(__kindof UIView *view, CGRect precedingFrame) {
+                        for (JSSkeletonLayoutView *layoutView in view.js_skeletonLayoutViews) {
+                            [layoutView updateLayout];
+                        }
+                    };
+                }
                 JSSkeletonLayoutView *layoutView = [[JSSkeletonLayoutView alloc] initWithSimulateView:subview];
                 [array addObject:layoutView];
+//                [subview js_addSkeletonLayoutView:layoutView];
                 [self.layoutViews addPointer:(__bridge void *)(layoutView)];
             }
         }
