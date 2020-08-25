@@ -64,8 +64,9 @@
     [self updateLayout];
     /// 监听布局
     self.simulateView.js_skeletonLayoutView = self;
+    __weak __typeof(self) weakSelf = self;
     [self.simulateView js_addFrameDidChangeBlock:^(__kindof UIView *view, CGRect precedingFrame) {
-        [view.js_skeletonLayoutView updateLayout];
+        [weakSelf updateLayout];
     } forIdentifier:[NSString stringWithFormat:@"%p", self]];
 }
 
