@@ -13,7 +13,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface JSSkeletonProxyProducer : NSObject
 
-@property (nonatomic, readonly) NSArray<JSSkeletonLayoutView *> *layoutViews;
+@property (nonatomic, readonly, nullable) NSArray<JSSkeletonLayoutView *> *layoutViews;
 
 - (void)produceLayoutViewWithViews:(NSArray<__kindof UIView *> *)views;
 

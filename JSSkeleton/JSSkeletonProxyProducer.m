@@ -90,12 +90,15 @@
 
 #pragma mark - getter
 
-- (NSArray<JSSkeletonLayoutView *> *)layoutViews {
-    NSMutableArray *result = [NSMutableArray array];
-    [self enumerateLayoutViewsUsingBlock:^(JSSkeletonLayoutView *layoutView, NSUInteger idx) {
-        [result addObject:layoutView];
-    }];
-    return result.copy;
+- (nullable NSArray<JSSkeletonLayoutView *> *)layoutViews {
+    if (self.weakLayoutViews.count > 0) {
+        NSMutableArray *result = [NSMutableArray array];
+        [self enumerateLayoutViewsUsingBlock:^(JSSkeletonLayoutView *layoutView, NSUInteger idx) {
+            [result addObject:layoutView];
+        }];
+        return result;
+    }
+    return nil;
 }
 
 - (NSPointerArray *)weakLayoutViews {

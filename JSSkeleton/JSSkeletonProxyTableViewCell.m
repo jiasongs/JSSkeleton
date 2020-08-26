@@ -14,22 +14,32 @@
 
 @implementation JSSkeletonProxyTableViewCell
 
-- (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier targetCell:(__kindof UITableViewCell *)targetCell {
+- (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
     if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
-        self.selectionStyle = UITableViewCellSelectionStyleNone;
-        self.backgroundColor = [UIColor colorWithRed:1 green:1 blue:1 alpha:0.0];
-        [self didInitializeWithTargetCell:targetCell];
+        [self didInitialize];
     }
     return self;
 }
 
-- (void)didInitializeWithTargetCell:(UITableViewCell *)targetCell {
+- (instancetype)initWithCoder:(NSCoder *)coder {
+    if (self = [super initWithCoder:coder]) {
+        [self didInitialize];
+    }
+    return self;
+}
+
+- (void)didInitialize {
+    self.selectionStyle = UITableViewCellSelectionStyleNone;
+    self.backgroundColor = [UIColor colorWithRed:1 green:1 blue:1 alpha:0.0];
+    self.producer = [[JSSkeletonProxyProducer alloc] init];
+}
+
+- (void)produceLayoutViewWithTargetCell:(UITableViewCell *)targetCell {
     /// 只添加一次, 保证只存在于一个cell中, 减少内存
     if (!targetCell.superview) {
         targetCell.hidden = true;
         [self addSubview:targetCell];
     }
-    self.producer = [[JSSkeletonProxyProducer alloc] init];
     if (targetCell.contentView.subviews.count > 0) {
         [self.producer produceLayoutViewWithViews:targetCell.contentView.subviews];
         [self.producer enumerateLayoutViewsUsingBlock:^(JSSkeletonLayoutView *layoutView, NSUInteger idx) {

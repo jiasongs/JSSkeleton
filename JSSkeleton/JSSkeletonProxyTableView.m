@@ -16,6 +16,8 @@
 #import "UIView+JSSkeletonExtension.h"
 #import "JSSkeletonDefines.h"
 
+NSString * const JSSkeletonProxyTableViewReuseIdentifier = @"JSSkeletonProxyTableViewReuseIdentifier_";
+
 @interface JSSkeletonProxyTableView ()<UITableViewDataSource, UITableViewDelegate>
 
 @property (nonatomic, strong, readwrite) UITableView *tableView;
@@ -64,11 +66,13 @@
         }
         Class cellClass = [cellClasss objectAtIndex:section];
         NSString *nibPath = [[NSBundle mainBundle] pathForResource:NSStringFromClass(cellClass) ofType:@"nib"];
-        __kindof UITableViewCell *cell = nibPath ? [NSBundle.mainBundle loadNibNamed:NSStringFromClass(cellClass) owner:nil options:nil].firstObject : nil;
-        if (!cell) {
-            cell = [[cellClass alloc] initWithFrame:CGRectZero];
+        __kindof UITableViewCell *targetCell = nibPath ? [NSBundle.mainBundle loadNibNamed:NSStringFromClass(cellClass) owner:nil options:nil].firstObject : nil;
+        if (!targetCell) {
+            targetCell = [[cellClass alloc] initWithFrame:CGRectZero];
         }
-        [targetCells addObject:cell];
+        [targetCells addObject:targetCell];
+        NSString *identifier = [NSString stringWithFormat:@"%@%@", JSSkeletonProxyTableViewReuseIdentifier, NSStringFromClass(targetCell.class)];
+        [self.tableView registerClass:JSSkeletonProxyTableViewCell.class forCellReuseIdentifier:identifier];
     }
     self.numberOfRows = numberOfRows.copy;
     self.targetCells = targetCells.copy;
@@ -91,10 +95,10 @@
 
 - (JSSkeletonProxyTableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     __kindof UITableViewCell *targetCell = [self.targetCells objectAtIndex:indexPath.section];
-    NSString *identifier = [NSString stringWithFormat:@"JSSkeletonProxyTableView-%@", NSStringFromClass(targetCell.class)];
-    JSSkeletonProxyTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
-    if (!cell) {
-        cell = [[JSSkeletonProxyTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier targetCell:targetCell];
+    NSString *identifier = [NSString stringWithFormat:@"%@%@", JSSkeletonProxyTableViewReuseIdentifier, NSStringFromClass(targetCell.class)];
+    JSSkeletonProxyTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier forIndexPath:indexPath];
+    if (cell.producer.layoutViews.count == 0) {
+        [cell produceLayoutViewWithTargetCell:targetCell];
         [self.producer produceLayoutViewWithViews:cell.producer.layoutViews];
     }
     return cell;
