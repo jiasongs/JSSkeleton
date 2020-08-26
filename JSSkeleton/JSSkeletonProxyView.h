@@ -20,8 +20,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong, readwrite) __kindof JSSkeletonProxyProducer *producer;
 @property (nonatomic, strong, readwrite) __kindof JSSkeletonProxyCoordinator *coordinator;
 
-- (instancetype)initWithRegisterView:(__kindof UIView *)registerView
-                          targetView:(nullable __kindof UIView *)targetView NS_REQUIRES_SUPER;
+- (instancetype)initWithRegisterView:(__kindof UIView *)registerView targetView:(nullable __kindof UIView *)targetView NS_REQUIRES_SUPER;
 - (void)didInitialize NS_REQUIRES_SUPER;
 
 @end
