@@ -13,10 +13,12 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface JSSkeletonProxyProducer : NSObject
 
-@property (nonatomic, strong, readonly) NSPointerArray *layoutViews;
+@property (nonatomic, readonly) NSArray<JSSkeletonLayoutView *> *layoutViews;
 
-- (NSArray<__kindof JSSkeletonLayoutView *> *)produceLayoutViewWithViews:(NSArray<__kindof UIView *> *)views;
+- (void)produceLayoutViewWithViews:(NSArray<__kindof UIView *> *)views;
+
 - (BOOL)filterByRulesView:(__kindof UIView *)view;
+- (void)enumerateLayoutViewsUsingBlock:(void (NS_NOESCAPE ^)(JSSkeletonLayoutView *layoutView, NSUInteger idx))block;
 
 @end
 

@@ -55,18 +55,8 @@
             [self addSubview:[[JSSkeletonLayoutView alloc] initWithSimulateView:self.simulateView forceSingleLine:true]];
         }
     }
-    /// 先更新一次布局
-       [self updateLayout];
-    /// 添加动画
-//    if (!self.simulateView.js_skeletonAnimation) {
-//        self.simulateView.js_skeletonAnimation = JSSkeletonConfig.sharedConfig.skeletonAnimation;
-//    }
-    /// 监听布局
-//    self.simulateView.js_skeletonLayoutView = self;
-//    __weak __typeof(self) weakSelf = self;
-//    [self.simulateView js_addFrameDidChangeBlock:^(__kindof UIView *view, CGRect precedingFrame) {
-//        [weakSelf updateLayout];
-//    } forIdentifier:[NSString stringWithFormat:@"%p", self]];
+    /// 必须更新一次布局
+    [self updateLayout];
 }
 
 #pragma mark - 布局
@@ -78,10 +68,8 @@
     CGFloat width = self.simulateView.js_skeletonWidth ? : self.simulateView.js_width;
     CGFloat height = self.simulateView.js_skeletonHeight ? : self.simulateView.js_height * heightCoefficient;
     if (height == 0 && self.simulateType == JSSkeletonLayoutSimulateLabel) {
-        if ([self.simulateView isKindOfClass:UILabel.class]) {
-            __kindof UILabel *label = self.simulateView;
-            height = label.font.lineHeight * heightCoefficient;
-        }
+        __kindof UILabel *label = self.simulateView;
+        height = label.font.lineHeight * heightCoefficient;
     }
     if (self.numberOfLinesForSimulateView > 1) {
         CGFloat lineSpacing = self.simulateView.js_skeletonLineSpacing ? : JSSkeletonConfig.sharedConfig.skeletonLineSpacing;

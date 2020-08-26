@@ -30,9 +30,11 @@
         [self addSubview:targetCell];
     }
     self.producer = [[JSSkeletonProxyProducer alloc] init];
-    NSArray *layoutViews = [self.producer produceLayoutViewWithViews:targetCell.contentView.subviews];
-    for (JSSkeletonLayoutView *layoutView in layoutViews) {
-        [self.contentView addSubview:layoutView];
+    if (targetCell.contentView.subviews.count > 0) {
+        [self.producer produceLayoutViewWithViews:targetCell.contentView.subviews];
+        [self.producer enumerateLayoutViewsUsingBlock:^(JSSkeletonLayoutView *layoutView, NSUInteger idx) {
+            [self.contentView addSubview:layoutView];
+        }];
     }
 }
 

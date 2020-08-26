@@ -42,7 +42,11 @@
     if (@available(iOS 11, *)) {
         self.tableView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
     }
-    self.tableView.contentInset = UIEdgeInsetsMake(NavigationContentTop + 44, 0, SafeAreaInsetsConstantForDeviceWithNotch.bottom, 0);
+    CGFloat top = NavigationContentTop;
+#if TARGET_OS_MACCATALYST
+    top = top + 44;
+#endif
+    self.tableView.contentInset = UIEdgeInsetsMake(top, 0, SafeAreaInsetsConstantForDeviceWithNotch.bottom, 0);
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {

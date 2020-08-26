@@ -9,15 +9,8 @@
 #import "UIView+JSSkeletonExtension.h"
 #import "JSSkeletonDefines.h"
 
-@interface UIView (__JSSkeletonExtension)
-
-@property (nonatomic, strong) NSMutableDictionary *js_frameDidChangeBlocks;
-
-@end
-
 @implementation UIView (JSSkeletonExtension)
 
-JSSynthesizeIdStrongProperty(js_frameDidChangeBlocks, setJs_frameDidChangeBlocks)
 JSSynthesizeIdCopyProperty(js_frameDidChangeBlock, setJs_frameDidChangeBlock)
 
 + (void)load {
@@ -142,21 +135,6 @@ JSSynthesizeIdCopyProperty(js_frameDidChangeBlock, setJs_frameDidChangeBlock)
 
 - (void)setJs_height:(CGFloat)height {
     self.frame = JSCGRectSetHeight(self.frame, height);
-}
-
-- (void)js_addFrameDidChangeBlock:(JSFrameDidChangeBlock)block forIdentifier:(NSString *)identifier {
-    if (!self.js_frameDidChangeBlocks) {
-        self.js_frameDidChangeBlocks = [NSMutableDictionary dictionary];
-    }
-    [self.js_frameDidChangeBlocks setObject:[block copy] forKey:identifier];
-}
-
-- (void)js_removeFrameDidChangeBlockForIdentifier:(NSString *)identifier {
-    [self.js_frameDidChangeBlocks removeObjectForKey:identifier];
-}
-
-- (void)js_removeAllFrameDidChangeBlocks {
-    [self.js_frameDidChangeBlocks removeAllObjects];
 }
 
 @end

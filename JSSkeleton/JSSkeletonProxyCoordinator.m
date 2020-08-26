@@ -29,11 +29,9 @@
     __kindof UIView *registerView = self.proxyView.registerView;
     if (!registerView.js_skeletonDisplay) {
         registerView.js_skeletonDisplay = true;
-        for (JSSkeletonLayoutView *layoutView in self.proxyView.producer.layoutViews) {
-            if ([layoutView isKindOfClass:JSSkeletonLayoutView.class]) {
-                [layoutView startAnimation];
-            }
-        }
+        [self.proxyView.producer enumerateLayoutViewsUsingBlock:^(JSSkeletonLayoutView *layoutView, NSUInteger idx) {
+            [layoutView startAnimation];
+        }];
         [self.proxyView.superview bringSubviewToFront:self.proxyView];
         self.proxyView.hidden = false;
         return true;
@@ -45,11 +43,9 @@
     __kindof UIView *registerView = self.proxyView.registerView;
     if (registerView.js_skeletonDisplay) {
         registerView.js_skeletonDisplay = false;
-        for (JSSkeletonLayoutView *layoutView in self.proxyView.producer.layoutViews) {
-            if ([layoutView isKindOfClass:JSSkeletonLayoutView.class]) {
-                [layoutView endAnimation];
-            }
-        }
+        [self.proxyView.producer enumerateLayoutViewsUsingBlock:^(JSSkeletonLayoutView *layoutView, NSUInteger idx) {
+            [layoutView endAnimation];
+        }];
         [UIView animateWithDuration:0.25f delay:0 options:(7<<16) animations:^{
             self.proxyView.alpha = 0.0;
         } completion:^(BOOL finished) {

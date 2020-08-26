@@ -46,11 +46,11 @@
     UIView *tableHeaderView = tableProxyView.tableView.tableHeaderView;
     tableHeaderView.js_height = height;
     [tableHeaderView js_registerSkeletonForViewClass:viewClass];
-    [tableHeaderView js_addFrameDidChangeBlock:^(__kindof UIView * _Nonnull view, CGRect precedingFrame) {
+    tableHeaderView.js_frameDidChangeBlock = ^(__kindof UIView *view, CGRect precedingFrame) {
         for (JSSkeletonProxyView *proxyView in view.js_skeletonProxyViews) {
             proxyView.frame = view.bounds;
         }
-    } forIdentifier:[NSString stringWithFormat:@"%p", tableHeaderView]];
+    };
     return tableProxyView;
 }
 
@@ -59,11 +59,11 @@
     UIView *tableFooterView = tableProxyView.tableView.tableFooterView;
     tableFooterView.js_height = height;
     [tableFooterView js_registerSkeletonForViewClass:viewClass];
-    [tableFooterView js_addFrameDidChangeBlock:^(__kindof UIView * _Nonnull view, CGRect precedingFrame) {
+    tableFooterView.js_frameDidChangeBlock = ^(__kindof UIView *view, CGRect precedingFrame) {
         for (JSSkeletonProxyView *proxyView in view.js_skeletonProxyViews) {
             proxyView.frame = view.bounds;
         }
-    } forIdentifier:[NSString stringWithFormat:@"%p", tableFooterView]];
+    };
     return tableProxyView;
 }
 

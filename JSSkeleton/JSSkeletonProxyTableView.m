@@ -60,8 +60,7 @@
 #else
             CGFloat height = self.js_height ? : UIScreen.mainScreen.bounds.size.height;
 #endif
-//            [numberOfRows addObject:@(lrintf(height / [[self.heightForRows objectAtIndex:section] floatValue]))];
-            [numberOfRows addObject:@(2)];
+            [numberOfRows addObject:@(lrintf(height / [[self.heightForRows objectAtIndex:section] floatValue]))];
         }
         Class cellClass = [cellClasss objectAtIndex:section];
         NSString *nibPath = [[NSBundle mainBundle] pathForResource:NSStringFromClass(cellClass) ofType:@"nib"];
@@ -92,24 +91,20 @@
 
 - (JSSkeletonProxyTableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     __kindof UITableViewCell *targetCell = [self.targetCells objectAtIndex:indexPath.section];
-    NSString *identifier = [NSString stringWithFormat:@"JSSkeletonProxyTableViewCell-%@", NSStringFromClass(targetCell.class)];
+    NSString *identifier = [NSString stringWithFormat:@"JSSkeletonProxyTableView-%@", NSStringFromClass(targetCell.class)];
     JSSkeletonProxyTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
     if (!cell) {
         cell = [[JSSkeletonProxyTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier targetCell:targetCell];
-        for (JSSkeletonLayoutView *layoutView in cell.producer.layoutViews) {
-            [self.producer.layoutViews addPointer:(__bridge void *)(layoutView)];
-        }
+        [self.producer produceLayoutViewWithViews:cell.producer.layoutViews];
     }
     return cell;
 }
 
 - (void)tableView:(UITableView *)tableView willDisplayCell:(JSSkeletonProxyTableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
     if (self.registerView.js_skeletonDisplay) {
-        for (JSSkeletonLayoutView *layoutView in self.producer.layoutViews) {
-            if ([layoutView isKindOfClass:JSSkeletonLayoutView.class]) {
-                [layoutView startAnimation];
-            }
-        }
+        [self.producer enumerateLayoutViewsUsingBlock:^(JSSkeletonLayoutView *layoutView, NSUInteger idx) {
+            [layoutView startAnimation];
+        }];
     }
 }
 
