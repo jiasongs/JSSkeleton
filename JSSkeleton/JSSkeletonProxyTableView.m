@@ -8,21 +8,15 @@
 
 #import "JSSkeletonProxyTableView.h"
 #import "JSSkeletonProxyTableViewCell.h"
-#import "JSSkeletonProxyView.h"
 #import "UIView+JSSkeletonProperty.h"
-#import "UIView+JSSkeleton.h"
 #import "JSSkeletonProxyProducer.h"
 #import "JSSkeletonLayoutView.h"
-#import "UIView+JSSkeletonExtension.h"
-#import "JSSkeletonDefines.h"
 
 NSString * const JSSkeletonProxyTableViewReuseIdentifier = @"JSSkeletonProxyTableViewReuseIdentifier_";
 
 @interface JSSkeletonProxyTableView ()<UITableViewDataSource, UITableViewDelegate>
 
 @property (nonatomic, strong, readwrite) UITableView *tableView;
-@property (nonatomic, assign) CGFloat numberOfSection;
-@property (nonatomic, strong) NSArray<__kindof UITableViewCell *> *targetCells;
 
 @end
 
@@ -31,17 +25,15 @@ NSString * const JSSkeletonProxyTableViewReuseIdentifier = @"JSSkeletonProxyTabl
 - (void)didInitialize {
     [super didInitialize];
     [self addSubview:self.tableView];
-    if ([self.registerView isKindOfClass:UITableView.class]) {
-        UITableView *tableView = self.registerView;
-        self.tableView.contentInset = tableView.contentInset;
-        UIEdgeInsets contentInset = UIEdgeInsetsZero;
-        if (@available(iOS 11, *)) {
-            contentInset = self.tableView.adjustedContentInset;
-        } else {
-            contentInset = self.tableView.contentInset;
-        }
-        [self.tableView setContentOffset:CGPointMake(-contentInset.left, -contentInset.top)];
+    UITableView *tableView = self.registerView;
+    self.tableView.contentInset = tableView.contentInset;
+    UIEdgeInsets contentInset = UIEdgeInsetsZero;
+    if (@available(iOS 11, *)) {
+        contentInset = self.tableView.adjustedContentInset;
+    } else {
+        contentInset = self.tableView.contentInset;
     }
+    [self.tableView setContentOffset:CGPointMake(-contentInset.left, -contentInset.top)];
 }
 
 - (void)layoutSubviews {
@@ -52,30 +44,11 @@ NSString * const JSSkeletonProxyTableViewReuseIdentifier = @"JSSkeletonProxyTabl
 #pragma mark - 注册
 
 - (void)registerCellClass:(NSArray<Class> *)cellClasss {
-    self.numberOfSection = cellClasss.count;
-    NSMutableArray *targetCells = [NSMutableArray array];
-    NSMutableArray *numberOfRows = [NSMutableArray arrayWithArray:self.numberOfRows ? : @[]];
-    for (int section = 0; section < self.numberOfSection; section++) {
-        if (self.numberOfRows.count == 0) {
-#if TARGET_OS_MACCATALYST
-            CGFloat height = self.js_height ? : UIScreen.mainScreen.applicationFrame.size.height;
-#else
-            CGFloat height = self.js_height ? : UIScreen.mainScreen.bounds.size.height;
-#endif
-            [numberOfRows addObject:@(lrintf(height / [[self.heightForRows objectAtIndex:section] floatValue]))];
-        }
-        Class cellClass = [cellClasss objectAtIndex:section];
-        NSString *nibPath = [[NSBundle mainBundle] pathForResource:NSStringFromClass(cellClass) ofType:@"nib"];
-        __kindof UITableViewCell *targetCell = nibPath ? [NSBundle.mainBundle loadNibNamed:NSStringFromClass(cellClass) owner:nil options:nil].firstObject : nil;
-        if (!targetCell) {
-            targetCell = [[cellClass alloc] initWithFrame:CGRectZero];
-        }
-        [targetCells addObject:targetCell];
+    [super registerCellClass:cellClasss];
+    for (__kindof UITableViewCell *targetCell in self.targetCells) {
         NSString *identifier = [NSString stringWithFormat:@"%@%@", JSSkeletonProxyTableViewReuseIdentifier, NSStringFromClass(targetCell.class)];
         [self.tableView registerClass:JSSkeletonProxyTableViewCell.class forCellReuseIdentifier:identifier];
     }
-    self.numberOfRows = numberOfRows.copy;
-    self.targetCells = targetCells.copy;
     [self.tableView reloadData];
 }
 

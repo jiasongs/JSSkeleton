@@ -6,17 +6,13 @@
 //  Copyright © 2020 jiasong. All rights reserved.
 //
 
-#import "JSSkeletonProxyView.h"
+#import "JSSkeletonProxyFormView.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface JSSkeletonProxyTableView : JSSkeletonProxyView
+@interface JSSkeletonProxyTableView : JSSkeletonProxyFormView
 
 @property (nonatomic, strong, readonly) UITableView *tableView;
-@property (nonatomic, copy) NSArray<NSNumber *> *heightForRows;
-@property (nonatomic, copy) NSArray<NSNumber *> *numberOfRows;
-
-- (void)registerCellClass:(NSArray<Class> *)cellClasss;
 
 @end
 
