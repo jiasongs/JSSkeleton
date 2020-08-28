@@ -34,10 +34,10 @@
     self.coordinator = [[JSSkeletonProxyCoordinator alloc] initWithProxyView:self];
     self.producer = [[JSSkeletonProxyProducer alloc] init];
     if (self.targetView.subviews.count > 0) {
-        [self.producer produceLayoutViewWithViews:self.targetView.subviews];
-        [self.producer enumerateLayoutViewsUsingBlock:^(JSSkeletonLayoutView *layoutView, NSUInteger idx) {
+        NSArray *layoutViews = [self.producer produceLayoutViewWithViews:self.targetView.subviews];
+        for (JSSkeletonLayoutView *layoutView in layoutViews) {
             [self addSubview:layoutView];
-        }];
+        }
     }
 }
 

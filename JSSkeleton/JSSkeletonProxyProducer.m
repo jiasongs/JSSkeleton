@@ -22,10 +22,12 @@
 
 #pragma mark - 生成LayoutView
 
-- (void)produceLayoutViewWithViews:(NSArray<__kindof UIView *> *)views {
+- (NSArray<JSSkeletonLayoutView *> *)produceLayoutViewWithViews:(NSArray<__kindof UIView *> *)views {
+    NSMutableArray *resultArray = [NSMutableArray array];
     for (__kindof UIView *subview in views) {
         if ([subview isKindOfClass:JSSkeletonLayoutView.class]) {
             [self.weakLayoutViews addPointer:(__bridge void *)(subview)];
+            [resultArray addObject:subview];
         } else {
             if ([self filterByRulesView:subview]) {
                 /// 添加默认动画
@@ -33,10 +35,13 @@
                 /// 添加布局监听
                 [self addFrameDidChangeBlockWithView:subview];
                 /// 添加视图
-                [self addLayoutViewWithView:subview];
+                JSSkeletonLayoutView *layoutView = [self makeLayoutViewWithView:subview];
+                [self.weakLayoutViews addPointer:(__bridge void *)layoutView];
+                [resultArray addObject:layoutView];
             }
         }
     }
+    return resultArray;
 }
 
 - (void)addDefaultSkeletonAnimationWithView:(__kindof UIView *)view {
@@ -57,10 +62,10 @@
     }
 }
 
-- (void)addLayoutViewWithView:(__kindof UIView *)view {
+- (JSSkeletonLayoutView *)makeLayoutViewWithView:(__kindof UIView *)view {
     JSSkeletonLayoutView *layoutView = [[JSSkeletonLayoutView alloc] initWithSimulateView:view];
     [view js_addSkeletonLayoutView:layoutView];
-    [self.weakLayoutViews addPointer:(__bridge void *)(layoutView)];
+    return layoutView;
 }
 
 #pragma mark - 过滤视图

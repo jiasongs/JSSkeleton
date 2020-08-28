@@ -25,10 +25,10 @@
         [self addSubview:targetCell];
     }
     if (targetCell.contentView.subviews.count > 0) {
-        [self.producer produceLayoutViewWithViews:targetCell.contentView.subviews];
-        [self.producer enumerateLayoutViewsUsingBlock:^(JSSkeletonLayoutView *layoutView, NSUInteger idx) {
+        NSArray *layoutViews = [self.producer produceLayoutViewWithViews:targetCell.contentView.subviews];
+        for (JSSkeletonLayoutView *layoutView in layoutViews) {
             [self.contentView addSubview:layoutView];
-        }];
+        }
     }
 }
 

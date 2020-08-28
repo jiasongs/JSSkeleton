@@ -15,7 +15,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, readonly, nullable) NSArray<JSSkeletonLayoutView *> *layoutViews;
 
-- (void)produceLayoutViewWithViews:(NSArray<__kindof UIView *> *)views;
+- (NSArray<JSSkeletonLayoutView *> *)produceLayoutViewWithViews:(NSArray<__kindof UIView *> *)views;
 
 - (BOOL)filterByRulesView:(__kindof UIView *)view;
 - (void)enumerateLayoutViewsUsingBlock:(void (NS_NOESCAPE ^)(JSSkeletonLayoutView *layoutView, NSUInteger idx))block;
