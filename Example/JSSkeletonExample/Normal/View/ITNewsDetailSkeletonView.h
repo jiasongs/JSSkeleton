@@ -12,6 +12,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface ITNewsDetailSkeletonView : UIView
 
+@property (weak, nonatomic) IBOutlet UIView *imageContainerView;
+
 @end
 
 NS_ASSUME_NONNULL_END

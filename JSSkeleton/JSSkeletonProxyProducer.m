@@ -65,6 +65,12 @@
 - (JSSkeletonLayoutView *)makeLayoutViewWithView:(__kindof UIView *)view {
     JSSkeletonLayoutView *layoutView = [[JSSkeletonLayoutView alloc] initWithSimulateView:view];
     [view js_addSkeletonLayoutView:layoutView];
+    if (view.subviews.count > 0) {
+        NSArray *resultArray = [self produceLayoutViewWithViews:view.subviews];
+        for (JSSkeletonLayoutView *subLayoutView in resultArray) {
+            [layoutView addSubview:subLayoutView];
+        }
+    }
     return layoutView;
 }
 

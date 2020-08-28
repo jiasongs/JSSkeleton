@@ -10,4 +10,9 @@
 
 @implementation ITNewsDetailSkeletonView
 
+- (void)awakeFromNib {
+    [super awakeFromNib];
+    self.imageContainerView.js_skeletonTintColor = UIColorClear;
+}
+
 @end
