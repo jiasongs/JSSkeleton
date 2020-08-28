@@ -87,7 +87,11 @@
 
 - (__kindof JSSkeletonProxyView *)__js_produceSkeletonProxyTableView {
     JSSkeletonProxyTableView *proxyView = [[JSSkeletonProxyTableView alloc] initWithRegisterView:self targetView:nil];
-    [self.superview addSubview:proxyView];
+    if (self.superview) {
+       [self.superview addSubview:proxyView];
+    } else {
+        [self addSubview:proxyView];
+    }
     [self.js_skeletonProxyViews addObject:proxyView];
     return proxyView;
 }
