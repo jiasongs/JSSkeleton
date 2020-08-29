@@ -1,6 +1,6 @@
 //
 //  UIView+JSSkeletonExtension.m
-//  JSSkeletonExample
+//  JSSkeleton
 //
 //  Created by jiasong on 2020/8/24.
 //  Copyright © 2020 jiasong. All rights reserved.
@@ -94,7 +94,9 @@ JSSynthesizeIdCopyProperty(js_frameDidChangeBlock, setJs_frameDidChangeBlock)
 }
 
 - (void)setJs_top:(CGFloat)top {
-    self.frame = JSCGRectSetY(self.frame, top);
+    CGRect rect = self.frame;
+    rect.origin.y = JSFlat(top);
+    self.frame = rect;
 }
 
 - (CGFloat)js_left {
@@ -102,7 +104,9 @@ JSSynthesizeIdCopyProperty(js_frameDidChangeBlock, setJs_frameDidChangeBlock)
 }
 
 - (void)setJs_left:(CGFloat)left {
-    self.frame = JSCGRectSetX(self.frame, left);
+    CGRect rect = self.frame;
+    rect.origin.x = JSFlat(left);
+    self.frame = rect;
 }
 
 - (CGFloat)js_bottom {
@@ -110,7 +114,9 @@ JSSynthesizeIdCopyProperty(js_frameDidChangeBlock, setJs_frameDidChangeBlock)
 }
 
 - (void)setJs_bottom:(CGFloat)bottom {
-    self.frame = JSCGRectSetY(self.frame, bottom - CGRectGetHeight(self.frame));
+    CGRect rect = self.frame;
+    rect.origin.y = JSFlat(bottom - CGRectGetHeight(self.frame));
+    self.frame = rect;
 }
 
 - (CGFloat)js_right {
@@ -118,7 +124,9 @@ JSSynthesizeIdCopyProperty(js_frameDidChangeBlock, setJs_frameDidChangeBlock)
 }
 
 - (void)setJs_right:(CGFloat)right {
-    self.frame = JSCGRectSetX(self.frame, right - CGRectGetWidth(self.frame));
+    CGRect rect = self.frame;
+    rect.origin.x = JSFlat(right - CGRectGetWidth(self.frame));
+    self.frame = rect;
 }
 
 - (CGFloat)js_width {
@@ -126,7 +134,9 @@ JSSynthesizeIdCopyProperty(js_frameDidChangeBlock, setJs_frameDidChangeBlock)
 }
 
 - (void)setJs_width:(CGFloat)width {
-    self.frame = JSCGRectSetWidth(self.frame, width);
+    CGRect rect = self.frame;
+    rect.size.width = JSFlat(width);
+    self.frame = rect;
 }
 
 - (CGFloat)js_height {
@@ -134,7 +144,9 @@ JSSynthesizeIdCopyProperty(js_frameDidChangeBlock, setJs_frameDidChangeBlock)
 }
 
 - (void)setJs_height:(CGFloat)height {
-    self.frame = JSCGRectSetHeight(self.frame, height);
+    CGRect rect = self.frame;
+    rect.size.height = JSFlat(height);
+    self.frame = rect;
 }
 
 @end

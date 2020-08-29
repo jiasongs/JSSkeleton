@@ -12,6 +12,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface ITNewsDetailSkeletonView : UIView
 
+@property (weak, nonatomic) IBOutlet UIView *centerMoreView;
+@property (weak, nonatomic) IBOutlet UIView *centerMoreSubView;
 @property (weak, nonatomic) IBOutlet UILabel *contentLabel;
 @property (weak, nonatomic) IBOutlet UIView *imageContainerView;
 

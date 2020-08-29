@@ -1,6 +1,6 @@
 //
 //  JSSkeletonDefines.h
-//  JSSkeletonExample
+//  JSSkeleton
 //
 //  Created by jiasong on 2020/8/24.
 //  Copyright © 2020 jiasong. All rights reserved.
@@ -64,51 +64,51 @@ return [((NSNumber *)objc_getAssociatedObject(self, &kAssociatedObjectKey_##_get
 }\
 _Pragma("clang diagnostic pop")
 
-/// @property(nonatomic, strong) id xxx
+/// @property (nonatomic, strong) id xxx
 #define JSSynthesizeIdStrongProperty(_getterName, _setterName) _JSSynthesizeId(_getterName, _setterName, RETAIN)
 
-/// @property(nonatomic, weak) id xxx
+/// @property (nonatomic, weak) id xxx
 #define JSSynthesizeIdWeakProperty(_getterName, _setterName) _JSSynthesizeWeakId(_getterName, _setterName)
 
-/// @property(nonatomic, copy) id xxx
+/// @property (nonatomic, copy) id xxx
 #define JSSynthesizeIdCopyProperty(_getterName, _setterName) _JSSynthesizeId(_getterName, _setterName, COPY)
 
 #pragma mark - NonObject Marcos
 
-/// @property(nonatomic, assign) Int xxx
+/// @property (nonatomic, assign) Int xxx
 #define JSSynthesizeIntProperty(_getterName, _setterName) _JSSynthesizeNonObject(_getterName, _setterName, int, numberWithInt, intValue)
 
-/// @property(nonatomic, assign) unsigned int xxx
+/// @property (nonatomic, assign) unsigned int xxx
 #define JSSynthesizeUnsignedIntProperty(_getterName, _setterName) _JSSynthesizeNonObject(_getterName, _setterName, unsigned int, numberWithUnsignedInt, unsignedIntValue)
 
-/// @property(nonatomic, assign) float xxx
+/// @property (nonatomic, assign) float xxx
 #define JSSynthesizeFloatProperty(_getterName, _setterName) _JSSynthesizeNonObject(_getterName, _setterName, float, numberWithFloat, floatValue)
 
-/// @property(nonatomic, assign) double xxx
+/// @property (nonatomic, assign) double xxx
 #define JSSynthesizeDoubleProperty(_getterName, _setterName) _JSSynthesizeNonObject(_getterName, _setterName, double, numberWithDouble, doubleValue)
 
-/// @property(nonatomic, assign) BOOL xxx
+/// @property (nonatomic, assign) BOOL xxx
 #define JSSynthesizeBOOLProperty(_getterName, _setterName) _JSSynthesizeNonObject(_getterName, _setterName, BOOL, numberWithBool, boolValue)
 
-/// @property(nonatomic, assign) NSInteger xxx
+/// @property (nonatomic, assign) NSInteger xxx
 #define JSSynthesizeNSIntegerProperty(_getterName, _setterName) _JSSynthesizeNonObject(_getterName, _setterName, NSInteger, numberWithInteger, integerValue)
 
-/// @property(nonatomic, assign) NSUInteger xxx
+/// @property (nonatomic, assign) NSUInteger xxx
 #define JSSynthesizeNSUIntegerProperty(_getterName, _setterName) _JSSynthesizeNonObject(_getterName, _setterName, NSUInteger, numberWithUnsignedInteger, unsignedIntegerValue)
 
-/// @property(nonatomic, assign) CGFloat xxx
+/// @property (nonatomic, assign) CGFloat xxx
 #define JSSynthesizeCGFloatProperty(_getterName, _setterName) _JSSynthesizeNonObject(_getterName, _setterName, CGFloat, numberWithDouble, js_CGFloatValue)
 
-/// @property(nonatomic, assign) CGPoint xxx
+/// @property (nonatomic, assign) CGPoint xxx
 #define JSSynthesizeCGPointProperty(_getterName, _setterName) _JSSynthesizeNonObject(_getterName, _setterName, CGPoint, valueWithCGPoint, CGPointValue)
 
-/// @property(nonatomic, assign) CGSize xxx
+/// @property (nonatomic, assign) CGSize xxx
 #define JSSynthesizeCGSizeProperty(_getterName, _setterName) _JSSynthesizeNonObject(_getterName, _setterName, CGSize, valueWithCGSize, CGSizeValue)
 
-/// @property(nonatomic, assign) CGRect xxx
+/// @property (nonatomic, assign) CGRect xxx
 #define JSSynthesizeCGRectProperty(_getterName, _setterName) _JSSynthesizeNonObject(_getterName, _setterName, CGRect, valueWithCGRect, CGRectValue)
 
-/// @property(nonatomic, assign) UIEdgeInsets xxx
+/// @property (nonatomic, assign) UIEdgeInsets xxx
 #define JSSynthesizeUIEdgeInsetsProperty(_getterName, _setterName) _JSSynthesizeNonObject(_getterName, _setterName, UIEdgeInsets, valueWithUIEdgeInsets, UIEdgeInsetsValue)
 
 #pragma mark - CGFloat
@@ -121,7 +121,7 @@ JSRemoveFloatMin(CGFloat floatValue) {
 CG_INLINE CGFloat
 JSFlatSpecificScale(CGFloat floatValue, CGFloat scale) {
     floatValue = JSRemoveFloatMin(floatValue);
-    scale = scale ? : ([[UIScreen mainScreen] scale]);
+    scale = scale ? : UIScreen.mainScreen.scale;
     CGFloat JSFlattedValue = ceil(floatValue * scale) / scale;
     return JSFlattedValue;
 }
@@ -129,59 +129,6 @@ JSFlatSpecificScale(CGFloat floatValue, CGFloat scale) {
 CG_INLINE CGFloat
 JSFlat(CGFloat floatValue) {
     return JSFlatSpecificScale(floatValue, 0);
-}
-
-#pragma mark - CGSize
-
-/// 将一个 CGSize 像素对齐
-CG_INLINE CGSize
-JSCGSizeFlatted(CGSize size) {
-    return CGSizeMake(JSFlat(size.width), JSFlat(size.height));
-}
-
-#pragma mark - CGRect
-
-CG_INLINE CGRect
-JSCGRectSetX(CGRect rect, CGFloat x) {
-    rect.origin.x = JSFlat(x);
-    return rect;
-}
-
-CG_INLINE CGRect
-JSCGRectSetY(CGRect rect, CGFloat y) {
-    rect.origin.y = JSFlat(y);
-    return rect;
-}
-
-CG_INLINE CGRect
-JSCGRectSetXY(CGRect rect, CGFloat x, CGFloat y) {
-    rect.origin.x = JSFlat(x);
-    rect.origin.y = JSFlat(y);
-    return rect;
-}
-
-CG_INLINE CGRect
-JSCGRectSetWidth(CGRect rect, CGFloat width) {
-    if (width < 0) {
-        return rect;
-    }
-    rect.size.width = JSFlat(width);
-    return rect;
-}
-
-CG_INLINE CGRect
-JSCGRectSetHeight(CGRect rect, CGFloat height) {
-    if (height < 0) {
-        return rect;
-    }
-    rect.size.height = JSFlat(height);
-    return rect;
-}
-
-CG_INLINE CGRect
-JSCGRectSetSize(CGRect rect, CGSize size) {
-    rect.size = JSCGSizeFlatted(size);
-    return rect;
 }
 
 #pragma mark - runtime

@@ -200,6 +200,8 @@
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <viewLayoutGuide key="safeArea" id="yey-cI-uFS"/>
             <connections>
+                <outlet property="centerMoreSubView" destination="Bpc-M1-MRu" id="EQ7-4m-t6E"/>
+                <outlet property="centerMoreView" destination="GY8-jt-0Xf" id="S28-he-jgd"/>
                 <outlet property="contentLabel" destination="0gn-6o-KC9" id="k80-eW-ZNh"/>
                 <outlet property="imageContainerView" destination="D7Q-Er-7Jd" id="H3b-8V-O52"/>
             </connections>

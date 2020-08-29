@@ -1,6 +1,6 @@
 //
 //  UIView+JSSkeletonExtension.h
-//  JSSkeletonExample
+//  JSSkeleton
 //
 //  Created by jiasong on 2020/8/24.
 //  Copyright © 2020 jiasong. All rights reserved.

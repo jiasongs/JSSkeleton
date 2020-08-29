@@ -1,6 +1,6 @@
 //
 //  JSSkeletonLayoutView.m
-//  JSSkeletonExample
+//  JSSkeleton
 //
 //  Created by jiasong on 2020/8/22.
 //  Copyright © 2020 jiasong. All rights reserved.
@@ -14,7 +14,7 @@
 
 @interface JSSkeletonLayoutView ()
 
-@property (nonatomic, assign) BOOL forceSingleLine;
+@property (nonatomic, assign) BOOL fromMultiLineLabel;
 @property (nonatomic, assign, readonly) NSUInteger numberOfLinesForSimulateView;
 
 @end
@@ -22,31 +22,34 @@
 @implementation JSSkeletonLayoutView
 
 - (instancetype)initWithSimulateView:(__kindof UIView *)simulateView {
-    return [self initWithSimulateView:simulateView forceSingleLine:false];
+    return [self initWithSimulateView:simulateView fromMultiLineLabel:false];
 }
 
-- (instancetype)initWithSimulateView:(__kindof UIView *)simulateView forceSingleLine:(BOOL)forceSingleLine {
+- (instancetype)initWithSimulateView:(__kindof UIView *)simulateView fromMultiLineLabel:(BOOL)fromMultiLineLabel {
     if (self = [super initWithFrame:CGRectZero]) {
         _simulateView = simulateView;
-        if ([_simulateView isKindOfClass:UILabel.class]) {
-            _simulateType = JSSkeletonLayoutSimulateLabel;
-        } else {
-            _simulateType = JSSkeletonLayoutSimulateView;
-        }
-        _forceSingleLine = forceSingleLine;
+        _fromMultiLineLabel = fromMultiLineLabel;
         [self didInitialize];
     }
     return self;
 }
 
 - (void)didInitialize {
+    if ([_simulateView isKindOfClass:UILabel.class]) {
+        _simulateType = JSSkeletonLayoutSimulateLabel;
+    } else {
+        _simulateType = JSSkeletonLayoutSimulateView;
+    }
+    /// 圆角
     CGFloat cornerRadius = self.simulateView.js_skeletonCornerRadius ? : self.simulateView.layer.cornerRadius;
     if (cornerRadius > 0) {
         self.layer.cornerRadius = cornerRadius;
     }
+    /// 多行Label
     if (self.numberOfLinesForSimulateView > 1) {
         for (int i = 0; i < self.numberOfLinesForSimulateView; i++) {
-            [self addSubview:[[self.class alloc] initWithSimulateView:self.simulateView forceSingleLine:true]];
+            [self addSubview:[[self.class alloc] initWithSimulateView:self.simulateView
+                                                   fromMultiLineLabel:true]];
         }
     } else {
         if (self.simulateView.js_skeletonTintColor) {
@@ -55,7 +58,7 @@
             self.backgroundColor = JSSkeletonConfig.sharedConfig.skeletonTintColor;
         }
     }
-    /// 必须更新一次布局
+    /// 更新一次布局
     [self updateLayoutIfNeeded];
 }
 
@@ -110,7 +113,7 @@
 
 - (NSUInteger)numberOfLinesForSimulateView {
     NSUInteger numberOfLines = 1;
-    if (!self.forceSingleLine && self.simulateType == JSSkeletonLayoutSimulateLabel) {
+    if (!self.fromMultiLineLabel && self.simulateType == JSSkeletonLayoutSimulateLabel) {
         __kindof UILabel *simulateLabel = self.simulateView;
         if (simulateLabel.numberOfLines != 1) {
             numberOfLines = simulateLabel.numberOfLines ? : 3;

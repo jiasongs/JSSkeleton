@@ -1,6 +1,6 @@
 //
 //  JSSkeletonProxyProducer.h
-//  JSSkeletonExample
+//  JSSkeleton
 //
 //  Created by jiasong on 2020/8/23.
 //  Copyright © 2020 jiasong. All rights reserved.
