@@ -8,6 +8,7 @@
 
 #import "UIView+JSSkeletonProperty.h"
 #import "JSSkeletonDefines.h"
+#import "JSSkeletonLayoutView.h"
 
 @interface UIView (__JSSkeletonProperty)
 
@@ -39,6 +40,14 @@ JSSynthesizeIdStrongProperty(js_weakSkeletonLayoutViews, setJs_weakSkeletonLayou
         self.js_weakSkeletonLayoutViews = [NSPointerArray weakObjectsPointerArray];
     }
     [self.js_weakSkeletonLayoutViews addPointer:(__bridge void *)(layoutView)];
+}
+
+- (void)js_skeletonLayoutIfNeeded {
+    for (JSSkeletonLayoutView *layoutView in self.js_weakSkeletonLayoutViews) {
+        if (layoutView && [layoutView isKindOfClass:JSSkeletonLayoutView.class]) {
+            [layoutView updateLayout];
+        }
+    }
 }
 
 @end

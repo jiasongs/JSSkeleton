@@ -53,11 +53,7 @@
 - (void)addFrameDidChangeBlockWithView:(__kindof UIView *)view {
     if (!view.js_frameDidChangeBlock) {
         view.js_frameDidChangeBlock = ^(__kindof UIView *view, CGRect precedingFrame) {
-            for (JSSkeletonLayoutView *layoutView in view.js_skeletonLayoutViews) {
-                if (layoutView && [layoutView isKindOfClass:JSSkeletonLayoutView.class]) {
-                    [layoutView updateLayout];
-                }
-            }
+            [view js_skeletonLayoutIfNeeded];
         };
     }
 }
