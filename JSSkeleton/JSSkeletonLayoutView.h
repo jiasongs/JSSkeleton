@@ -22,7 +22,7 @@ typedef NS_ENUM(NSInteger, JSSkeletonLayoutSimulate) {
 
 - (instancetype)initWithSimulateView:(__kindof UIView *)simulateView;
 
-- (void)updateLayout;
+- (void)updateLayoutIfNeeded;
 
 - (void)startAnimation;
 - (void)endAnimation;

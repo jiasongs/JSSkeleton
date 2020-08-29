@@ -46,7 +46,7 @@
     }
     if (self.numberOfLinesForSimulateView > 1) {
         for (int i = 0; i < self.numberOfLinesForSimulateView; i++) {
-            [self addSubview:[[JSSkeletonLayoutView alloc] initWithSimulateView:self.simulateView forceSingleLine:true]];
+            [self addSubview:[[self.class alloc] initWithSimulateView:self.simulateView forceSingleLine:true]];
         }
     } else {
         if (self.simulateView.js_skeletonTintColor) {
@@ -56,12 +56,24 @@
         }
     }
     /// 必须更新一次布局
-    [self updateLayout];
+    [self updateLayoutIfNeeded];
+}
+
+- (void)setBackgroundColor:(UIColor *)backgroundColor {
+    if (self.numberOfLinesForSimulateView > 1) {
+        for (__kindof UIView *view in self.subviews) {
+            if ([view isKindOfClass:self.class]) {
+                [view setBackgroundColor:backgroundColor];
+            }
+        }
+    } else {
+        [super setBackgroundColor:backgroundColor];
+    }
 }
 
 #pragma mark - 布局
 
-- (void)updateLayout {
+- (void)updateLayoutIfNeeded {
     CGFloat heightCoefficient = self.js_skeletonHeightCoefficient ? : (self.simulateType == JSSkeletonLayoutSimulateLabel ? JSSkeletonConfig.sharedConfig.skeletonHeightCoefficient : 1);
     CGFloat x = self.simulateView.js_left + self.simulateView.js_skeletonMarginTop;
     CGFloat y = self.simulateView.js_top + self.simulateView.js_skeletonMarginLeft;
@@ -75,7 +87,7 @@
         CGFloat lineSpacing = self.simulateView.js_skeletonLineSpacing ? : JSSkeletonConfig.sharedConfig.skeletonLineSpacing;
         CGFloat averageWidth = width / self.numberOfLinesForSimulateView;
         [self.subviews enumerateObjectsUsingBlock:^(__kindof UIView *view, NSUInteger idx, BOOL *stop) {
-            if ([view isKindOfClass:JSSkeletonLayoutView.class]) {
+            if ([view isKindOfClass:self.class]) {
                 view.frame = CGRectMake(0, idx * (height + lineSpacing), width - idx * averageWidth, height);
             }
         }];
