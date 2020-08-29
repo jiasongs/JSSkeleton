@@ -21,13 +21,6 @@
 
 - (void)initSubviews {
     [super initSubviews];
-//    UIView *skeletonView = [self.tableView js_registerSkeletonForCellClass:JSTableViewCell.class heightForRows:108];
-//    UIView *skeletonView = [self.tableView js_registerSkeletonForCellClass:JSTableViewCell.class numberOfRow:4 heightForRow:108];
-//    [skeletonView mas_makeConstraints:^(MASConstraintMaker *make) {
-//        make.edges.equalTo(skeletonView.superview);
-//    }];
-//    [self.tableView js_registerSkeletonForTableViewHeaderClass:JSNormalDetailView.class heightForView:360];
-//    [self.tableView js_registerSkeletonForTableViewFooterClass:JSNormalDetailView.class heightForView:360];
     [[self.tableView js_registerSkeletonForCellClass:ITForumNewNoImageSkeletonCell.class heightForRow:[ITForumNewNoImageSkeletonCell skeletonHeight]] mas_makeConstraints:^(MASConstraintMaker *make) {
         make.edges.equalTo(self.tableView);
     }];

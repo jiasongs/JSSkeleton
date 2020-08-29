@@ -36,7 +36,7 @@
 }
 
 - (void)example1 {
-    UIView *skeletonView = [self.detailView js_registerSkeleton];
+    JSSkeletonProxyView *skeletonView = [self.detailView js_registerSkeleton];
     [skeletonView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.edges.equalTo(self.detailView);
     }];
@@ -47,7 +47,7 @@
 }
 
 - (void)example2 {
-    UIView *skeletonView = [self.view js_registerSkeletonForViewClass:ITNewsDetailSkeletonView.class];
+    JSSkeletonProxyView *skeletonView = [self.view js_registerSkeletonForViewClass:ITNewsDetailSkeletonView.class];
     [skeletonView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.edges.equalTo(self.view);
     }];
