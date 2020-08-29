@@ -52,11 +52,7 @@
                                                    fromMultiLineLabel:true]];
         }
     } else {
-        if (self.simulateView.js_skeletonTintColor) {
-            self.backgroundColor = self.simulateView.js_skeletonTintColor;
-        } else {
-            self.backgroundColor = JSSkeletonConfig.sharedConfig.skeletonTintColor;
-        }
+        self.backgroundColor = self.simulateView.js_skeletonTintColor ? : JSSkeletonConfig.sharedConfig.skeletonTintColor;
     }
     /// 更新一次布局
     [self updateLayoutIfNeeded];
