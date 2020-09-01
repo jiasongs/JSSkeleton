@@ -21,7 +21,11 @@
 @implementation UIView (JSSkeleton)
 
 - (__kindof JSSkeletonProxyView *)js_registerSkeleton {
-    return [self __js_produceSkeletonProxyViewWithTargetView:self];
+    return [self js_registerSkeletonForView:self];
+}
+
+- (__kindof JSSkeletonProxyView *)js_registerSkeletonForView:(__kindof UIView *)view {
+    return [self __js_produceSkeletonProxyViewWithTargetView:view];
 }
 
 - (__kindof JSSkeletonProxyView *)js_registerSkeletonForViewClass:(Class)viewClass {
@@ -31,7 +35,7 @@
         skeletonView = [[viewClass alloc] init];
     }
     skeletonView.hidden = true;
-    JSSkeletonProxyView *proxyView = [self __js_produceSkeletonProxyViewWithTargetView:skeletonView];
+    JSSkeletonProxyView *proxyView = [self js_registerSkeletonForView:skeletonView];
     [proxyView addSubview:skeletonView];
     return proxyView;
 }

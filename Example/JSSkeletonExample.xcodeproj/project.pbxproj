@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		070464B8DD2362910EE78E5C /* libPods-JSSkeletonExample.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6F3E2A082B2B75171F1BF7EA /* libPods-JSSkeletonExample.a */; };
 		6701A6AF7E823E837E79F3D8 /* (null) in Frameworks */ = {isa = PBXBuildFile; };
+		7A2E2F7224FE1BCD00A84C3E /* ITOfficialAccountHomepageHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A2E2F7024FE1BCD00A84C3E /* ITOfficialAccountHomepageHeaderView.m */; };
 		7AA27CD924F4FF08009E367E /* ITNewsDetailSkeletonView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AF1E82B24F36C0A00F70824 /* ITNewsDetailSkeletonView.m */; };
 		7AA27CDA24F4FF0D009E367E /* ITNewsDetailSkeletonView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7AF1E82924F36C0A00F70824 /* ITNewsDetailSkeletonView.xib */; };
 		7AB24B9A24F0BEFF0067C1C4 /* JSNormalViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AB24B9824F0BEFF0067C1C4 /* JSNormalViewController.m */; };
@@ -53,6 +54,8 @@
 /* Begin PBXFileReference section */
 		29E384E54D5200BF49183EFA /* Pods-JSSkeletonExample.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JSSkeletonExample.release.xcconfig"; path = "Target Support Files/Pods-JSSkeletonExample/Pods-JSSkeletonExample.release.xcconfig"; sourceTree = "<group>"; };
 		6F3E2A082B2B75171F1BF7EA /* libPods-JSSkeletonExample.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-JSSkeletonExample.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		7A2E2F7024FE1BCD00A84C3E /* ITOfficialAccountHomepageHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ITOfficialAccountHomepageHeaderView.m; sourceTree = "<group>"; };
+		7A2E2F7124FE1BCD00A84C3E /* ITOfficialAccountHomepageHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ITOfficialAccountHomepageHeaderView.h; sourceTree = "<group>"; };
 		7AB24B9124F0BDAF0067C1C4 /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
 		7AB24B9724F0BEFF0067C1C4 /* JSNormalViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JSNormalViewController.h; sourceTree = "<group>"; };
 		7AB24B9824F0BEFF0067C1C4 /* JSNormalViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JSNormalViewController.m; sourceTree = "<group>"; };
@@ -169,6 +172,8 @@
 		7AB24BB624F114F50067C1C4 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				7A2E2F7124FE1BCD00A84C3E /* ITOfficialAccountHomepageHeaderView.h */,
+				7A2E2F7024FE1BCD00A84C3E /* ITOfficialAccountHomepageHeaderView.m */,
 				7AF1E83624F3AA8E00F70824 /* RMUISkeletonTableViewCell.h */,
 				7AF1E83724F3AA8E00F70824 /* RMUISkeletonTableViewCell.m */,
 				7AF1E83024F3AA6500F70824 /* ITForumNewNoImageSkeletonCell.h */,
@@ -455,6 +460,7 @@
 			files = (
 				7AF1E83324F3AA6500F70824 /* ITForumNewNoImageSkeletonCell.m in Sources */,
 				7AB24BBE24F115410067C1C4 /* JSTableViewController.m in Sources */,
+				7A2E2F7224FE1BCD00A84C3E /* ITOfficialAccountHomepageHeaderView.m in Sources */,
 				7AB24BC624F115860067C1C4 /* JSTableViewCell.m in Sources */,
 				7AF1E82D24F36C0A00F70824 /* ITNewsDetailSkeletonView.m in Sources */,
 				7ADB2E3424EF97AF00398BF5 /* ViewController.m in Sources */,

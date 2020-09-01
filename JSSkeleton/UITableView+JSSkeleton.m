@@ -41,12 +41,35 @@
 
 #pragma mark - UITableViewHeader-Footer
 
-- (__kindof JSSkeletonProxyTableView *)js_registerSkeletonForTableViewHeaderClass:(Class)viewClass heightForView:(CGFloat)height {
+- (__kindof JSSkeletonProxyTableView *)js_registerSkeletonForTableHeaderView {
+    return [self __js_registerForTableHeaderFooterViewWithTargetViewClass:nil heightForView:0 isHeaderView:true];
+}
+
+- (__kindof JSSkeletonProxyTableView *)js_registerSkeletonForTableHeaderViewClass:(Class)viewClass heightForView:(CGFloat)height {
+    return [self __js_registerForTableHeaderFooterViewWithTargetViewClass:viewClass heightForView:height isHeaderView:true];
+}
+
+- (__kindof JSSkeletonProxyTableView *)js_registerSkeletonForTableFooterView {
+    return [self __js_registerForTableHeaderFooterViewWithTargetViewClass:nil heightForView:0 isHeaderView:false];
+}
+
+- (__kindof JSSkeletonProxyTableView *)js_registerSkeletonForTableFooterViewClass:(Class)viewClass heightForView:(CGFloat)height {
+    return [self __js_registerForTableHeaderFooterViewWithTargetViewClass:viewClass heightForView:height isHeaderView:false];
+}
+
+- (__kindof JSSkeletonProxyTableView *)__js_registerForTableHeaderFooterViewWithTargetViewClass:(nullable Class)targetViewClass
+                                                                                  heightForView:(CGFloat)height
+                                                                                   isHeaderView:(BOOL)isHeaderView {
     JSSkeletonProxyTableView *tableProxyView = [self __js_currentSkeletonProxyTableView];
-    UIView *tableHeaderView = tableProxyView.tableView.tableHeaderView;
-    tableHeaderView.js_height = height;
-    [tableHeaderView js_registerSkeletonForViewClass:viewClass];
-    tableHeaderView.js_frameDidChangeBlock = ^(__kindof UIView *view, CGRect precedingFrame) {
+    __kindof UIView *tableHeaderFooterView = isHeaderView ? self.tableHeaderView : self.tableFooterView;
+    UIView *tableHeaderFooterProxyView = isHeaderView ? tableProxyView.tableView.tableHeaderView : tableProxyView.tableView.tableFooterView;
+    if (targetViewClass) {
+        [tableHeaderFooterProxyView js_registerSkeletonForViewClass:targetViewClass];
+    } else {
+        [tableHeaderFooterProxyView js_registerSkeletonForView:tableHeaderFooterView];
+    }
+    tableHeaderFooterProxyView.js_height = height ? : tableHeaderFooterView.js_height;
+    tableHeaderFooterProxyView.js_frameDidChangeBlock = ^(__kindof UIView *view, CGRect precedingFrame) {
         for (JSSkeletonProxyView *proxyView in view.js_skeletonProxyViews) {
             proxyView.frame = view.bounds;
         }
@@ -54,18 +77,7 @@
     return tableProxyView;
 }
 
-- (__kindof JSSkeletonProxyTableView *)js_registerSkeletonForTableViewFooterClass:(Class)viewClass heightForView:(CGFloat)height {
-    JSSkeletonProxyTableView *tableProxyView = [self __js_currentSkeletonProxyTableView];
-    UIView *tableFooterView = tableProxyView.tableView.tableFooterView;
-    tableFooterView.js_height = height;
-    [tableFooterView js_registerSkeletonForViewClass:viewClass];
-    tableFooterView.js_frameDidChangeBlock = ^(__kindof UIView *view, CGRect precedingFrame) {
-        for (JSSkeletonProxyView *proxyView in view.js_skeletonProxyViews) {
-            proxyView.frame = view.bounds;
-        }
-    };
-    return tableProxyView;
-}
+#pragma mark - 开始、结束
 
 - (void)js_startSkeleton {
     for (JSSkeletonProxyTableView *proxyView in self.js_skeletonProxyViews) {
@@ -85,38 +97,29 @@
 
 #pragma mark - 私有
 
-- (__kindof JSSkeletonProxyView *)__js_produceSkeletonProxyTableView {
-    JSSkeletonProxyTableView *proxyView = [[JSSkeletonProxyTableView alloc] initWithRegisterView:self targetView:nil];
-    if (self.superview) {
-       [self.superview addSubview:proxyView];
-    } else {
-        [self addSubview:proxyView];
-    }
-    [self.js_skeletonProxyViews addObject:proxyView];
-    return proxyView;
-}
-
 - (__kindof JSSkeletonProxyView *)__js_currentSkeletonProxyTableView {
-    JSSkeletonProxyTableView *tableProxyView;
-    for (JSSkeletonProxyTableView *proxyView in self.js_skeletonProxyViews) {
+    __block JSSkeletonProxyTableView *tableProxyView = nil;
+    [self.js_skeletonProxyViews enumerateObjectsUsingBlock:^(JSSkeletonProxyTableView *proxyView, NSUInteger idx, BOOL *stop) {
         if (proxyView.registerView == self) {
             tableProxyView = proxyView;
-            break;
+            *stop = true;
         }
-    }
+    }];
     if (!tableProxyView) {
         tableProxyView = [self __js_produceSkeletonProxyTableView];
     }
     return tableProxyView;
 }
 
-- (NSMutableArray<__kindof JSSkeletonProxyView *> *)js_skeletonProxyViews {
-    NSMutableArray *skeletonProxyViews = objc_getAssociatedObject(self, _cmd);
-    if (!skeletonProxyViews) {
-        skeletonProxyViews = [NSMutableArray array];
-        objc_setAssociatedObject(self, _cmd, skeletonProxyViews, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+- (__kindof JSSkeletonProxyView *)__js_produceSkeletonProxyTableView {
+    JSSkeletonProxyTableView *proxyView = [[JSSkeletonProxyTableView alloc] initWithRegisterView:self targetView:nil];
+    if (self.superview) {
+        [self.superview addSubview:proxyView];
+    } else {
+        [self addSubview:proxyView];
     }
-    return skeletonProxyViews;
+    [self.js_skeletonProxyViews addObject:proxyView];
+    return proxyView;
 }
 
 @end

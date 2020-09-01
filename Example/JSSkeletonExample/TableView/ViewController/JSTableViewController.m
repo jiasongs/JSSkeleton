@@ -12,6 +12,7 @@
 #import "UIView+JSSkeleton.h"
 #import "JSNormalDetailView.h"
 #import "ITForumNewNoImageSkeletonCell.h"
+#import "ITOfficialAccountHomepageHeaderView.h"
 
 @interface JSTableViewController ()
 
@@ -21,9 +22,17 @@
 
 - (void)initSubviews {
     [super initSubviews];
+    /// TableHeaderView
+    ITOfficialAccountHomepageHeaderView *headerView = [[ITOfficialAccountHomepageHeaderView alloc] init];
+    headerView.qmui_height = [headerView systemLayoutSizeFittingSize:UILayoutFittingCompressedSize].height;
+    self.tableView.tableHeaderView = headerView;
+    /// 注册Cell
     [[self.tableView js_registerSkeletonForCellClass:ITForumNewNoImageSkeletonCell.class heightForRow:[ITForumNewNoImageSkeletonCell skeletonHeight]] mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.edges.equalTo(self.tableView);
+        make.edges.equalTo(self.view);
     }];
+    /// 注册HeaderView
+    [self.tableView js_registerSkeletonForTableHeaderView];
+//    [self.tableView js_registerSkeletonForTableHeaderViewClass:ITOfficialAccountHomepageHeaderView.class heightForView:self.tableView.tableHeaderView.qmui_height];
     [self.tableView js_startSkeleton];
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
 //        [self.tableView js_endSkeleton];

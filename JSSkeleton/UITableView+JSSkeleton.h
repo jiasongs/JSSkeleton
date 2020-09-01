@@ -20,8 +20,10 @@ NS_ASSUME_NONNULL_BEGIN
                                                            numberOfRow:(NSUInteger)numberOfRow
                                                           heightForRow:(CGFloat)height;
 
-- (__kindof JSSkeletonProxyTableView *)js_registerSkeletonForTableViewHeaderClass:(Class)viewClass heightForView:(CGFloat)height;
-- (__kindof JSSkeletonProxyTableView *)js_registerSkeletonForTableViewFooterClass:(Class)viewClass heightForView:(CGFloat)height;
+- (__kindof JSSkeletonProxyTableView *)js_registerSkeletonForTableHeaderView;
+- (__kindof JSSkeletonProxyTableView *)js_registerSkeletonForTableHeaderViewClass:(Class)viewClass heightForView:(CGFloat)height;
+- (__kindof JSSkeletonProxyTableView *)js_registerSkeletonForTableFooterView;
+- (__kindof JSSkeletonProxyTableView *)js_registerSkeletonForTableFooterViewClass:(Class)viewClass heightForView:(CGFloat)height;
 
 @end
 
