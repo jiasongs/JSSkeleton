@@ -33,7 +33,7 @@
 #import "JSSkeletonLayoutView.h"
 #import "JSSkeletonProxyCoordinator.h"
 #import "JSSkeletonProxyProducer.h"
-#import "JSSkeletonProxyFormView.h">"
+#import "JSSkeletonProxyFormView.h"
 #import "JSSkeletonProxyTableView.h"
 #import "JSSkeletonProxyTableViewCell.h"
 #import "JSSkeletonProxyView.h"
