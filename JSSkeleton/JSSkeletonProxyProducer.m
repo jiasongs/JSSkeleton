@@ -9,7 +9,7 @@
 #import "JSSkeletonProxyProducer.h"
 #import "UIView+JSSkeletonProperty.h"
 #import "JSSkeletonLayoutView.h"
-#import "UIView+JSSkeletonExtension.h"
+#import "UIView+JSLayout.h"
 #import "JSSkeletonConfig.h"
 
 @interface JSSkeletonProxyProducer ()
@@ -51,8 +51,8 @@
 }
 
 - (void)addFrameDidChangeBlockWithView:(__kindof UIView *)view {
-    if (!view.js_frameDidChangeBlock) {
-        view.js_frameDidChangeBlock = ^(__kindof UIView *view, CGRect precedingFrame) {
+    if (!view.js_skeletonFrameDidChange) {
+        view.js_skeletonFrameDidChange = ^(__kindof UIView *view, CGRect precedingFrame) {
             [view js_skeletonLayoutIfNeeded];
         };
     }

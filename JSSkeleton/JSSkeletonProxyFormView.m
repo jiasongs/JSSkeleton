@@ -6,7 +6,7 @@
 //
 
 #import "JSSkeletonProxyFormView.h"
-#import "UIView+JSSkeletonExtension.h"
+#import "UIView+JSLayout.h"
 
 @implementation JSSkeletonProxyFormView
 

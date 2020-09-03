@@ -11,7 +11,7 @@
 #import "UIView+JSSkeleton.h"
 #import "UIView+JSSkeletonProperty.h"
 #import "JSSkeletonProxyCoordinator.h"
-#import "UIView+JSSkeletonExtension.h"
+#import "UIView+JSLayout.h"
 #import <objc/runtime.h>
 
 @interface UITableView (__JSSkeleton)
@@ -69,7 +69,7 @@
         [tableHeaderFooterProxyView js_registerSkeletonForView:tableHeaderFooterView];
     }
     tableHeaderFooterProxyView.js_height = height ? : tableHeaderFooterView.js_height;
-    tableHeaderFooterProxyView.js_frameDidChangeBlock = ^(__kindof UIView *view, CGRect precedingFrame) {
+    tableHeaderFooterProxyView.js_skeletonFrameDidChange = ^(__kindof UIView *view, CGRect precedingFrame) {
         for (JSSkeletonProxyView *proxyView in view.js_skeletonProxyViews) {
             proxyView.frame = view.bounds;
         }

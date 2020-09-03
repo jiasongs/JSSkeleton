@@ -8,7 +8,7 @@
 
 #import "JSSkeletonLayoutView.h"
 #import "UIView+JSSkeletonProperty.h"
-#import "UIView+JSSkeletonExtension.h"
+#import "UIView+JSLayout.h"
 #import "JSSkeletonConfig.h"
 #import "JSSkeletonAnimationProtocol.h"
 

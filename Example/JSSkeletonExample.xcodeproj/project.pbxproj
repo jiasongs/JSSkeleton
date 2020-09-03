@@ -48,6 +48,7 @@
 		7AF1E83524F3AA6F00F70824 /* ITForumNewNoImageSkeletonCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7AF1E82F24F3AA6500F70824 /* ITForumNewNoImageSkeletonCell.xib */; };
 		7AF1E83824F3AA8E00F70824 /* RMUISkeletonTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AF1E83724F3AA8E00F70824 /* RMUISkeletonTableViewCell.m */; };
 		7AF1E83924F3AA8E00F70824 /* RMUISkeletonTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AF1E83724F3AA8E00F70824 /* RMUISkeletonTableViewCell.m */; };
+		7AFACF91250085180065F9E7 /* ITOfficialAccountHomepageHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A2E2F7024FE1BCD00A84C3E /* ITOfficialAccountHomepageHeaderView.m */; };
 		A35AC7F1249692D0E6871C3D /* libPods-JSSkeletonExampleMacOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BBDF9AFC5B85053E4844A257 /* libPods-JSSkeletonExampleMacOS.a */; };
 /* End PBXBuildFile section */
 
@@ -478,6 +479,7 @@
 			files = (
 				7AF1E83924F3AA8E00F70824 /* RMUISkeletonTableViewCell.m in Sources */,
 				7AF1E81024F3643200F70824 /* JSTableViewController.m in Sources */,
+				7AFACF91250085180065F9E7 /* ITOfficialAccountHomepageHeaderView.m in Sources */,
 				7AA27CD924F4FF08009E367E /* ITNewsDetailSkeletonView.m in Sources */,
 				7AF1E81124F3643200F70824 /* JSTableViewCell.m in Sources */,
 				7AF1E81224F3643200F70824 /* ViewController.m in Sources */,
