@@ -16,6 +16,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, assign) BOOL js_skeletonDisplay;
 @property (nonatomic, assign) BOOL js_skeletonInvalid;
+@property (nonatomic, assign) BOOL js_skeletonClear;
 @property (nonatomic, assign) CGFloat js_skeletonMarginTop;
 @property (nonatomic, assign) CGFloat js_skeletonMarginLeft;
 @property (nonatomic, assign) CGFloat js_skeletonWidth;

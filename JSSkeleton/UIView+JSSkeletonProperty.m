@@ -124,6 +124,19 @@ JSSynthesizeIdCopyProperty(js_skeletonFrameDidChange, setJs_skeletonFrameDidChan
     }
 }
 
+#pragma mark - SkeletonClear
+
+- (BOOL)js_skeletonClear {
+    return [objc_getAssociatedObject(self, _cmd) boolValue];
+}
+
+- (void)setJs_skeletonClear:(BOOL)js_skeletonClear {
+    objc_setAssociatedObject(self, @selector(js_skeletonClear), @(js_skeletonClear), OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+    for (JSSkeletonLayoutView *layoutView in self.js_skeletonLayoutViews) {
+        [layoutView setBackgroundColor:[UIColor colorWithRed:1 green:1 blue:1 alpha:0]];
+    }
+}
+
 #pragma mark - LayoutViews
 
 - (NSArray<JSSkeletonLayoutView *> *)js_skeletonLayoutViews {

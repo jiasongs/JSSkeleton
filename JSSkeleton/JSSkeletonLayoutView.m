@@ -59,14 +59,18 @@
 }
 
 - (void)setBackgroundColor:(UIColor *)backgroundColor {
+    UIColor *tintColor = backgroundColor;
+    if (self.simulateView.js_skeletonClear) {
+        tintColor = [UIColor colorWithRed:1 green:1 blue:1 alpha:0];
+    }
     if (self.numberOfLinesForSimulateView > 1) {
         for (__kindof UIView *view in self.subviews) {
             if ([view isKindOfClass:self.class]) {
-                [view setBackgroundColor:backgroundColor];
+                [view setBackgroundColor:tintColor];
             }
         }
     } else {
-        [super setBackgroundColor:backgroundColor];
+        [super setBackgroundColor:tintColor];
     }
 }
 

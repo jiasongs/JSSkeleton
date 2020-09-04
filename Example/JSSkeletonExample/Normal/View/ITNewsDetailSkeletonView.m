@@ -12,9 +12,8 @@
 
 - (void)awakeFromNib {
     [super awakeFromNib];
-    self.imageContainerView.js_skeletonTintColor = UIColorClear;
+    self.imageContainerView.js_skeletonClear = true;
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        self.imageContainerView.js_skeletonTintColor = UIColorBlue;
         self.contentLabel.js_skeletonTintColor = UIColorRed;
         self.centerMoreView.js_skeletonTintColor = UIColorGreen;
     });
