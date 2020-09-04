@@ -29,7 +29,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, readonly, nullable) NSArray<JSSkeletonLayoutView *> *js_skeletonLayoutViews;
 
 - (void)js_addSkeletonLayoutView:(JSSkeletonLayoutView *)layoutView;
-- (void)js_skeletonLayoutIfNeeded;
+- (void)js_skeletonUpdateLayoutIfNeeded;
 
 @end
 

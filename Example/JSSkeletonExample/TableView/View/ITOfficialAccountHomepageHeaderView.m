@@ -36,7 +36,7 @@
     [super layoutSubviews];
     /// 骨架屏
     self.nameLabel.js_skeletonWidth = (self.qmui_width - self.headerImageView.qmui_right) * 0.7;
-    [self.nameLabel js_skeletonLayoutIfNeeded];
+    [self.nameLabel js_skeletonUpdateLayoutIfNeeded];
 }
 
 - (UIImageView *)headerImageView {

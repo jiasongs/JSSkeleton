@@ -1,7 +1,7 @@
 
 Pod::Spec.new do |s|
   s.name         = "JSSkeleton"
-  s.version      = "0.0.11"
+  s.version      = "0.0.12"
   s.summary      = "骨架屏"
   s.homepage     = "https://github.com/jiasongs/JSSkeleton"
   s.author       = { "jiasong" => "593908937@qq.com" }

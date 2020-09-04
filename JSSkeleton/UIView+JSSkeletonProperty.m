@@ -145,7 +145,7 @@ JSSynthesizeIdCopyProperty(js_skeletonFrameDidChange, setJs_skeletonFrameDidChan
 
 #pragma mark - Layout
 
-- (void)js_skeletonLayoutIfNeeded {
+- (void)js_skeletonUpdateLayoutIfNeeded {
     for (JSSkeletonLayoutView *layoutView in self.js_skeletonLayoutViews) {
         [layoutView updateLayoutIfNeeded];
     }

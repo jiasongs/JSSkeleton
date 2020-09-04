@@ -53,7 +53,7 @@
 - (void)addFrameDidChangeBlockWithView:(__kindof UIView *)view {
     if (!view.js_skeletonFrameDidChange) {
         view.js_skeletonFrameDidChange = ^(__kindof UIView *view, CGRect precedingFrame) {
-            [view js_skeletonLayoutIfNeeded];
+            [view js_skeletonUpdateLayoutIfNeeded];
         };
     }
 }
