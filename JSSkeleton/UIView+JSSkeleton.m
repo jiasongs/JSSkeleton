@@ -11,6 +11,7 @@
 #import "UIView+JSSkeletonProperty.h"
 #import "JSSkeletonProxyCoordinator.h"
 #import <objc/runtime.h>
+#import "JSCommonDefines.h"
 
 @interface UIView (__JSSkeleton)
 
@@ -19,6 +20,8 @@
 @end
 
 @implementation UIView (JSSkeleton)
+
+JSSynthesizeBOOLProperty(js_skeletonDisplay, setJs_skeletonDisplay)
 
 - (__kindof JSSkeletonProxyView *)js_registerSkeleton {
     return [self js_registerSkeletonForView:self];

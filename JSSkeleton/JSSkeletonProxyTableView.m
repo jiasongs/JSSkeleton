@@ -8,6 +8,7 @@
 
 #import "JSSkeletonProxyTableView.h"
 #import "JSSkeletonProxyTableViewCell.h"
+#import "UIView+JSSkeleton.h"
 #import "UIView+JSSkeletonProperty.h"
 #import "JSSkeletonProxyProducer.h"
 #import "JSSkeletonLayoutView.h"

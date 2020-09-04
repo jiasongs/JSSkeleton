@@ -14,7 +14,6 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface UIView (JSSkeletonProperty)
 
-@property (nonatomic, assign) BOOL js_skeletonDisplay;
 @property (nonatomic, assign) BOOL js_skeletonInvalid;
 @property (nonatomic, assign) BOOL js_skeletonClear;
 @property (nonatomic, assign) CGFloat js_skeletonMarginTop;

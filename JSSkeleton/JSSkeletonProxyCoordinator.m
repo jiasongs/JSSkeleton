@@ -7,6 +7,7 @@
 //
 
 #import "JSSkeletonProxyCoordinator.h"
+#import "UIView+JSSkeleton.h"
 #import "UIView+JSSkeletonProperty.h"
 #import "JSSkeletonLayoutView.h"
 #import "JSSkeletonProxyView.h"

@@ -21,7 +21,6 @@
 #pragma mark - 初始化属性
 
 JSSynthesizeBOOLProperty(js_skeletonInvalid, setJs_skeletonInvalid)
-JSSynthesizeBOOLProperty(js_skeletonDisplay, setJs_skeletonDisplay)
 JSSynthesizeCGFloatProperty(js_skeletonMarginTop, setJs_skeletonMarginTop)
 JSSynthesizeCGFloatProperty(js_skeletonMarginLeft, setJs_skeletonMarginLeft)
 JSSynthesizeCGFloatProperty(js_skeletonWidth, setJs_skeletonWidth)
