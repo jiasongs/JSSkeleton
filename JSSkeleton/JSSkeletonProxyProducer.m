@@ -80,7 +80,7 @@
         [view isKindOfClass:NSClassFromString(@"UITableViewLabel").class]) {
         needRemove = true;
     }
-    if ([view isKindOfClass:UIView.class] && (!view.isHidden || !view.js_skeletonInvalid) && !needRemove) {
+    if ([view isKindOfClass:UIView.class] && !view.js_skeletonInvalid && !view.isHidden && !needRemove) {
         return true;
     }
     return false;

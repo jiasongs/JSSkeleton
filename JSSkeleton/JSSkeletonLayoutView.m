@@ -78,8 +78,8 @@
 
 - (void)updateLayoutIfNeeded {
     CGFloat heightCoefficient = self.js_skeletonHeightCoefficient ? : (self.simulateType == JSSkeletonLayoutSimulateLabel ? JSSkeletonConfig.sharedConfig.skeletonHeightCoefficient : 1);
-    CGFloat x = self.simulateView.js_left + self.simulateView.js_skeletonMarginTop;
-    CGFloat y = self.simulateView.js_top + self.simulateView.js_skeletonMarginLeft;
+    CGFloat x = self.simulateView.js_left + self.simulateView.js_skeletonMarginLeft;
+    CGFloat y = self.simulateView.js_top + self.simulateView.js_skeletonMarginTop;
     CGFloat width = self.simulateView.js_skeletonWidth ? : self.simulateView.js_width;
     CGFloat height = self.simulateView.js_skeletonHeight ? : self.simulateView.js_height * heightCoefficient;
     if (height == 0 && self.simulateType == JSSkeletonLayoutSimulateLabel) {
