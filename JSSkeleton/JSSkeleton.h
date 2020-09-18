@@ -13,7 +13,7 @@
 
 #import <JSSkeleton/JSSkeletonAnimationProtocol.h>
 #import <JSSkeleton/JSSkeletonBreathingAnimation.h>
-#import <JSSkeleton/JSSkeletonConfig.h>
+#import <JSSkeleton/JSSkeletonAppearance.h>
 #import <JSSkeleton/JSSkeletonLayoutView.h>
 #import <JSSkeleton/JSSkeletonProxyCoordinator.h>
 #import <JSSkeleton/JSSkeletonProxyProducer.h>
@@ -29,7 +29,7 @@
 
 #import "JSSkeletonAnimationProtocol.h"
 #import "JSSkeletonBreathingAnimation.h"
-#import "JSSkeletonConfig.h"
+#import "JSSkeletonAppearance.h"
 #import "JSSkeletonLayoutView.h"
 #import "JSSkeletonProxyCoordinator.h"
 #import "JSSkeletonProxyProducer.h"

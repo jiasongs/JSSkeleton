@@ -10,7 +10,7 @@
 #import "JSSkeletonLayoutView.h"
 #import "JSSkeletonProxyCoordinator.h"
 #import "JSSkeletonProxyProducer.h"
-#import "JSSkeletonConfig.h"
+#import "JSSkeletonAppearance.h"
 
 @interface JSSkeletonProxyView ()
 
@@ -29,7 +29,7 @@
 }
 
 - (void)didInitialize {
-    self.backgroundColor = JSSkeletonConfig.sharedConfig.skeletonBackgroundColor;
+    self.backgroundColor = JSSkeletonAppearance.appearance.skeletonBackgroundColor;
     self.hidden = true;
     self.coordinator = [[JSSkeletonProxyCoordinator alloc] initWithProxyView:self];
     self.producer = [[JSSkeletonProxyProducer alloc] init];
