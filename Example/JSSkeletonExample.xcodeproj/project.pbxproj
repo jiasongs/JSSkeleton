@@ -57,6 +57,7 @@
 		6F3E2A082B2B75171F1BF7EA /* libPods-JSSkeletonExample.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-JSSkeletonExample.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		7A2E2F7024FE1BCD00A84C3E /* ITOfficialAccountHomepageHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ITOfficialAccountHomepageHeaderView.m; sourceTree = "<group>"; };
 		7A2E2F7124FE1BCD00A84C3E /* ITOfficialAccountHomepageHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ITOfficialAccountHomepageHeaderView.h; sourceTree = "<group>"; };
+		7A5187EE2516113300238305 /* MacOSInfo.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = MacOSInfo.plist; sourceTree = "<group>"; };
 		7AB24B9124F0BDAF0067C1C4 /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
 		7AB24B9724F0BEFF0067C1C4 /* JSNormalViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JSNormalViewController.h; sourceTree = "<group>"; };
 		7AB24B9824F0BEFF0067C1C4 /* JSNormalViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JSNormalViewController.m; sourceTree = "<group>"; };
@@ -82,7 +83,6 @@
 		7ADB2E3D24EF97B100398BF5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7ADB2E3E24EF97B100398BF5 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		7AF1E82624F3643200F70824 /* JSSkeletonExampleMacOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JSSkeletonExampleMacOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		7AF1E82724F3643200F70824 /* JSSkeletonExample copy-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "JSSkeletonExample copy-Info.plist"; path = "/Volumes/2TB/Projects/JSSkeleton/Example/JSSkeletonExample copy-Info.plist"; sourceTree = "<absolute>"; };
 		7AF1E82924F36C0A00F70824 /* ITNewsDetailSkeletonView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ITNewsDetailSkeletonView.xib; path = JSSkeletonExample/Normal/View/ITNewsDetailSkeletonView.xib; sourceTree = SOURCE_ROOT; };
 		7AF1E82A24F36C0A00F70824 /* ITNewsDetailSkeletonView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ITNewsDetailSkeletonView.h; path = JSSkeletonExample/Normal/View/ITNewsDetailSkeletonView.h; sourceTree = SOURCE_ROOT; };
 		7AF1E82B24F36C0A00F70824 /* ITNewsDetailSkeletonView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ITNewsDetailSkeletonView.m; path = JSSkeletonExample/Normal/View/ITNewsDetailSkeletonView.m; sourceTree = SOURCE_ROOT; };
@@ -204,7 +204,6 @@
 				7ADB2E2A24EF97AF00398BF5 /* Products */,
 				28D6B717B9BEF9A7D3F2EBED /* Pods */,
 				CBFF8E4DB0F035A172499FEE /* Frameworks */,
-				7AF1E82724F3643200F70824 /* JSSkeletonExample copy-Info.plist */,
 			);
 			sourceTree = "<group>";
 		};
@@ -232,6 +231,7 @@
 				7ADB2E3824EF97B100398BF5 /* Assets.xcassets */,
 				7ADB2E3A24EF97B100398BF5 /* LaunchScreen.storyboard */,
 				7ADB2E3D24EF97B100398BF5 /* Info.plist */,
+				7A5187EE2516113300238305 /* MacOSInfo.plist */,
 				7ADB2E3E24EF97B100398BF5 /* main.m */,
 			);
 			path = JSSkeletonExample;
@@ -676,7 +676,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = KJ6AEY5JEH;
 				GCC_PREFIX_HEADER = JSSkeletonExample/PrefixHeader.pch;
-				INFOPLIST_FILE = "JSSkeletonExample copy-Info.plist";
+				INFOPLIST_FILE = JSSkeletonExample/MacOSInfo.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -698,7 +698,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = KJ6AEY5JEH;
 				GCC_PREFIX_HEADER = JSSkeletonExample/PrefixHeader.pch;
-				INFOPLIST_FILE = "JSSkeletonExample copy-Info.plist";
+				INFOPLIST_FILE = JSSkeletonExample/MacOSInfo.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
