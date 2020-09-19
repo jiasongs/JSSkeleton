@@ -10,7 +10,7 @@
 #import "UIView+JSSkeletonProperty.h"
 #import "JSSkeletonLayoutView.h"
 #import "UIView+JSLayout.h"
-#import "JSSkeletonConfig.h"
+#import "JSSkeletonAppearance.h"
 
 @interface JSSkeletonProxyProducer ()
 
@@ -46,7 +46,7 @@
 
 - (void)addDefaultSkeletonAnimationWithView:(__kindof UIView *)view {
     if (!view.js_skeletonAnimation) {
-        view.js_skeletonAnimation = JSSkeletonConfig.sharedConfig.skeletonAnimation;
+        view.js_skeletonAnimation = JSSkeletonAppearance.appearance.skeletonAnimation;
     }
 }
 

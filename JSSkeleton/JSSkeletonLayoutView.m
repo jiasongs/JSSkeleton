@@ -9,7 +9,7 @@
 #import "JSSkeletonLayoutView.h"
 #import "UIView+JSSkeletonProperty.h"
 #import "UIView+JSLayout.h"
-#import "JSSkeletonConfig.h"
+#import "JSSkeletonAppearance.h"
 #import "JSSkeletonAnimationProtocol.h"
 
 @interface JSSkeletonLayoutView ()
@@ -52,7 +52,7 @@
                                                    fromMultiLineLabel:true]];
         }
     } else {
-        self.backgroundColor = self.simulateView.js_skeletonTintColor ? : JSSkeletonConfig.sharedConfig.skeletonTintColor;
+        self.backgroundColor = self.simulateView.js_skeletonTintColor ? : JSSkeletonAppearance.appearance.skeletonTintColor;
     }
     /// 更新一次布局
     [self updateLayoutIfNeeded];
@@ -77,7 +77,7 @@
 #pragma mark - 布局
 
 - (void)updateLayoutIfNeeded {
-    CGFloat heightCoefficient = self.js_skeletonHeightCoefficient ? : (self.simulateType == JSSkeletonLayoutSimulateLabel ? JSSkeletonConfig.sharedConfig.skeletonHeightCoefficient : 1);
+    CGFloat heightCoefficient = self.js_skeletonHeightCoefficient ? : (self.simulateType == JSSkeletonLayoutSimulateLabel ? JSSkeletonAppearance.appearance.skeletonHeightCoefficient : 1);
     CGFloat x = self.simulateView.js_left + self.simulateView.js_skeletonMarginLeft;
     CGFloat y = self.simulateView.js_top + self.simulateView.js_skeletonMarginTop;
     CGFloat width = self.simulateView.js_skeletonWidth ? : self.simulateView.js_width;
@@ -87,7 +87,7 @@
         height = label.font.lineHeight * heightCoefficient;
     }
     if (self.numberOfLinesForSimulateView > 1) {
-        CGFloat lineSpacing = self.simulateView.js_skeletonLineSpacing ? : JSSkeletonConfig.sharedConfig.skeletonLineSpacing;
+        CGFloat lineSpacing = self.simulateView.js_skeletonLineSpacing ? : JSSkeletonAppearance.appearance.skeletonLineSpacing;
         CGFloat averageWidth = width / self.numberOfLinesForSimulateView;
         [self.subviews enumerateObjectsUsingBlock:^(__kindof UIView *view, NSUInteger idx, BOOL *stop) {
             if ([view isKindOfClass:self.class]) {

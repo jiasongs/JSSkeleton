@@ -1,19 +1,19 @@
 //
-//  JSSkeletonConfig.m
+//  JSSkeletonAppearance.m
 //  JSSkeleton
 //
 //  Created by jiasong on 2020/8/22.
 //  Copyright © 2020 jiasong. All rights reserved.
 //
 
-#import "JSSkeletonConfig.h"
+#import "JSSkeletonAppearance.h"
 #import "JSSkeletonBreathingAnimation.h"
 
-@implementation JSSkeletonConfig
+@implementation JSSkeletonAppearance
 
-+ (instancetype)sharedConfig {
++ (instancetype)appearance {
     static dispatch_once_t onceToken;
-    static JSSkeletonConfig *instance = nil;
+    static JSSkeletonAppearance *instance = nil;
     dispatch_once(&onceToken,^{
         instance = [[super allocWithZone:NULL] init];
     });
@@ -21,7 +21,7 @@
 }
 
 + (id)allocWithZone:(struct _NSZone *)zone {
-    return [self sharedConfig];
+    return [self appearance];
 }
 
 - (instancetype)init {

@@ -1,5 +1,5 @@
 //
-//  JSSkeletonConfig.h
+//  JSSkeletonAppearance.h
 //  JSSkeleton
 //
 //  Created by jiasong on 2020/8/22.
@@ -11,7 +11,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface JSSkeletonConfig : NSObject
+@interface JSSkeletonAppearance : NSObject
 
 @property (nonatomic, assign) CGFloat skeletonHeightCoefficient;
 @property (nonatomic, assign) CGFloat skeletonLineSpacing;
@@ -19,7 +19,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, copy, nullable) UIColor *skeletonBackgroundColor;
 @property (nonatomic, strong, nullable) id<JSSkeletonAnimationProtocol> skeletonAnimation;
 
-+ (instancetype)sharedConfig;
++ (instancetype)appearance;
 
 @end
 
