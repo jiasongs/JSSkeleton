@@ -36,6 +36,20 @@
     tableProxyView.numberOfRows = numberOfRow ?  @[@(numberOfRow)] : @[];
     /// 最后注册
     [tableProxyView registerCellClass:@[cellClass]];
+    
+    /// 单section 多cell
+//    NSArray *sectionArray =  @[cellClass];
+//    NSArray *sectionHeights = @[@100];
+//    NSArray *cellArray =  @[@[cellClass, cellClass]];
+//    NSArray *cellNumbers = @[@5, @10];
+//    NSArray *cellHeights = @[@100, @80];
+    /// 多section 多cell
+    NSArray *sectionArray =  @[cellClass, cellClass];
+    NSArray *sectionHeights = @[@100, @100];
+    NSArray *cellArray =  @[@[cellClass, cellClass], @[cellClass]];
+    NSArray *cellNumbers = @[@[@5, @10], @[@5]];
+    NSArray *cellHeights = @[@100, @80];
+    
     return tableProxyView;
 }
 
