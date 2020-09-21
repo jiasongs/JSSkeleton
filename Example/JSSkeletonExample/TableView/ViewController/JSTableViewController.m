@@ -8,7 +8,6 @@
 
 #import "JSTableViewController.h"
 #import "JSTableViewCell.h"
-#import "UITableView+JSSkeleton.h"
 #import "UIView+JSSkeleton.h"
 #import "JSNormalDetailView.h"
 #import "ITForumNewNoImageSkeletonCell.h"
@@ -27,7 +26,7 @@
     headerView.qmui_height = [headerView systemLayoutSizeFittingSize:UILayoutFittingCompressedSize].height;
     self.tableView.tableHeaderView = headerView;
     /// 注册Cell
-    [[self.tableView js_registerSkeletonForCellClass:ITForumNewNoImageSkeletonCell.class heightForRow:[ITForumNewNoImageSkeletonCell skeletonHeight]] mas_makeConstraints:^(MASConstraintMaker *make) {
+    [[self.tableView js_registerSkeletonForTableViewCellClass:ITForumNewNoImageSkeletonCell.class heightForRow:[ITForumNewNoImageSkeletonCell skeletonHeight]] mas_makeConstraints:^(MASConstraintMaker *make) {
         make.edges.equalTo(self.view);
     }];
     /// 注册HeaderView

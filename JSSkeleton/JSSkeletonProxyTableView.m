@@ -26,15 +26,17 @@ NSString * const JSSkeletonProxyTableViewReuseIdentifier = @"JSSkeletonProxyTabl
 - (void)didInitialize {
     [super didInitialize];
     [self addSubview:self.tableView];
-    UITableView *tableView = self.registerView;
-    self.tableView.contentInset = tableView.contentInset;
-    UIEdgeInsets contentInset = UIEdgeInsetsZero;
-    if (@available(iOS 11, *)) {
-        contentInset = self.tableView.adjustedContentInset;
-    } else {
-        contentInset = self.tableView.contentInset;
+    if ([self.registerView isKindOfClass:UITableView.class]) {
+        UITableView *registerTableView = self.registerView;
+        self.tableView.contentInset = registerTableView.contentInset;
+        UIEdgeInsets contentInset = UIEdgeInsetsZero;
+        if (@available(iOS 11, *)) {
+            contentInset = self.tableView.adjustedContentInset;
+        } else {
+            contentInset = self.tableView.contentInset;
+        }
+        [self.tableView setContentOffset:CGPointMake(-contentInset.left, -contentInset.top)];
     }
-    [self.tableView setContentOffset:CGPointMake(-contentInset.left, -contentInset.top)];
 }
 
 - (void)layoutSubviews {

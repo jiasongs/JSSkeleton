@@ -21,7 +21,6 @@
 #import <JSSkeleton/JSSkeletonProxyTableView.h>
 #import <JSSkeleton/JSSkeletonProxyTableViewCell.h>
 #import <JSSkeleton/JSSkeletonProxyView.h>
-#import <JSSkeleton/UITableView+JSSkeleton.h>
 #import <JSSkeleton/UIView+JSSkeleton.h>
 #import <JSSkeleton/UIView+JSSkeletonProperty.h>
 
@@ -37,7 +36,6 @@
 #import "JSSkeletonProxyTableView.h"
 #import "JSSkeletonProxyTableViewCell.h"
 #import "JSSkeletonProxyView.h"
-#import "UITableView+JSSkeleton.h"
 #import "UIView+JSSkeleton.h"
 #import "UIView+JSSkeletonProperty.h"
 
