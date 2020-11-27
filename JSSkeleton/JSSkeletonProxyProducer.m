@@ -9,7 +9,7 @@
 #import "JSSkeletonProxyProducer.h"
 #import "UIView+JSSkeletonProperty.h"
 #import "JSSkeletonLayoutView.h"
-#import "UIView+JSLayout.h"
+#import "UIView+JSCoreLayout.h"
 #import "JSSkeletonAppearance.h"
 
 @interface JSSkeletonProxyProducer ()

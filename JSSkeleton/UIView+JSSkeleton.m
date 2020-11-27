@@ -7,8 +7,8 @@
 //
 
 #import "UIView+JSSkeleton.h"
-#import "UIView+JSLayout.h"
-#import "JSCommonDefines.h"
+#import "UIView+JSCoreLayout.h"
+#import "JSCoreCommonDefines.h"
 #import "JSSkeletonProxyView.h"
 #import "JSSkeletonProxyTableView.h"
 #import "UIView+JSSkeletonProperty.h"
