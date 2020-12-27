@@ -74,8 +74,8 @@ JSSynthesizeBOOLProperty(js_skeletonDisplay, setJs_skeletonDisplay)
 }
 
 - (__kindof JSSkeletonProxyView *)js_registerSkeletonForViewClass:(Class)viewClass {
-    NSString *nibPath = [[NSBundle mainBundle] pathForResource:NSStringFromClass(viewClass) ofType:@"nib"];
-    UIView *skeletonView = nibPath ? [NSBundle.mainBundle loadNibNamed:NSStringFromClass(viewClass) owner:nil options:nil].firstObject : nil;
+    NSString *nibPath = [[NSBundle bundleForClass:viewClass] pathForResource:NSStringFromClass(viewClass) ofType:@"nib"];
+    UIView *skeletonView = nibPath ? [[NSBundle bundleForClass:viewClass] loadNibNamed:NSStringFromClass(viewClass) owner:nil options:nil].firstObject : nil;
     if (!skeletonView) {
         skeletonView = [[viewClass alloc] init];
     }

@@ -24,8 +24,8 @@
             [numberOfRows addObject:@(lrintf(height / [[self.heightForRows objectAtIndex:section] floatValue]))];
         }
         Class cellClass = [cellClasss objectAtIndex:section];
-        NSString *nibPath = [[NSBundle mainBundle] pathForResource:NSStringFromClass(cellClass) ofType:@"nib"];
-        __kindof UIView *targetCell = nibPath ? [NSBundle.mainBundle loadNibNamed:NSStringFromClass(cellClass) owner:nil options:nil].firstObject : nil;
+        NSString *nibPath = [[NSBundle bundleForClass:cellClass] pathForResource:NSStringFromClass(cellClass) ofType:@"nib"];
+        __kindof UIView *targetCell = nibPath ? [[NSBundle bundleForClass:cellClass] loadNibNamed:NSStringFromClass(cellClass) owner:nil options:nil].firstObject : nil;
         if (!targetCell) {
             targetCell = [[cellClass alloc] initWithFrame:CGRectZero];
         }
