@@ -7,9 +7,8 @@
 //
 
 #import "UIView+JSSkeletonProperty.h"
+#import "JSCoreKit.h"
 #import "JSSkeletonLayoutView.h"
-#import "JSCoreCommonDefines.h"
-#import "JSCoreHelper.h"
 
 @interface UIView (__JSSkeletonProperty)
 

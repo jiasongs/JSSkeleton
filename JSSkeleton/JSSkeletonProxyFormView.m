@@ -6,7 +6,7 @@
 //
 
 #import "JSSkeletonProxyFormView.h"
-#import "UIView+JSCoreLayout.h"
+#import "JSCoreKit.h"
 
 @implementation JSSkeletonProxyFormView
 
@@ -16,11 +16,7 @@
     NSMutableArray *numberOfRows = [NSMutableArray arrayWithArray:self.numberOfRows ? : @[]];
     for (int section = 0; section < self.numberOfSection; section++) {
         if (self.numberOfRows.count == 0) {
-#if TARGET_OS_MACCATALYST
-            CGFloat height = self.js_height ? : UIScreen.mainScreen.applicationFrame.size.height;
-#else
-            CGFloat height = self.js_height ? : UIScreen.mainScreen.bounds.size.height;
-#endif
+            CGFloat height = self.js_height ? : JSCoreHelper.applicationSize.height;
             [numberOfRows addObject:@(lrintf(height / [[self.heightForRows objectAtIndex:section] floatValue]))];
         }
         Class cellClass = [cellClasss objectAtIndex:section];
