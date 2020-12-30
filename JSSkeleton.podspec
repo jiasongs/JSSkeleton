@@ -9,7 +9,7 @@ Pod::Spec.new do |s|
   s.swift_versions = ["4.2", "5.0"]
   s.source       = { :git => "https://github.com/jiasongs/JSSkeleton.git", :tag => "#{s.version}" }
   s.frameworks   = "Foundation", "UIKit"
-  s.source_files = "JSSkeleton", "JSSkeleton/*.{h,m}"
+  s.source_files = "Sources", "Sources/*.{h,m}"
   s.license      = "MIT"
   s.requires_arc = true
 
