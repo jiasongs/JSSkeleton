@@ -136,25 +136,23 @@ JSSynthesizeBOOLProperty(js_skeletonDisplay, setJs_skeletonDisplay)
 - (__kindof JSSkeletonProxyTableView *)__js_registerForTableHeaderFooterViewWithTargetViewClass:(nullable Class)targetViewClass
                                                                                   heightForView:(CGFloat)height
                                                                                    isHeaderView:(BOOL)isHeaderView {
-    JSSkeletonProxyTableView *tableProxyView = [self __js_currentSkeletonProxyTableView];
     __kindof UIView *tableHeaderFooterView = nil;
     if ([self isKindOfClass:UITableView.class]) {
         tableHeaderFooterView = isHeaderView ? [(UITableView *)self tableHeaderView] : [(UITableView *)self tableFooterView];
     }
+    JSSkeletonProxyTableView *tableProxyView = [self __js_currentSkeletonProxyTableView];
     UIView *tableHeaderFooterProxyView = isHeaderView ? tableProxyView.tableView.tableHeaderView : tableProxyView.tableView.tableFooterView;
     if (targetViewClass) {
         [tableHeaderFooterProxyView js_registerSkeletonForViewClass:targetViewClass];
-    } else {
-        if (tableHeaderFooterView) {
-            [tableHeaderFooterProxyView js_registerSkeletonForView:tableHeaderFooterView];
-        }
+    } else if (tableHeaderFooterView) {
+        [tableHeaderFooterProxyView js_registerSkeletonForView:tableHeaderFooterView];
     }
-    tableHeaderFooterProxyView.js_height = height ? : tableHeaderFooterView.js_height;
     tableHeaderFooterProxyView.js_skeletonFrameDidChange = ^(__kindof UIView *view, CGRect precedingFrame) {
         for (JSSkeletonProxyView *proxyView in view.js_skeletonProxyViews) {
             proxyView.frame = view.bounds;
         }
     };
+    tableHeaderFooterProxyView.js_height = height ? : tableHeaderFooterView.js_height;
     return tableProxyView;
 }
 

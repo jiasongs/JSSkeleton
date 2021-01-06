@@ -1,7 +1,7 @@
 
 Pod::Spec.new do |s|
   s.name         = "JSSkeleton"
-  s.version      = "0.1.7"
+  s.version      = "0.1.8"
   s.summary      = "骨架屏"
   s.homepage     = "https://github.com/jiasongs/JSSkeleton"
   s.author       = { "jiasong" => "593908937@qq.com" }
@@ -14,4 +14,9 @@ Pod::Spec.new do |s|
   s.requires_arc = true
 
   s.dependency 'JSCoreKit'
+
+  s.default_subspec = "Core"
+  s.subspec "Core" do |ss|
+    ss.source_files = "Sources/**/*.{h,m}"
+  end
 end

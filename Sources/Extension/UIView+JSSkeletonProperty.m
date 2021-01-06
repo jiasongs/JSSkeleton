@@ -30,7 +30,17 @@ JSSynthesizeCGFloatProperty(js_skeletonLineSpacing, setJs_skeletonLineSpacing)
 JSSynthesizeCGFloatProperty(js_skeletonCornerRadius, setJs_skeletonCornerRadius)
 JSSynthesizeIdStrongProperty(js_skeletonAnimation, setJs_skeletonAnimation)
 JSSynthesizeIdStrongProperty(js_weakSkeletonLayoutViews, setJs_weakSkeletonLayoutViews)
-JSSynthesizeIdCopyProperty(js_skeletonFrameDidChange, setJs_skeletonFrameDidChange)
+
+#pragma mark - FrameDidChangeBlock
+
+- (void (^)(__kindof UIView *, CGRect))js_skeletonFrameDidChange {
+    return objc_getAssociatedObject(self, _cmd);
+}
+
+- (void)setJs_skeletonFrameDidChange:(void (^)(__kindof UIView *, CGRect))js_skeletonFrameDidChange {
+    [self js_skeletonHookFrameIfNeeded];
+    objc_setAssociatedObject(self, @selector(js_skeletonFrameDidChange), js_skeletonFrameDidChange, OBJC_ASSOCIATION_COPY_NONATOMIC);
+}
 
 #pragma mark - TintColor
 
@@ -73,7 +83,6 @@ JSSynthesizeIdCopyProperty(js_skeletonFrameDidChange, setJs_skeletonFrameDidChan
 }
 
 - (void)js_addSkeletonLayoutView:(JSSkeletonLayoutView *)layoutView {
-    [self js_skeletonHookFrameIfNeeded];
     if (!self.js_weakSkeletonLayoutViews) {
         self.js_weakSkeletonLayoutViews = [NSPointerArray weakObjectsPointerArray];
     }
