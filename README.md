@@ -1,2 +1,2 @@
 # JSSkeleton
-骨架屏
+骨架屏, 支持UIView, UITableView
