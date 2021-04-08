@@ -101,7 +101,7 @@ JSSynthesizeIdStrongProperty(js_weakSkeletonLayoutViews, setJs_weakSkeletonLayou
 
 - (void)js_skeletonHookFrameIfNeeded {
     Class viewClass = self.class;
-    [JSCoreHelper executeBlock:^{
+    [JSCoreHelper executeOnceWithIdentifier:[NSString stringWithFormat:@"UIView %@-%@", NSStringFromClass(viewClass), @"JSSkeletonHook"] usingBlock:^{
         JSRuntimeOverrideImplementation(viewClass, @selector(setFrame:), ^id(__unsafe_unretained Class originClass, SEL originCMD, IMP (^originalIMPProvider)(void)) {
             return ^(UIView *selfObject, CGRect frame) {
                 
@@ -172,7 +172,7 @@ JSSynthesizeIdStrongProperty(js_weakSkeletonLayoutViews, setJs_weakSkeletonLayou
                 }
             };
         });
-    } oncePerIdentifier:[NSString stringWithFormat:@"UIView %@-%@", NSStringFromClass(viewClass), @"JSSkeletonHook"]];
+    }];
 }
 
 @end
