@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+
 @class JSSkeletonProxyProducer;
 
 NS_ASSUME_NONNULL_BEGIN
@@ -15,7 +16,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, strong, readwrite) JSSkeletonProxyProducer *producer;
 
-- (void)produceLayoutViewWithTargetCell:(__kindof UITableViewCell *)targetCell;
+- (void)produceLayoutLayerWithTargetCell:(__kindof UITableViewCell *)targetCell;
 
 @end
 

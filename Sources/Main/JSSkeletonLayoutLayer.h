@@ -1,5 +1,5 @@
 //
-//  JSSkeletonLayoutView.h
+//  JSSkeletonLayoutLayer.h
 //  JSSkeleton
 //
 //  Created by jiasong on 2020/8/22.
@@ -15,7 +15,7 @@ typedef NS_ENUM(NSInteger, JSSkeletonLayoutSimulate) {
     JSSkeletonLayoutSimulateLabel,
 };
 
-@interface JSSkeletonLayoutView : UIView
+@interface JSSkeletonLayoutLayer : CALayer
 
 @property (nonatomic, weak, readonly) __kindof UIView *simulateView;
 @property (nonatomic, assign, readonly) JSSkeletonLayoutSimulate simulateType;

@@ -23,8 +23,8 @@
 #import <JSSkeleton/JSSkeletonAppearance.h>
 #endif
 
-#if __has_include(<JSSkeleton/JSSkeletonLayoutView.h>)
-#import <JSSkeleton/JSSkeletonLayoutView.h>
+#if __has_include(<JSSkeleton/JSSkeletonLayoutLayer.h>)
+#import <JSSkeleton/JSSkeletonLayoutLayer.h>
 #endif
 
 #if __has_include(<JSSkeleton/JSSkeletonProxyCoordinator.h>)
@@ -73,8 +73,8 @@
 #import "JSSkeletonAppearance.h"
 #endif
 
-#if __has_include("JSSkeletonLayoutView.h")
-#import "JSSkeletonLayoutView.h"
+#if __has_include("JSSkeletonLayoutLayer.h")
+#import "JSSkeletonLayoutLayer.h"
 #endif
 
 #if __has_include("JSSkeletonProxyCoordinator.h")

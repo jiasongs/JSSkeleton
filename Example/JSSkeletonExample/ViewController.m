@@ -47,9 +47,9 @@
 
 - (void)handleDisclosureIndicatorCellEvent:(QMUIStaticTableViewCellData *)cellData {
     if (cellData.identifier == 1) {
-        [self.navigationController pushViewController:JSNormalViewController.new animated:true];
+        [self.navigationController pushViewController:JSNormalViewController.new animated:YES];
     } else if (cellData.identifier == 2) {
-         [self.navigationController pushViewController:JSTableViewController.new animated:true];
+         [self.navigationController pushViewController:JSTableViewController.new animated:YES];
     }
 }
 

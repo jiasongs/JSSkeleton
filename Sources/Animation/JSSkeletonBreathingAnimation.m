@@ -7,11 +7,11 @@
 //
 
 #import "JSSkeletonBreathingAnimation.h"
-#import "JSSkeletonLayoutView.h"
+#import "JSSkeletonLayoutLayer.h"
 
 @implementation JSSkeletonBreathingAnimation
 
-- (void)addAnimationWithLayoutView:(JSSkeletonLayoutView *)layoutView {
+- (void)addAnimationWithLayoutLayer:(JSSkeletonLayoutLayer *)layoutLayer {
     CABasicAnimation *animation = [CABasicAnimation animationWithKeyPath:@"opacity"];
     animation.fromValue = [NSNumber numberWithFloat:1.1];
     animation.toValue = [NSNumber numberWithFloat:0.6];
@@ -21,11 +21,11 @@
     animation.removedOnCompletion = NO;
     animation.fillMode = kCAFillModeForwards;
     animation.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseIn];
-    [layoutView.layer addAnimation:animation forKey:NSStringFromClass(self.class)];
+    [layoutLayer addAnimation:animation forKey:NSStringFromClass(self.class)];
 }
 
-- (void)removeAnimationWithLayoutView:(JSSkeletonLayoutView *)layoutView {
-    [layoutView.layer removeAnimationForKey:NSStringFromClass(self.class)];
+- (void)removeAnimationWithLayoutLayer:(JSSkeletonLayoutLayer *)layoutLayer {
+    [layoutLayer removeAnimationForKey:NSStringFromClass(self.class)];
 }
 
 @end

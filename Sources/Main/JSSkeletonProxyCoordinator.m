@@ -9,7 +9,7 @@
 #import "JSSkeletonProxyCoordinator.h"
 #import "UIView+JSSkeleton.h"
 #import "UIView+JSSkeletonProperty.h"
-#import "JSSkeletonLayoutView.h"
+#import "JSSkeletonLayoutLayer.h"
 #import "JSSkeletonProxyView.h"
 #import "JSSkeletonProxyProducer.h"
 
@@ -29,35 +29,35 @@
 - (BOOL)start {
     __kindof UIView *registerView = self.proxyView.registerView;
     if (!registerView.js_skeletonDisplay) {
-        registerView.js_skeletonDisplay = true;
-        [self.proxyView.producer enumerateLayoutViewsUsingBlock:^(JSSkeletonLayoutView *layoutView, NSUInteger idx) {
-            [layoutView startAnimation];
+        registerView.js_skeletonDisplay = YES;
+        [self.proxyView.producer enumerateLayoutLayersUsingBlock:^(JSSkeletonLayoutLayer *layoutLayer, NSUInteger idx) {
+            [layoutLayer startAnimation];
         }];
         [self.proxyView.superview bringSubviewToFront:self.proxyView];
-        self.proxyView.hidden = false;
-        return true;
+        self.proxyView.hidden = NO;
+        return YES;
     }
-    return false;
+    return NO;
 }
 
 - (BOOL)end {
     __kindof UIView *registerView = self.proxyView.registerView;
     if (registerView.js_skeletonDisplay) {
-        registerView.js_skeletonDisplay = false;
-        [self.proxyView.producer enumerateLayoutViewsUsingBlock:^(JSSkeletonLayoutView *layoutView, NSUInteger idx) {
-            [layoutView endAnimation];
+        registerView.js_skeletonDisplay = NO;
+        [self.proxyView.producer enumerateLayoutLayersUsingBlock:^(JSSkeletonLayoutLayer *layoutLayer, NSUInteger idx) {
+            [layoutLayer endAnimation];
         }];
         [UIView animateWithDuration:0.25f delay:0 options:(7<<16) animations:^{
             self.proxyView.alpha = 0.0;
         } completion:^(BOOL finished) {
             if (finished) {
-                self.proxyView.hidden = true;
+                self.proxyView.hidden = YES;
                 self.proxyView.alpha = 1.0;
             }
         }];
-        return true;
+        return YES;
     }
-    return false;
+    return NO;
 }
 
 @end

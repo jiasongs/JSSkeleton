@@ -7,15 +7,15 @@
 //
 
 #import <Foundation/Foundation.h>
-@class JSSkeletonLayoutView;
+@class JSSkeletonLayoutLayer;
 
 NS_ASSUME_NONNULL_BEGIN
 
 @protocol JSSkeletonAnimationProtocol
 
 @required
-- (void)addAnimationWithLayoutView:(JSSkeletonLayoutView *)layoutView;
-- (void)removeAnimationWithLayoutView:(JSSkeletonLayoutView *)layoutView;
+- (void)addAnimationWithLayoutLayer:(JSSkeletonLayoutLayer *)layoutLayer;
+- (void)removeAnimationWithLayoutLayer:(JSSkeletonLayoutLayer *)layoutLayer;
 
 @end
 

@@ -14,7 +14,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, strong, readwrite) JSSkeletonProxyProducer *producer;
 
-- (void)produceLayoutViewWithTargetCell:(__kindof UICollectionViewCell *)targetCell;
+- (void)produceLayoutLayerWithTargetCell:(__kindof UICollectionViewCell *)targetCell;
 
 @end
 

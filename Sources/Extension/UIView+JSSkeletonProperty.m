@@ -7,12 +7,13 @@
 //
 
 #import "UIView+JSSkeletonProperty.h"
+#import "UIView+JSSkeleton_Private.h"
 #import "JSCoreKit.h"
-#import "JSSkeletonLayoutView.h"
+#import "JSSkeletonLayoutLayer.h"
 
 @interface UIView (__JSSkeletonProperty)
 
-@property (nonatomic, strong) NSPointerArray *js_weakSkeletonLayoutViews;
+@property (nonatomic, strong) NSPointerArray *js_weakSkeletonLayoutLayers;
 
 @end
 
@@ -29,17 +30,17 @@ JSSynthesizeCGFloatProperty(js_skeletonHeightCoefficient, setJs_skeletonHeightCo
 JSSynthesizeCGFloatProperty(js_skeletonLineSpacing, setJs_skeletonLineSpacing)
 JSSynthesizeCGFloatProperty(js_skeletonCornerRadius, setJs_skeletonCornerRadius)
 JSSynthesizeIdStrongProperty(js_skeletonAnimation, setJs_skeletonAnimation)
-JSSynthesizeIdStrongProperty(js_weakSkeletonLayoutViews, setJs_weakSkeletonLayoutViews)
+JSSynthesizeIdStrongProperty(js_weakSkeletonLayoutLayers, setJs_weakSkeletonLayoutLayers)
 
-#pragma mark - FrameDidChangeBlock
+#pragma mark - LayoutSubviews
 
-- (void (^)(__kindof UIView *, CGRect))js_skeletonFrameDidChange {
+- (void (^)(__kindof UIView *, CGRect))js_skeletonLayoutSubviewsBlock {
     return objc_getAssociatedObject(self, _cmd);
 }
 
-- (void)setJs_skeletonFrameDidChange:(void (^)(__kindof UIView *, CGRect))js_skeletonFrameDidChange {
-    [self js_skeletonHookFrameIfNeeded];
-    objc_setAssociatedObject(self, @selector(js_skeletonFrameDidChange), js_skeletonFrameDidChange, OBJC_ASSOCIATION_COPY_NONATOMIC);
+- (void)setJs_skeletonLayoutSubviewsBlock:(void (^)(__kindof UIView *))js_skeletonLayoutSubviewsBlock {
+    [self js_skeletonHookLayoutSubviewsIfNeeded];
+    objc_setAssociatedObject(self, @selector(js_skeletonLayoutSubviewsBlock), js_skeletonLayoutSubviewsBlock, OBJC_ASSOCIATION_COPY_NONATOMIC);
 }
 
 #pragma mark - TintColor
@@ -50,8 +51,8 @@ JSSynthesizeIdStrongProperty(js_weakSkeletonLayoutViews, setJs_weakSkeletonLayou
 
 - (void)setJs_skeletonTintColor:(UIColor *)js_skeletonTintColor {
     objc_setAssociatedObject(self, @selector(js_skeletonTintColor), js_skeletonTintColor, OBJC_ASSOCIATION_COPY_NONATOMIC);
-    for (JSSkeletonLayoutView *layoutView in self.js_skeletonLayoutViews) {
-        [layoutView setBackgroundColor:js_skeletonTintColor];
+    for (JSSkeletonLayoutLayer *layoutLayer in self.js_skeletonLayoutLayers) {
+        layoutLayer.backgroundColor = js_skeletonTintColor.CGColor;
     }
 }
 
@@ -64,111 +65,53 @@ JSSynthesizeIdStrongProperty(js_weakSkeletonLayoutViews, setJs_weakSkeletonLayou
 - (void)setJs_skeletonClear:(BOOL)js_skeletonClear {
     objc_setAssociatedObject(self, @selector(js_skeletonClear), @(js_skeletonClear), OBJC_ASSOCIATION_RETAIN_NONATOMIC);
     if (js_skeletonClear) {
-        for (JSSkeletonLayoutView *layoutView in self.js_skeletonLayoutViews) {
-            [layoutView setBackgroundColor:[UIColor colorWithRed:1 green:1 blue:1 alpha:0]];
+        for (JSSkeletonLayoutLayer *layoutLayer in self.js_skeletonLayoutLayers) {
+            layoutLayer.backgroundColor = [UIColor colorWithRed:1 green:1 blue:1 alpha:0].CGColor;
         }
     }
 }
 
-#pragma mark - LayoutViews
+#pragma mark - LayoutLayers
 
-- (NSArray<JSSkeletonLayoutView *> *)js_skeletonLayoutViews {
+- (NSArray<JSSkeletonLayoutLayer *> *)js_skeletonLayoutLayers {
     NSMutableArray *result = [NSMutableArray array];
-    for (JSSkeletonLayoutView *layoutView in self.js_weakSkeletonLayoutViews) {
-        if (layoutView && [layoutView isKindOfClass:JSSkeletonLayoutView.class]) {
-            [result addObject:layoutView];
+    for (JSSkeletonLayoutLayer *layoutLayer in self.js_weakSkeletonLayoutLayers) {
+        if (layoutLayer && [layoutLayer isKindOfClass:JSSkeletonLayoutLayer.class]) {
+            [result addObject:layoutLayer];
         }
     }
     return result;
 }
 
-- (void)js_addSkeletonLayoutView:(JSSkeletonLayoutView *)layoutView {
-    if (!self.js_weakSkeletonLayoutViews) {
-        self.js_weakSkeletonLayoutViews = [NSPointerArray weakObjectsPointerArray];
+- (void)js_addSkeletonLayoutLayer:(JSSkeletonLayoutLayer *)layoutLayer {
+    if (!self.js_weakSkeletonLayoutLayers) {
+        self.js_weakSkeletonLayoutLayers = [NSPointerArray weakObjectsPointerArray];
     }
-    [self.js_weakSkeletonLayoutViews addPointer:(__bridge void *)(layoutView)];
+    [self.js_weakSkeletonLayoutLayers addPointer:(__bridge void *)(layoutLayer)];
 }
 
 #pragma mark - Layout
 
 - (void)js_skeletonUpdateLayoutIfNeeded {
-    for (JSSkeletonLayoutView *layoutView in self.js_skeletonLayoutViews) {
-        [layoutView updateLayoutIfNeeded];
+    for (JSSkeletonLayoutLayer *layoutLayer in self.js_skeletonLayoutLayers) {
+        [layoutLayer updateLayoutIfNeeded];
     }
 }
 
 #pragma mark - Hook
 
-- (void)js_skeletonHookFrameIfNeeded {
+- (void)js_skeletonHookLayoutSubviewsIfNeeded {
     Class viewClass = self.class;
     [JSCoreHelper executeOnceWithIdentifier:[NSString stringWithFormat:@"UIView %@-%@", NSStringFromClass(viewClass), @"JSSkeletonHook"] usingBlock:^{
-        JSRuntimeOverrideImplementation(viewClass, @selector(setFrame:), ^id(__unsafe_unretained Class originClass, SEL originCMD, IMP (^originalIMPProvider)(void)) {
-            return ^(UIView *selfObject, CGRect frame) {
-                
-                CGRect precedingFrame = selfObject.frame;
-                BOOL valueChange = !CGRectEqualToRect(frame, precedingFrame);
-                
+        JSRuntimeOverrideImplementation(viewClass, @selector(layoutSubviews), ^id(__unsafe_unretained Class originClass, SEL originCMD, IMP (^originalIMPProvider)(void)) {
+            return ^(UIView *selfObject) {
                 // call super
-                void (*originSelectorIMP)(id, SEL, CGRect);
-                originSelectorIMP = (void (*)(id, SEL, CGRect))originalIMPProvider();
-                originSelectorIMP(selfObject, originCMD, frame);
+                void (*originSelectorIMP)(id, SEL);
+                originSelectorIMP = (void (*)(id, SEL))originalIMPProvider();
+                originSelectorIMP(selfObject, originCMD);
                 
-                if (selfObject.js_skeletonFrameDidChange && valueChange) {
-                    selfObject.js_skeletonFrameDidChange(selfObject, precedingFrame);
-                }
-            };
-        });
-        
-        JSRuntimeOverrideImplementation(viewClass, @selector(setBounds:), ^id(__unsafe_unretained Class originClass, SEL originCMD, IMP (^originalIMPProvider)(void)) {
-            return ^(UIView *selfObject, CGRect bounds) {
-                
-                CGRect precedingFrame = selfObject.frame;
-                CGRect precedingBounds = selfObject.bounds;
-                BOOL valueChange = !CGSizeEqualToSize(bounds.size, precedingBounds.size);// bounds 只有 size 发生变化才会影响 frame
-                
-                // call super
-                void (*originSelectorIMP)(id, SEL, CGRect);
-                originSelectorIMP = (void (*)(id, SEL, CGRect))originalIMPProvider();
-                originSelectorIMP(selfObject, originCMD, bounds);
-                
-                if (selfObject.js_skeletonFrameDidChange && valueChange) {
-                    selfObject.js_skeletonFrameDidChange(selfObject, precedingFrame);
-                }
-            };
-        });
-        
-        JSRuntimeOverrideImplementation(viewClass, @selector(setCenter:), ^id(__unsafe_unretained Class originClass, SEL originCMD, IMP (^originalIMPProvider)(void)) {
-            return ^(UIView *selfObject, CGPoint center) {
-                
-                CGRect precedingFrame = selfObject.frame;
-                CGPoint precedingCenter = selfObject.center;
-                BOOL valueChange = !CGPointEqualToPoint(center, precedingCenter);
-                
-                // call super
-                void (*originSelectorIMP)(id, SEL, CGPoint);
-                originSelectorIMP = (void (*)(id, SEL, CGPoint))originalIMPProvider();
-                originSelectorIMP(selfObject, originCMD, center);
-                
-                if (selfObject.js_skeletonFrameDidChange && valueChange) {
-                    selfObject.js_skeletonFrameDidChange(selfObject, precedingFrame);
-                }
-            };
-        });
-        
-        JSRuntimeOverrideImplementation(viewClass, @selector(setTransform:), ^id(__unsafe_unretained Class originClass, SEL originCMD, IMP (^originalIMPProvider)(void)) {
-            return ^(UIView *selfObject, CGAffineTransform transform) {
-                
-                CGRect precedingFrame = selfObject.frame;
-                CGAffineTransform precedingTransform = selfObject.transform;
-                BOOL valueChange = !CGAffineTransformEqualToTransform(transform, precedingTransform);
-                
-                // call super
-                void (*originSelectorIMP)(id, SEL, CGAffineTransform);
-                originSelectorIMP = (void (*)(id, SEL, CGAffineTransform))originalIMPProvider();
-                originSelectorIMP(selfObject, originCMD, transform);
-                
-                if (selfObject.js_skeletonFrameDidChange && valueChange) {
-                    selfObject.js_skeletonFrameDidChange(selfObject, precedingFrame);
+                if (selfObject.js_skeletonLayoutSubviewsBlock && [selfObject isMemberOfClass:viewClass]) {
+                    selfObject.js_skeletonLayoutSubviewsBlock(selfObject);
                 }
             };
         });

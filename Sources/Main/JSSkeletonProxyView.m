@@ -7,7 +7,7 @@
 //
 
 #import "JSSkeletonProxyView.h"
-#import "JSSkeletonLayoutView.h"
+#import "JSSkeletonLayoutLayer.h"
 #import "JSSkeletonProxyCoordinator.h"
 #import "JSSkeletonProxyProducer.h"
 #import "JSSkeletonAppearance.h"
@@ -30,13 +30,13 @@
 
 - (void)didInitialize {
     self.backgroundColor = JSSkeletonAppearance.appearance.skeletonBackgroundColor;
-    self.hidden = true;
+    self.hidden = YES;
     self.coordinator = [[JSSkeletonProxyCoordinator alloc] initWithProxyView:self];
     self.producer = [[JSSkeletonProxyProducer alloc] init];
     if (self.targetView.subviews.count > 0) {
-        NSArray *layoutViews = [self.producer produceLayoutViewWithViews:self.targetView.subviews];
-        for (JSSkeletonLayoutView *layoutView in layoutViews) {
-            [self addSubview:layoutView];
+        NSArray *layoutLayers = [self.producer produceLayoutLayerWithViews:self.targetView.subviews];
+        for (JSSkeletonLayoutLayer *layoutLayer in layoutLayers) {
+            [self.layer addSublayer:layoutLayer];
         }
     }
 }

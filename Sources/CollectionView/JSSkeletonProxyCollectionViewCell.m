@@ -6,7 +6,7 @@
 //
 
 #import "JSSkeletonProxyCollectionViewCell.h"
-#import "JSSkeletonLayoutView.h"
+#import "JSSkeletonLayoutLayer.h"
 #import "UIView+JSSkeletonProperty.h"
 #import "UIView+JSSkeleton.h"
 #import "JSSkeletonProxyProducer.h"
@@ -18,16 +18,16 @@
     self.producer = [[JSSkeletonProxyProducer alloc] init];
 }
 
-- (void)produceLayoutViewWithTargetCell:(__kindof UICollectionViewCell *)targetCell {
+- (void)produceLayoutLayerWithTargetCell:(__kindof UICollectionViewCell *)targetCell {
     /// 只添加一次, 保证只存在于一个cell中, 减少内存
     if (!targetCell.superview) {
-        targetCell.hidden = true;
+        targetCell.hidden = YES;
         [self addSubview:targetCell];
     }
     if (targetCell.contentView.subviews.count > 0) {
-        NSArray *layoutViews = [self.producer produceLayoutViewWithViews:targetCell.contentView.subviews];
-        for (JSSkeletonLayoutView *layoutView in layoutViews) {
-            [self.contentView addSubview:layoutView];
+        NSArray *layoutLayers = [self.producer produceLayoutLayerWithViews:targetCell.contentView.subviews];
+        for (JSSkeletonLayoutLayer *layoutLayer in layoutLayers) {
+            [self.contentView.layer addSublayer:layoutLayer];
         }
     }
 }

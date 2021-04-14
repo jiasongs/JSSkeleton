@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+
 @class JSSkeletonProxyView;
 
 NS_ASSUME_NONNULL_BEGIN

@@ -7,18 +7,20 @@
 //
 
 #import <Foundation/Foundation.h>
-@class JSSkeletonLayoutView;
+
+@class JSSkeletonLayoutLayer;
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface JSSkeletonProxyProducer : NSObject
 
-@property (nonatomic, readonly, nullable) NSArray<JSSkeletonLayoutView *> *layoutViews;
+@property (nonatomic, readonly) NSArray<JSSkeletonLayoutLayer *> *layoutLayers;
 
-- (NSArray<JSSkeletonLayoutView *> *)produceLayoutViewWithViews:(NSArray<__kindof UIView *> *)views;
+- (NSArray<JSSkeletonLayoutLayer *> *)produceLayoutLayerWithViews:(NSArray<__kindof UIView *> *)views;
 
-- (BOOL)filterByRulesView:(__kindof UIView *)view;
-- (void)enumerateLayoutViewsUsingBlock:(void (NS_NOESCAPE ^)(JSSkeletonLayoutView *layoutView, NSUInteger idx))block;
+- (void)addLayoutLayer:(JSSkeletonLayoutLayer *)layoutLayer;
+
+- (void)enumerateLayoutLayersUsingBlock:(void (NS_NOESCAPE ^)(JSSkeletonLayoutLayer *layoutLayer, NSUInteger idx))block;
 
 @end
 

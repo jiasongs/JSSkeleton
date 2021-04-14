@@ -1,7 +1,7 @@
 
 Pod::Spec.new do |s|
   s.name         = "JSSkeleton"
-  s.version      = "0.2.0"
+  s.version      = "0.2.1"
   s.summary      = "骨架屏"
   s.homepage     = "https://github.com/jiasongs/JSSkeleton"
   s.author       = { "jiasong" => "593908937@qq.com" }
@@ -18,5 +18,6 @@ Pod::Spec.new do |s|
   s.default_subspec = "Core"
   s.subspec "Core" do |ss|
     ss.source_files = "Sources/**/*.{h,m}"
+    ss.private_header_files = "Sources/Extension/Private/*.{h,m}"
   end
 end

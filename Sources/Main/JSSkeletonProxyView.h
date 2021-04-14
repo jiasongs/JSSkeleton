@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-@class JSSkeletonLayoutView;
+
 @class JSSkeletonProxyProducer;
 @class JSSkeletonProxyCoordinator;
 

@@ -7,6 +7,7 @@
 //
 
 #import "UIView+JSSkeleton.h"
+#import "UIView+JSSkeleton_Private.h"
 #import "JSCoreKit.h"
 #import "JSSkeletonProxyView.h"
 #import "JSSkeletonProxyTableView.h"
@@ -78,7 +79,7 @@ JSSynthesizeBOOLProperty(js_skeletonDisplay, setJs_skeletonDisplay)
     if (!skeletonView) {
         skeletonView = [[viewClass alloc] init];
     }
-    skeletonView.hidden = true;
+    skeletonView.hidden = YES;
     JSSkeletonProxyView *proxyView = [self __js_produceSkeletonProxyViewWithTargetView:skeletonView];
     [proxyView addSubview:skeletonView];
     return proxyView;
@@ -118,19 +119,19 @@ JSSynthesizeBOOLProperty(js_skeletonDisplay, setJs_skeletonDisplay)
 #pragma mark - UITableViewHeader-Footer
 
 - (__kindof JSSkeletonProxyTableView *)js_registerSkeletonForTableHeaderView {
-    return [self __js_registerForTableHeaderFooterViewWithTargetViewClass:nil heightForView:0 isHeaderView:true];
+    return [self __js_registerForTableHeaderFooterViewWithTargetViewClass:nil heightForView:0 isHeaderView:YES];
 }
 
 - (__kindof JSSkeletonProxyTableView *)js_registerSkeletonForTableHeaderViewClass:(Class)viewClass heightForView:(CGFloat)height {
-    return [self __js_registerForTableHeaderFooterViewWithTargetViewClass:viewClass heightForView:height isHeaderView:true];
+    return [self __js_registerForTableHeaderFooterViewWithTargetViewClass:viewClass heightForView:height isHeaderView:YES];
 }
 
 - (__kindof JSSkeletonProxyTableView *)js_registerSkeletonForTableFooterView {
-    return [self __js_registerForTableHeaderFooterViewWithTargetViewClass:nil heightForView:0 isHeaderView:false];
+    return [self __js_registerForTableHeaderFooterViewWithTargetViewClass:nil heightForView:0 isHeaderView:NO];
 }
 
 - (__kindof JSSkeletonProxyTableView *)js_registerSkeletonForTableFooterViewClass:(Class)viewClass heightForView:(CGFloat)height {
-    return [self __js_registerForTableHeaderFooterViewWithTargetViewClass:viewClass heightForView:height isHeaderView:false];
+    return [self __js_registerForTableHeaderFooterViewWithTargetViewClass:viewClass heightForView:height isHeaderView:NO];
 }
 
 - (__kindof JSSkeletonProxyTableView *)__js_registerForTableHeaderFooterViewWithTargetViewClass:(nullable Class)targetViewClass
@@ -147,7 +148,7 @@ JSSynthesizeBOOLProperty(js_skeletonDisplay, setJs_skeletonDisplay)
     } else if (tableHeaderFooterView) {
         [tableHeaderFooterProxyView js_registerSkeletonForView:tableHeaderFooterView];
     }
-    tableHeaderFooterProxyView.js_skeletonFrameDidChange = ^(__kindof UIView *view, CGRect precedingFrame) {
+    tableHeaderFooterProxyView.js_skeletonLayoutSubviewsBlock = ^(__kindof UIView * _Nonnull view) {
         for (JSSkeletonProxyView *proxyView in view.js_skeletonProxyViews) {
             proxyView.frame = view.bounds;
         }
@@ -163,7 +164,7 @@ JSSynthesizeBOOLProperty(js_skeletonDisplay, setJs_skeletonDisplay)
     [self.js_skeletonProxyViews enumerateObjectsUsingBlock:^(JSSkeletonProxyTableView *proxyView, NSUInteger idx, BOOL *stop) {
         if (proxyView.registerView == self) {
             tableProxyView = proxyView;
-            *stop = true;
+            *stop = YES;
         }
     }];
     if (!tableProxyView) {

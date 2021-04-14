@@ -11,7 +11,7 @@
 #import "UIView+JSSkeleton.h"
 #import "UIView+JSSkeletonProperty.h"
 #import "JSSkeletonProxyProducer.h"
-#import "JSSkeletonLayoutView.h"
+#import "JSSkeletonLayoutLayer.h"
 
 NSString * const JSSkeletonProxyTableViewReuseIdentifier = @"JSSkeletonProxyTableViewReuseIdentifier_";
 
@@ -73,17 +73,20 @@ NSString * const JSSkeletonProxyTableViewReuseIdentifier = @"JSSkeletonProxyTabl
     __kindof UITableViewCell *targetCell = [self.targetCells objectAtIndex:indexPath.section];
     NSString *identifier = [NSString stringWithFormat:@"%@%@", JSSkeletonProxyTableViewReuseIdentifier, NSStringFromClass(targetCell.class)];
     JSSkeletonProxyTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier forIndexPath:indexPath];
-    if (cell.producer.layoutViews.count == 0) {
-        [cell produceLayoutViewWithTargetCell:targetCell];
-        [self.producer produceLayoutViewWithViews:cell.producer.layoutViews];
+    if (cell.producer.layoutLayers.count == 0) {
+        [cell produceLayoutLayerWithTargetCell:targetCell];
+        /// 添加到self.producer
+        [cell.producer enumerateLayoutLayersUsingBlock:^(JSSkeletonLayoutLayer *layoutLayer, NSUInteger idx) {
+            [self.producer addLayoutLayer:layoutLayer];
+        }];
     }
     return cell;
 }
 
 - (void)tableView:(UITableView *)tableView willDisplayCell:(JSSkeletonProxyTableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
     if (self.registerView.js_skeletonDisplay) {
-        [self.producer enumerateLayoutViewsUsingBlock:^(JSSkeletonLayoutView *layoutView, NSUInteger idx) {
-            [layoutView startAnimation];
+        [self.producer enumerateLayoutLayersUsingBlock:^(JSSkeletonLayoutLayer *layoutLayer, NSUInteger idx) {
+            [layoutLayer startAnimation];
         }];
     }
 }
@@ -107,7 +110,7 @@ NSString * const JSSkeletonProxyTableViewReuseIdentifier = @"JSSkeletonProxyTabl
         if (@available(iOS 11.0, *)) {
             _tableView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
         }
-        _tableView.alwaysBounceVertical = true;
+        _tableView.alwaysBounceVertical = YES;
         _tableView.tableHeaderView = [[UIView alloc] initWithFrame:CGRectZero];
         _tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
     }

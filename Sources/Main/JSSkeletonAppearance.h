@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+
 @protocol JSSkeletonAnimationProtocol;
 
 NS_ASSUME_NONNULL_BEGIN

@@ -9,7 +9,7 @@
 #import "JSSkeletonProxyCollectionViewCell.h"
 #import "UIView+JSSkeletonProperty.h"
 #import "JSSkeletonProxyProducer.h"
-#import "JSSkeletonLayoutView.h"
+#import "JSSkeletonLayoutLayer.h"
 
 NSString * const JSSkeletonProxyCollectionViewReuseIdentifier = @"JSSkeletonProxyCollectionViewReuseIdentifier_";
 

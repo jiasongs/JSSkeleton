@@ -7,8 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+
 @protocol JSSkeletonAnimationProtocol;
-@class JSSkeletonLayoutView;
+@class JSSkeletonLayoutLayer;
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -24,11 +25,10 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, assign) CGFloat js_skeletonLineSpacing;
 @property (nonatomic, assign) CGFloat js_skeletonCornerRadius;
 @property (nonatomic, copy, nullable) UIColor *js_skeletonTintColor;
-@property (nonatomic, copy, nullable) void(^js_skeletonFrameDidChange)(__kindof UIView *view, CGRect precedingFrame);
 @property (nonatomic, strong, nullable) id<JSSkeletonAnimationProtocol> js_skeletonAnimation;
-@property (nonatomic, readonly, nullable) NSArray<JSSkeletonLayoutView *> *js_skeletonLayoutViews;
+@property (nonatomic, readonly) NSArray<JSSkeletonLayoutLayer *> *js_skeletonLayoutLayers;
 
-- (void)js_addSkeletonLayoutView:(JSSkeletonLayoutView *)layoutView;
+- (void)js_addSkeletonLayoutLayer:(JSSkeletonLayoutLayer *)layoutLayer;
 - (void)js_skeletonUpdateLayoutIfNeeded;
 
 @end

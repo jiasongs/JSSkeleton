@@ -7,38 +7,34 @@
 //
 
 #import "JSSkeletonProxyProducer.h"
+#import "UIView+JSSkeleton_Private.h"
 #import "JSCoreKit.h"
 #import "UIView+JSSkeletonProperty.h"
-#import "JSSkeletonLayoutView.h"
+#import "JSSkeletonLayoutLayer.h"
 #import "JSSkeletonAppearance.h"
 
 @interface JSSkeletonProxyProducer ()
 
-@property (nonatomic, strong) NSPointerArray *weakLayoutViews;
+@property (nonatomic, strong) NSPointerArray *weakLayoutLayers;
 
 @end
 
 @implementation JSSkeletonProxyProducer
 
-#pragma mark - 生成LayoutView
+#pragma mark - 生成LayoutLayer
 
-- (NSArray<JSSkeletonLayoutView *> *)produceLayoutViewWithViews:(NSArray<__kindof UIView *> *)views {
+- (NSArray<JSSkeletonLayoutLayer *> *)produceLayoutLayerWithViews:(NSArray<__kindof UIView *> *)views {
     NSMutableArray *resultArray = [NSMutableArray array];
     for (__kindof UIView *subview in views) {
-        if ([subview isKindOfClass:JSSkeletonLayoutView.class]) {
-            [self.weakLayoutViews addPointer:(__bridge void *)(subview)];
-            [resultArray addObject:subview];
-        } else {
-            if ([self filterByRulesView:subview]) {
-                /// 添加默认动画
-                [self addDefaultSkeletonAnimationWithView:subview];
-                /// 添加布局监听
-                [self addFrameDidChangeBlockWithView:subview];
-                /// 添加视图
-                JSSkeletonLayoutView *layoutView = [self makeLayoutViewWithView:subview];
-                [self.weakLayoutViews addPointer:(__bridge void *)layoutView];
-                [resultArray addObject:layoutView];
-            }
+        if ([self filterByRulesWithView:subview]) {
+            /// 添加默认动画
+            [self addDefaultSkeletonAnimationWithView:subview];
+            /// 添加布局监听
+            [self addLayoutSubviewsBlockWithView:subview];
+            /// 添加视图
+            JSSkeletonLayoutLayer *layoutLayer = [self makeLayoutLayerWithView:subview];
+            [self addLayoutLayer:layoutLayer];
+            [resultArray addObject:layoutLayer];
         }
     }
     return resultArray;
@@ -50,69 +46,71 @@
     }
 }
 
-- (void)addFrameDidChangeBlockWithView:(__kindof UIView *)view {
-    if (!view.js_skeletonFrameDidChange) {
-        view.js_skeletonFrameDidChange = ^(__kindof UIView *view, CGRect precedingFrame) {
+- (void)addLayoutSubviewsBlockWithView:(__kindof UIView *)view {
+    if (!view.js_skeletonLayoutSubviewsBlock) {
+        view.js_skeletonLayoutSubviewsBlock = ^(__kindof UIView *view) {
             [view js_skeletonUpdateLayoutIfNeeded];
         };
     }
 }
 
-- (JSSkeletonLayoutView *)makeLayoutViewWithView:(__kindof UIView *)view {
-    JSSkeletonLayoutView *layoutView = [[JSSkeletonLayoutView alloc] initWithSimulateView:view];
-    [view js_addSkeletonLayoutView:layoutView];
+- (JSSkeletonLayoutLayer *)makeLayoutLayerWithView:(__kindof UIView *)view {
+    JSSkeletonLayoutLayer *layoutLayer = [[JSSkeletonLayoutLayer alloc] initWithSimulateView:view];
+    [view js_addSkeletonLayoutLayer:layoutLayer];
     if (view.subviews.count > 0) {
-        NSArray *resultArray = [self produceLayoutViewWithViews:view.subviews];
-        for (JSSkeletonLayoutView *subLayoutView in resultArray) {
-            [layoutView addSubview:subLayoutView];
+        NSArray *resultArray = [self produceLayoutLayerWithViews:view.subviews];
+        for (JSSkeletonLayoutLayer *subLayoutLayer in resultArray) {
+            [layoutLayer addSublayer:subLayoutLayer];
         }
     }
-    return layoutView;
+    return layoutLayer;
+}
+
+- (void)addLayoutLayer:(JSSkeletonLayoutLayer *)layoutLayer {
+    [self.weakLayoutLayers addPointer:(__bridge void *)layoutLayer];
 }
 
 #pragma mark - 过滤视图
 
-- (BOOL)filterByRulesView:(__kindof UIView *)view {
-    BOOL needRemove = false;
+- (BOOL)filterByRulesWithView:(__kindof UIView *)view {
+    BOOL needRemove = NO;
     if ([view isKindOfClass:NSClassFromString(@"_UITableViewCellSeparatorView").class] ||
         [view isKindOfClass:NSClassFromString(@"_UITableViewHeaderFooterContentView").class] ||
         [view isKindOfClass:NSClassFromString(@"_UITableViewHeaderFooterViewBackground").class] ||
         [view isKindOfClass:NSClassFromString(@"UITableViewLabel").class]) {
-        needRemove = true;
+        needRemove = YES;
     }
     if ([view isKindOfClass:UIView.class] && !view.js_skeletonInvalid && !view.isHidden && !needRemove) {
-        return true;
+        return YES;
     }
-    return false;
+    return NO;
 }
 
-- (void)enumerateLayoutViewsUsingBlock:(void (NS_NOESCAPE ^)(JSSkeletonLayoutView *layoutView, NSUInteger idx))block {
-    for (NSUInteger i = 0; i < self.weakLayoutViews.count; i++) {
-        JSSkeletonLayoutView *layoutView = [self.weakLayoutViews pointerAtIndex:i];
-        if (layoutView && [layoutView isKindOfClass:JSSkeletonLayoutView.class]) {
-            block(layoutView, i);
+- (void)enumerateLayoutLayersUsingBlock:(void (NS_NOESCAPE ^)(JSSkeletonLayoutLayer *layoutLayer, NSUInteger idx))block {
+    NSUInteger index = 0;
+    for (JSSkeletonLayoutLayer *layoutLayer in self.weakLayoutLayers) {
+        if (layoutLayer && [layoutLayer isKindOfClass:JSSkeletonLayoutLayer.class]) {
+            block(layoutLayer, index);
+            index++;
         }
     }
 }
 
 #pragma mark - getter
 
-- (nullable NSArray<JSSkeletonLayoutView *> *)layoutViews {
-    if (self.weakLayoutViews.count > 0) {
-        NSMutableArray *result = [NSMutableArray array];
-        [self enumerateLayoutViewsUsingBlock:^(JSSkeletonLayoutView *layoutView, NSUInteger idx) {
-            [result addObject:layoutView];
-        }];
-        return result;
-    }
-    return nil;
+- (NSArray<JSSkeletonLayoutLayer *> *)layoutLayers {
+    NSMutableArray *result = [NSMutableArray array];
+    [self enumerateLayoutLayersUsingBlock:^(JSSkeletonLayoutLayer *layoutLayer, NSUInteger idx) {
+        [result addObject:layoutLayer];
+    }];
+    return result;
 }
 
-- (NSPointerArray *)weakLayoutViews {
-    if (!_weakLayoutViews) {
-        _weakLayoutViews = [NSPointerArray weakObjectsPointerArray];
+- (NSPointerArray *)weakLayoutLayers {
+    if (!_weakLayoutLayers) {
+        _weakLayoutLayers = [NSPointerArray weakObjectsPointerArray];
     }
-    return _weakLayoutViews;
+    return _weakLayoutLayers;
 }
 
 @end
