@@ -98,10 +98,6 @@ NSString * const JSSkeletonProxyTableViewReuseIdentifier = @"JSSkeletonProxyTabl
         _tableView = [[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStylePlain];
         _tableView.dataSource = self;
         _tableView.delegate = self;
-        _tableView.rowHeight = UITableViewAutomaticDimension;
-        _tableView.estimatedRowHeight = 0;
-        _tableView.estimatedSectionFooterHeight = 0;
-        _tableView.estimatedSectionHeaderHeight = 0;
         _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
         _tableView.backgroundColor = nil;
         if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
@@ -110,9 +106,17 @@ NSString * const JSSkeletonProxyTableViewReuseIdentifier = @"JSSkeletonProxyTabl
         if (@available(iOS 11.0, *)) {
             _tableView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
         }
+        if (@available(iOS 15.0, *)) {
+            _tableView.fillerRowHeight = 0;
+            _tableView.sectionHeaderTopPadding = 0;
+        }
+        _tableView.rowHeight = UITableViewAutomaticDimension;
+        _tableView.estimatedRowHeight = 0;
+        _tableView.estimatedSectionFooterHeight = 0;
+        _tableView.estimatedSectionHeaderHeight = 0;
         _tableView.alwaysBounceVertical = YES;
-        _tableView.tableHeaderView = [[UIView alloc] initWithFrame:CGRectZero];
-        _tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
+        _tableView.tableHeaderView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 0, CGFLOAT_MIN)];
+        _tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 0, CGFLOAT_MIN)];
     }
     return _tableView;
 }

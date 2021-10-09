@@ -48,6 +48,10 @@
     top = top + 44;
 #endif
     self.tableView.contentInset = UIEdgeInsetsMake(top, 0, SafeAreaInsetsConstantForDeviceWithNotch.bottom, 0);
+    if (@available(iOS 15.0, *)) {
+        self.tableView.fillerRowHeight = 0;
+        self.tableView.sectionHeaderTopPadding = 0;
+    }
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
