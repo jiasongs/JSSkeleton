@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		070464B8DD2362910EE78E5C /* libPods-JSSkeletonExample.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6F3E2A082B2B75171F1BF7EA /* libPods-JSSkeletonExample.a */; };
 		6701A6AF7E823E837E79F3D8 /* BuildFile in Frameworks */ = {isa = PBXBuildFile; };
 		7A2E2F7224FE1BCD00A84C3E /* ITOfficialAccountHomepageHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A2E2F7024FE1BCD00A84C3E /* ITOfficialAccountHomepageHeaderView.m */; };
 		7AA27CD924F4FF08009E367E /* ITNewsDetailSkeletonView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AF1E82B24F36C0A00F70824 /* ITNewsDetailSkeletonView.m */; };
@@ -49,12 +48,12 @@
 		7AF1E83824F3AA8E00F70824 /* RMUISkeletonTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AF1E83724F3AA8E00F70824 /* RMUISkeletonTableViewCell.m */; };
 		7AF1E83924F3AA8E00F70824 /* RMUISkeletonTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AF1E83724F3AA8E00F70824 /* RMUISkeletonTableViewCell.m */; };
 		7AFACF91250085180065F9E7 /* ITOfficialAccountHomepageHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A2E2F7024FE1BCD00A84C3E /* ITOfficialAccountHomepageHeaderView.m */; };
-		A35AC7F1249692D0E6871C3D /* libPods-JSSkeletonExampleMacOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BBDF9AFC5B85053E4844A257 /* libPods-JSSkeletonExampleMacOS.a */; };
+		91E321F2D1A32A95F1E5ED3B /* Pods_JSSkeletonExampleMacOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E905D91E13A547279D136EAF /* Pods_JSSkeletonExampleMacOS.framework */; };
+		92CC4A948A010F7417AC6C3C /* Pods_JSSkeletonExample.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 88F917E124150B5DDE32356A /* Pods_JSSkeletonExample.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		29E384E54D5200BF49183EFA /* Pods-JSSkeletonExample.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JSSkeletonExample.release.xcconfig"; path = "Target Support Files/Pods-JSSkeletonExample/Pods-JSSkeletonExample.release.xcconfig"; sourceTree = "<group>"; };
-		6F3E2A082B2B75171F1BF7EA /* libPods-JSSkeletonExample.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-JSSkeletonExample.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		7A2E2F7024FE1BCD00A84C3E /* ITOfficialAccountHomepageHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ITOfficialAccountHomepageHeaderView.m; sourceTree = "<group>"; };
 		7A2E2F7124FE1BCD00A84C3E /* ITOfficialAccountHomepageHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ITOfficialAccountHomepageHeaderView.h; sourceTree = "<group>"; };
 		7A5187EE2516113300238305 /* MacOSInfo.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = MacOSInfo.plist; sourceTree = "<group>"; };
@@ -91,9 +90,10 @@
 		7AF1E83124F3AA6500F70824 /* ITForumNewNoImageSkeletonCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ITForumNewNoImageSkeletonCell.m; sourceTree = "<group>"; };
 		7AF1E83624F3AA8E00F70824 /* RMUISkeletonTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RMUISkeletonTableViewCell.h; sourceTree = "<group>"; };
 		7AF1E83724F3AA8E00F70824 /* RMUISkeletonTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RMUISkeletonTableViewCell.m; sourceTree = "<group>"; };
+		88F917E124150B5DDE32356A /* Pods_JSSkeletonExample.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_JSSkeletonExample.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		994568E7EBB4F60E89D13B31 /* Pods-JSSkeletonExampleMacOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JSSkeletonExampleMacOS.release.xcconfig"; path = "Target Support Files/Pods-JSSkeletonExampleMacOS/Pods-JSSkeletonExampleMacOS.release.xcconfig"; sourceTree = "<group>"; };
 		B9506AE21947DFF4ECB75003 /* Pods-JSSkeletonExample.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JSSkeletonExample.debug.xcconfig"; path = "Target Support Files/Pods-JSSkeletonExample/Pods-JSSkeletonExample.debug.xcconfig"; sourceTree = "<group>"; };
-		BBDF9AFC5B85053E4844A257 /* libPods-JSSkeletonExampleMacOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-JSSkeletonExampleMacOS.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		E905D91E13A547279D136EAF /* Pods_JSSkeletonExampleMacOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_JSSkeletonExampleMacOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F27C427EB7C4AEB17FAF2B44 /* Pods-JSSkeletonExampleMacOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JSSkeletonExampleMacOS.debug.xcconfig"; path = "Target Support Files/Pods-JSSkeletonExampleMacOS/Pods-JSSkeletonExampleMacOS.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -102,8 +102,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6701A6AF7E823E837E79F3D8 /* BuildFile in Frameworks */,
-				070464B8DD2362910EE78E5C /* libPods-JSSkeletonExample.a in Frameworks */,
+				92CC4A948A010F7417AC6C3C /* Pods_JSSkeletonExample.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -111,7 +110,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A35AC7F1249692D0E6871C3D /* libPods-JSSkeletonExampleMacOS.a in Frameworks */,
+				91E321F2D1A32A95F1E5ED3B /* Pods_JSSkeletonExampleMacOS.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -240,8 +239,8 @@
 		CBFF8E4DB0F035A172499FEE /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				BBDF9AFC5B85053E4844A257 /* libPods-JSSkeletonExampleMacOS.a */,
-				6F3E2A082B2B75171F1BF7EA /* libPods-JSSkeletonExample.a */,
+				88F917E124150B5DDE32356A /* Pods_JSSkeletonExample.framework */,
+				E905D91E13A547279D136EAF /* Pods_JSSkeletonExampleMacOS.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
