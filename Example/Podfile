@@ -1,19 +1,22 @@
-platform :ios, '10.0'
+platform :ios, "10.0"
+use_frameworks! :linkage => :static
 
-source 'https://github.com/CocoaPods/Specs.git'
+source "https://github.com/CocoaPods/Specs.git"
 
-target 'JSSkeletonExample' do
-  pod 'JSSkeleton', :path => '..'
-  pod 'QMUIKit'
-  pod 'Masonry'
-  pod 'MLeaksFinder', :configurations => ['Debug']
-  pod 'LookinServer', :configurations => ['Debug']
+def pod_Common
+  pod "JSSkeleton", :path => ".."
+  pod "QMUIKit"
+  pod "Masonry"
 end
 
-target 'JSSkeletonExampleMacOS' do
-  pod 'JSSkeleton', :path => '..'
-  pod 'QMUIKit'
-  pod 'Masonry'
-  pod 'MLeaksFinder', :configurations => ['Debug']
+target "JSSkeletonExample" do
+  pod_Common
+  pod "LookinServer", "~> 1.0.4", :configurations => ["Debug"]
+  pod "MLeaksFinder", :configurations => ["Debug"]
+  pod "FBRetainCycleDetector", :git => "https://github.com/jiasongs/FBRetainCycleDetector.git", :configurations => ["Debug"]
+end
+
+target "JSSkeletonExampleMacOS" do
+  pod_Common
 end
 

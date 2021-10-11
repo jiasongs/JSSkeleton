@@ -16,7 +16,7 @@
     NSMutableArray *numberOfRows = [NSMutableArray arrayWithArray:self.numberOfRows ? : @[]];
     for (int section = 0; section < self.numberOfSection; section++) {
         if (self.numberOfRows.count == 0) {
-            CGFloat height = self.js_height ? : JSCoreHelper.applicationSize.height;
+            CGFloat height = (self.js_height ? : self.superview.js_height) ? : UIScreen.mainScreen.bounds.size.height;
             [numberOfRows addObject:@(lrintf(height / [[self.heightForRows objectAtIndex:section] floatValue]))];
         }
         Class cellClass = [cellClasss objectAtIndex:section];

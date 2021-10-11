@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		070464B8DD2362910EE78E5C /* libPods-JSSkeletonExample.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6F3E2A082B2B75171F1BF7EA /* libPods-JSSkeletonExample.a */; };
-		6701A6AF7E823E837E79F3D8 /* (null) in Frameworks */ = {isa = PBXBuildFile; };
+		6701A6AF7E823E837E79F3D8 /* BuildFile in Frameworks */ = {isa = PBXBuildFile; };
 		7A2E2F7224FE1BCD00A84C3E /* ITOfficialAccountHomepageHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A2E2F7024FE1BCD00A84C3E /* ITOfficialAccountHomepageHeaderView.m */; };
 		7AA27CD924F4FF08009E367E /* ITNewsDetailSkeletonView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AF1E82B24F36C0A00F70824 /* ITNewsDetailSkeletonView.m */; };
 		7AA27CDA24F4FF0D009E367E /* ITNewsDetailSkeletonView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7AF1E82924F36C0A00F70824 /* ITNewsDetailSkeletonView.xib */; };
@@ -102,7 +102,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6701A6AF7E823E837E79F3D8 /* (null) in Frameworks */,
+				6701A6AF7E823E837E79F3D8 /* BuildFile in Frameworks */,
 				070464B8DD2362910EE78E5C /* libPods-JSSkeletonExample.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -257,7 +257,6 @@
 				7ADB2E2524EF97AF00398BF5 /* Sources */,
 				7ADB2E2624EF97AF00398BF5 /* Frameworks */,
 				7ADB2E2724EF97AF00398BF5 /* Resources */,
-				2ACD33E98936C9382BBF4127 /* [CP] Embed Pods Frameworks */,
 				C6A0C4BA84F5C7163DC6EE34 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
@@ -357,23 +356,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		2ACD33E98936C9382BBF4127 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-JSSkeletonExample/Pods-JSSkeletonExample-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-JSSkeletonExample/Pods-JSSkeletonExample-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-JSSkeletonExample/Pods-JSSkeletonExample-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		5EB372C1395055FE3504E329 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
