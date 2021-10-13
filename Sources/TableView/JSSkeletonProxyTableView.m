@@ -12,6 +12,7 @@
 #import "UIView+JSSkeletonProperty.h"
 #import "JSSkeletonProxyProducer.h"
 #import "JSSkeletonLayoutLayer.h"
+#import "JSCoreKit.h"
 
 NSString * const JSSkeletonProxyTableViewReuseIdentifier = @"JSSkeletonProxyTableViewReuseIdentifier_";
 
@@ -100,9 +101,11 @@ NSString * const JSSkeletonProxyTableViewReuseIdentifier = @"JSSkeletonProxyTabl
         _tableView.delegate = self;
         _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
         _tableView.backgroundColor = nil;
+        JSBeginIgnoreDeprecatedWarning
         if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
             _tableView.cellLayoutMarginsFollowReadableWidth = NO;
         }
+        JSEndIgnoreDeprecatedWarning
         if (@available(iOS 11.0, *)) {
             _tableView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
         }
