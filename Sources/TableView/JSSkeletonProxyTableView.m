@@ -109,10 +109,11 @@ NSString * const JSSkeletonProxyTableViewReuseIdentifier = @"JSSkeletonProxyTabl
         if (@available(iOS 11.0, *)) {
             _tableView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
         }
+#if __IPHONE_OS_VERSION_MAX_ALLOWED >= 150000
         if (@available(iOS 15.0, *)) {
-            _tableView.fillerRowHeight = 0;
             _tableView.sectionHeaderTopPadding = 0;
         }
+#endif
         _tableView.rowHeight = UITableViewAutomaticDimension;
         _tableView.estimatedRowHeight = 0;
         _tableView.estimatedSectionFooterHeight = 0;
