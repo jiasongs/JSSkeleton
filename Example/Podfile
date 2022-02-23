@@ -20,3 +20,23 @@ target "JSSkeletonExampleMacOS" do
   pod_Common
 end
 
+# https://github.com/CocoaPods/CocoaPods/issues/8891
+def fix_resource_bundle_signing(installer)
+  installer.pods_project.targets.each do |target|
+    if target.respond_to?(:product_type) and target.product_type == "com.apple.product-type.bundle"
+      target.build_configurations.each do |config|
+        if config.build_settings["DEVELOPMENT_TEAM"].nil?
+          config.build_settings["DEVELOPMENT_TEAM"] = "KJ6AEY5JEH"
+        end
+        if config.build_settings["CODE_SIGN_IDENTITY[sdk=macosx*]"].nil?
+          config.build_settings["CODE_SIGN_IDENTITY[sdk=macosx*]"] = "-"
+        end
+      end
+    end
+  end
+end
+
+post_install do |installer|
+  fix_resource_bundle_signing(installer)
+end
+
