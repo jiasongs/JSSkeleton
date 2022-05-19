@@ -47,14 +47,7 @@
         [self.proxyView.producer enumerateLayoutLayersUsingBlock:^(JSSkeletonLayoutLayer *layoutLayer, NSUInteger idx) {
             [layoutLayer endAnimation];
         }];
-        [UIView animateWithDuration:0.25f delay:0 options:(7<<16) animations:^{
-            self.proxyView.alpha = 0.0;
-        } completion:^(BOOL finished) {
-            if (finished) {
-                self.proxyView.hidden = YES;
-                self.proxyView.alpha = 1.0;
-            }
-        }];
+        self.proxyView.hidden = YES;
         return YES;
     }
     return NO;
