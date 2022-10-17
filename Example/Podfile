@@ -7,12 +7,12 @@ def pod_Common
   pod "JSSkeleton", :path => ".."
   pod "QMUIKit"
   pod "Masonry"
+  pod "LookinServer", :subspecs => ['Swift'], :configurations => ["Debug"]
+  pod "MLeaksFinder", :configurations => ["Debug"]
 end
 
 target "JSSkeletonExample" do
   pod_Common
-  pod "LookinServer", "~> 1.0.4", :configurations => ["Debug"]
-  pod "MLeaksFinder", :configurations => ["Debug"]
   pod "FBRetainCycleDetector", :git => "https://github.com/jiasongs/FBRetainCycleDetector.git", :configurations => ["Debug"]
 end
 
