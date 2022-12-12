@@ -13,7 +13,7 @@ Pod::Spec.new do |s|
   s.requires_arc = true
   s.source_files = "Sources", "Sources/*.{h,m}"
 
-  s.dependency "JSCoreKit", "~> 0.2.5"
+  s.dependency "JSCoreKit", "~> 0.2.7"
 
   s.default_subspec = "Core"
   s.subspec "Core" do |ss|
