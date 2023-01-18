@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		6701A6AF7E823E837E79F3D8 /* BuildFile in Frameworks */ = {isa = PBXBuildFile; };
 		7A2E2F7224FE1BCD00A84C3E /* ITOfficialAccountHomepageHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A2E2F7024FE1BCD00A84C3E /* ITOfficialAccountHomepageHeaderView.m */; };
 		7AA27CD924F4FF08009E367E /* ITNewsDetailSkeletonView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AF1E82B24F36C0A00F70824 /* ITNewsDetailSkeletonView.m */; };
 		7AA27CDA24F4FF0D009E367E /* ITNewsDetailSkeletonView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7AF1E82924F36C0A00F70824 /* ITNewsDetailSkeletonView.xib */; };
@@ -297,6 +296,10 @@
 				TargetAttributes = {
 					7ADB2E2824EF97AF00398BF5 = {
 						CreatedOnToolsVersion = 11.4.1;
+						LastSwiftMigration = 1410;
+					};
+					7AF1E80D24F3643200F70824 = {
+						LastSwiftMigration = 1410;
 					};
 				};
 			};
@@ -544,7 +547,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -596,7 +599,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -609,12 +612,13 @@
 			baseConfigurationReference = B9506AE21947DFF4ECB75003 /* Pods-JSSkeletonExample.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = JSSkeletonExample/JSSkeletonExample.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = KJ6AEY5JEH;
 				GCC_PREFIX_HEADER = JSSkeletonExample/PrefixHeader.pch;
 				INFOPLIST_FILE = JSSkeletonExample/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -622,6 +626,9 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.jiasong.JSSkeletonExample;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTS_MACCATALYST = NO;
+				SWIFT_OBJC_BRIDGING_HEADER = "";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -631,12 +638,13 @@
 			baseConfigurationReference = 29E384E54D5200BF49183EFA /* Pods-JSSkeletonExample.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = JSSkeletonExample/JSSkeletonExample.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = KJ6AEY5JEH;
 				GCC_PREFIX_HEADER = JSSkeletonExample/PrefixHeader.pch;
 				INFOPLIST_FILE = JSSkeletonExample/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -644,6 +652,8 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.jiasong.JSSkeletonExample;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTS_MACCATALYST = NO;
+				SWIFT_OBJC_BRIDGING_HEADER = "";
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
@@ -653,12 +663,13 @@
 			baseConfigurationReference = F27C427EB7C4AEB17FAF2B44 /* Pods-JSSkeletonExampleMacOS.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = JSSkeletonExample/JSSkeletonExample.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = KJ6AEY5JEH;
 				GCC_PREFIX_HEADER = JSSkeletonExample/PrefixHeader.pch;
 				INFOPLIST_FILE = JSSkeletonExample/MacOSInfo.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -666,6 +677,9 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.jiasong.JSSkeletonExample;
 				PRODUCT_NAME = JSSkeletonExampleMacOS;
 				SUPPORTS_MACCATALYST = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 2;
 			};
 			name = Debug;
@@ -675,12 +689,13 @@
 			baseConfigurationReference = 994568E7EBB4F60E89D13B31 /* Pods-JSSkeletonExampleMacOS.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = JSSkeletonExample/JSSkeletonExample.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = KJ6AEY5JEH;
 				GCC_PREFIX_HEADER = JSSkeletonExample/PrefixHeader.pch;
 				INFOPLIST_FILE = JSSkeletonExample/MacOSInfo.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -688,6 +703,8 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.jiasong.JSSkeletonExample;
 				PRODUCT_NAME = JSSkeletonExampleMacOS;
 				SUPPORTS_MACCATALYST = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "";
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 2;
 			};
 			name = Release;
